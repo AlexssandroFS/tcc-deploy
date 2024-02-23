@@ -124,7 +124,7 @@ app.get('/menurelatorios', (req, res) => {
 
   app.listen(process.env.PORT || 4000, () => {
    
-    console.log('acesse: http://localhost:${PORT}/ ou acesse: http://localhost:${PORT}/login')
+    console.log('acesse: http://localhost:4000/ ou acesse: http://localhost:4000/login')
 })
 
 /*https://www.youtube.com/watch?v=gOuJE6d_l-U
