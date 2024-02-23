@@ -1,0 +1,182 @@
+:root {
+    --fondo-color: #2c2c2c;
+    /*#181818*/
+    --items-color: #000000;
+    /*202020 cor de fundo dos itens do MENU*/
+    /*#202020; */
+    --border-color: white;
+    /*#383838*/
+    --text-color: white;
+    /*#e7e7e7*/
+}
+
+* {
+    padding: 2;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html .body .img .nav {
+    /*ajusta tamanho da letra na tela*/
+    @media (max-width: 1600px) {
+        .container {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            display: static;
+        }
+        @media screen and (min-width: 600px) {
+            .container {
+                font-size: 20px;
+                height: 100%;
+                width: 100%;
+                position: relative;
+                display: static;
+            }
+        }
+    }
+    overflow-y: auto;
+}
+
+body {
+    background-color: var(--fondo-color);
+    margin: 0 auto;
+    position: static;
+    overflow-y: auto;
+}
+
+nav {
+    position: static;
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 7vh;
+    padding: 1px 48px;
+    /*background-color: var(--items-color);*/
+    position: fixed;
+    border-bottom: 8px solid var(--border-color);
+    display: block;
+    color: white;
+    transition: all 0.4s ease-in-out;
+    font-size: 1rem;
+    font-family: 'Reem Kufi', sans-serif;
+    background-color: var(--items-color);
+    /*#5B30AB;*/
+    /**COR DOS ITENS DO barra head MENU/
+/*Indigo;*/
+    /* #5B30AB;*/
+    font-size: 4px;
+    /*tamanho da letra dos itens do barra NAVBAR*/
+    /* position: relative;    border-radius:0px; angulo de corte da borda dos itens do MENU*/
+    display: block;
+    overflow-y: static;
+}
+
+nav img {
+    margin-left: 10px;
+}
+
+nav span i {
+    color: #fff;
+    font-size: 2.7rem;
+    cursor: pointer;
+}
+
+aside {
+    background-color: var(--items-color);
+    width: 230px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: hidden;
+    margin-top: 59px;
+    transition: 0.5s;
+    display: static;
+}
+
+aside:hover {
+    overflow-y: auto;
+    color: #fff;
+}
+
+.desplegar {
+    transform: translateX(-100%);
+}
+
+aside::-webkit-scrollbar {
+    width: 8px;
+}
+
+aside::-webkit-scrollbar-thumb {
+    background-color: #909090;
+    border-radius: 5px;
+}
+
+.container-svg {
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 1px;
+    color: var(--text-color);
+}
+
+.container-svg div {
+    display: static;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.container-svg div:hover {
+    color: #f6f8f6;
+    /*#303030*/
+    /**cor verde ao passar o mouse sobre opçoes menu*/
+    background-color: #298019;
+    /* #61025c;*/
+}
+
+.container-svg div span {
+    margin-left: 15px;
+    font-size: 15px;
+    /*tamanho da letra dos itens do MENU*/
+    font-weight: 500;
+}
+
+h2 {
+    padding: 10px 20px;
+    color: #aaaaaa;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 40px;
+    height: 30px;
+    padding: 0%;
+    border-radius: 5%;
+    padding-top: 1%;
+    padding: 10px;
+    display: static;
+}
+
+#imghome {
+    width: 80%;
+    height: 60%;
+    padding-top: 3%;
+    padding-left: 1%;
+    padding: 2%;
+    border: #2c2c2c;
+    position: static;
+    display: static;
+    /*ajusta tamanho da*/
+    /*true é para aparecer a imagem no body da NAVBAR, mas será NONE (False) na outras paginas*/
+    float: center;
+    overflow-y: 100%;
+    background-image: url("../img/slide/slide-1.jpg");
+}
+
+@media screen and (min-width: 600px) {
+    .container .imghome .menuimg {
+        margin: 1em 2em;
+    }
+}

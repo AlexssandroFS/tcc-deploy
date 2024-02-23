@@ -1,0 +1,104 @@
+@media (min-width: 992px) {
+    .typo-line {
+        padding-left: 140px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    .typo-line .category {
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0px;
+        position: absolute;
+    }
+}
+
+table{
+    font-size: 14px;
+}
+
+.table .form {
+    padding-top: 10px;
+    font-size: 10px;
+    padding: 0px;
+    /*background-color: rgb(255, 255, 255);*/
+    color: rgb(12, 13, 13);
+    border: #0b0000 15px;
+    border-width: 5px;
+    border-color: #0b0000;
+    min-height: 40vh;
+    max-width: 100vh;
+    width: 80%;
+    height: 90%;
+    font-size: 30%;
+}
+
+
+/*
+#fundoshow {
+    font-size: 16px;
+    padding: 10px;
+    background: linear-gradient(190deg, #737573, #ca30e9, #737573);
+    color: #f8f8f8;
+    opacity: 0.9;
+    border-radius: 3%;
+    padding-left: 3%;
+    border: double 3px #0b0000;
+    border-style: double;
+}
+*/
+
+h5,
+strong,
+small,
+label {
+    color: #0e0101;
+    font-size: 18px;
+}
+
+h4,
+li {
+    color: #121112;
+}
+
+label,
+strong,
+small,
+li {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.h1 {
+    font-size: 28px;
+}
+
+td {
+    max-width: auto;
+    width: auto;
+    min-width: auto;
+}
+
+
+/*
+td.fitwidth {
+    width: 5px;
+    white-space: nowrap;
+}
+*/
+
+#divleft {
+    float: left;
+    width: 30%;
+    margin-right: 0%;
+    height: 50px;
+    margin-top: 25px;
+}
+
+#divright {
+    float: left;
+    width: 70%;
+    margin-right: 0%;
+    height: 50px;
+    text-align: right;
+    margin-top: 25px;
+}

@@ -1,0 +1,239 @@
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+body {
+    cursor: pointer;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    /*background-color: #470066;*/
+    background-image: url('img/walpaperlogin.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: block !important;
+    width: 100% !important;
+    height: 100%;
+    position: auto;
+    background-size: cover;
+    @media only screen and (max-width: 767px) {
+        html {
+            background-image: url(bg.jpg);
+        }
+    }
+}
+
+.login-box {
+    width: 480px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.login-box h1 {
+    float: left;
+    font-size: 40px;
+    border-bottom: 6px solid #4caf50;
+    margin-bottom: 50px;
+    padding: 13px 0;
+}
+
+.textbox {
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 15px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid #4caf50;
+}
+
+.textbox i {
+    width: 26px;
+    float: left;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.textbox input {
+    border: none;
+    outline: none;
+    /*background: #000;*/
+    color: rgb(8, 8, 8);
+    font-size: 22px;
+    width: 80%;
+    float: left;
+    margin: 0 10px;
+    text-align: center;
+}
+
+.btn {
+    width: 100%;
+    background: none;
+    border: 2px solid #4caf50;
+    color: rgb(248, 245, 245);
+    padding: 5px;
+    font-size: 35px;
+    cursor: pointer;
+    margin: 12px 0;
+    opacity: 0.9;
+    filter: alpha(opacity=100);
+    /* For IE8 and earlier */
+}
+
+#login {
+    color: rgb(248, 245, 245);
+    border: 2px solid #298019;
+    background-color: #298019;
+    text-align: center;
+    font-size: 28px;
+    float: center;
+    margin: 0 33px;
+}
+
+#cadastro {
+    color: rgb(248, 245, 245);
+    border: 2px solid #5B30AB;
+    /*background-color: #5B30AB;*/
+    text-align: center;
+    font-size: 20px;
+    float: center;
+    margin: 0 33px;
+}
+
+#arealogin {
+    /*border: 2px solid #4caf50;*/
+    text-align: center;
+    font-size: 20px;
+    float: left;
+    background-color: #17042b;
+    opacity: 0.7;
+}
+
+#arealogincadastro {
+    /*border: 2px solid #4caf50;*/
+    text-align: center;
+    font-size: 20px;
+    float: left;
+    background-color: #17042b;
+    opacity: 0.7;
+    margin-top: 6%;
+    margin-block-end: 15%;
+    width: 100%;
+    height: auto;
+    min-height: 60vh;
+    max-width: 200vh;
+}
+
+#titulologin {
+    color: rgb(252, 249, 249);
+    /*background-color: #5B30AB;*/
+}
+
+#imglogincadastro {
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+@media (min-width: 992px) {
+    .typo-line {
+        padding-left: 140px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    .typo-line .category {
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0px;
+        position: absolute;
+    }
+}
+
+.table .form {
+    top: 10%;
+    padding-top: 15px;
+    font-size: 10px;
+    padding: 10px;
+    /*background-color: rgb(255, 255, 255);*/
+    color: rgb(12, 13, 13);
+    border: #0b0000 15px;
+    border-width: 5px;
+    border-color: #0b0000;
+    min-height: 60vh;
+    max-width: 200vh;
+    width: 80%;
+    height: 80%;
+}
+
+
+/*
+#fundoshow {
+    font-size: 16px;
+    padding: 10px;
+    background: linear-gradient(190deg, #737573, #ca30e9, #737573);
+    color: #f8f8f8;
+    opacity: 0.9;
+    border-radius: 3%;
+    padding-left: 3%;
+    border: double 3px #0b0000;
+    border-style: double;
+}
+*/
+
+h5,
+strong,
+small,
+label {
+    color: #efebeb;
+    font-size: 18px;
+}
+
+h4,
+li {
+    color: #ece4ec;
+    text-align: left;
+}
+
+label,
+strong,
+small,
+li {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.h1 {
+    font-size: 28px;
+}
+
+td {
+    max-width: auto;
+    width: auto;
+    min-width: auto;
+}
+
+
+/*
+td.fitwidth {
+    width: 5px;
+    white-space: nowrap;
+}
+*/
+
+#divleft {
+    float: left;
+    width: 30%;
+    margin-right: 0%;
+    height: 50px;
+    margin-top: 25px;
+}
+
+#divright {
+    float: left;
+    width: 70%;
+    margin-right: 0%;
+    height: 50px;
+    text-align: right;
+    margin-top: 25px;
+}

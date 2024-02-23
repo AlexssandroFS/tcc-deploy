@@ -1,0 +1,475 @@
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 5 auto; 
+}
+
+
+
+/* Principal */
+
+.row::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .col-m-1 {
+        width: 8.33%;
+    }
+    .col-m-2 {
+        width: 16.66%;
+    }
+    .col-m-3 {
+        width: 25%;
+    }
+    .col-m-4 {
+        width: 33.33%;
+    }
+    .col-m-5 {
+        width: 41.66%;
+    }
+    .col-m-6 {
+        width: 50%;
+    }
+    .col-m-7 {
+        width: 58.33%;
+    }
+    .col-m-8 {
+        width: 66.66%;
+    }
+    .col-m-9 {
+        width: 75%;
+    }
+    .col-m-10 {
+        width: 83.33%;
+    }
+    .col-m-11 {
+        width: 91.66%;
+    }
+    .col-m-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    /* For tablets: */
+    .col-m-1 {
+        width: 8.33%;
+    }
+    .col-m-2 {
+        width: 16.66%;
+    }
+    .col-m-3 {
+        width: 25%;
+    }
+    .col-m-4 {
+        width: 33.33%;
+    }
+    .col-m-5 {
+        width: 41.66%;
+    }
+    .col-m-6 {
+        width: 50%;
+    }
+    .col-m-7 {
+        width: 58.33%;
+    }
+    .col-m-8 {
+        width: 66.66%;
+    }
+    .col-m-9 {
+        width: 75%;
+    }
+    .col-m-10 {
+        width: 83.33%;
+    }
+    .col-m-11 {
+        width: 91.66%;
+    }
+    .col-m-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    /* For desktop: */
+    .col-1 {
+        width: 8.33%;
+    }
+    .col-2 {
+        width: 16.66%;
+    }
+    .col-3 {
+        width: 25%;
+    }
+    .col-4 {
+        width: 33.33%;
+    }
+    .col-5 {
+        width: 41.66%;
+    }
+    .col-6 {
+        width: 50%;
+    }
+    .col-7 {
+        width: 58.33%;
+    }
+    .col-8 {
+        width: 66.66%;
+    }
+    .col-9 {
+        width: 75%;
+    }
+    .col-10 {
+        width: 83.33%;
+    }
+    .col-11 {
+        width: 91.66%;
+    }
+    .col-12 {
+        width: 100%;
+    }
+}
+
+#fimfooter {
+    margin-top: 75%;
+    padding-bottom: 90%;
+    min-height: 7vh;
+    max-height: 40vh;
+    max-width: 800vh;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    background: #000000;
+    width: 100%;
+    height: 6vh;
+}
+
+.imgfundo {
+    background-image: url("/img/slide/home.jpg");
+    position: fixed no-repeat;
+    width: 201vh;
+    height: 70vh;
+    /*cursor: pointer;*/
+    padding-top: 0%;
+    padding-bottom: 0%
+}
+
+#footerHome {
+    display: flexbox;
+    float: justify;
+    justify-content: justify;
+    width: 100%;
+    height: 8vh;
+    margin-top: 0%;
+    padding-bottom: 0%;
+    min-height: 8vh;
+    min-width: 175vh;
+    max-height: 300vh;
+    max-width: 300vh;
+    top: 0;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    background: #000000;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 2px 1px #fdfbfb;
+    -webkit-box-shadow: 0 2px 1px #9c9c9c;
+    /* box-shadow:  é a cor da barrinha embaixo do menu (#720269, #02a017)*/
+    box-shadow: 0px 4px 10px 0px rgb(1, 85, 26);
+    /*Superior - Esquerda - Inferior - Direita*/
+    margin: 2px 0px 0px 0px;
+}
+
+#imgpaperhome {
+    width: 85%;
+    height: 95%;
+    min-width: 70vh;
+    max-height: 100vh;
+    max-width: 300vh;
+    top: 10;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    position: relative;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 2px 1px #fdfbfb;
+    -webkit-box-shadow: 0 2px 1px #9c9c9c;
+    /* box-shadow:  é a cor da barrinha embaixo do menu (#720269, #02a017)*/
+    box-shadow: 0px 4px 10px 0px rgb(1, 85, 26);
+    /*Superior - Esquerda - Inferior - Direita*/
+    /*Superior - Esquerda - Inferior - Direita*/
+    margin: 20px 0px 0px 0px;
+    padding: 1px 5px 5px 5px;
+    background-color: rgb(6, 6, 6);
+    /*Superior - Esquerda - Inferior - Direita*/
+}
+
+#imgautenticalogin {
+    width: 30%;
+    height: 50%;
+    min-height: 30vh;
+    max-height: 100vh;
+    max-width: 300vh;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    position: static;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 2px 1px #fdfbfb;
+    -webkit-box-shadow: 0 2px 1px #9c9c9c;
+    /* box-shadow:  é a cor da barrinha embaixo do menu (#720269, #02a017)*/
+    box-shadow: 0px 4px 10px 0px rgb(1, 85, 26);
+    /*Superior - Esquerda - Inferior - Direita*/
+    /*Superior - Esquerda - Inferior - Direita*/
+    margin: 20px 0px 0px 0px;
+    padding: 1px 5px 5px 5px;
+    background-color: rgb(6, 6, 6);
+    /*Superior - Esquerda - Inferior - Direita*/
+}
+
+#logado {
+    top: 16%;
+    float: center;
+    position: static;
+    right: auto;
+    height: auto;
+    min-width: 195vh;
+    max-height: 100vh;
+    max-width: 300vh;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    z-index: -4;
+    /*Superior - Esquerda - Inferior - Direita
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+    Superior - Esquerda - Inferior - Direita*/
+}
+
+#nomeprograma {
+    position: static;
+    display: center;
+    width: 100%;
+    height: auto;
+    float: center;
+    justify-content: center;
+    font-size: 15px;
+    z-index: 1;
+    top: 8%;
+}
+
+nav {
+    /* Necessário para funcionar no Safari */
+    position: relative;
+    z-index: 1;
+    top: 0%;
+    min-width: 195vh;
+    max-height: 100vh;
+    max-width: 300vh;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgb(97, 3, 109);*/
+    overflow: -moz-hidden-unscrollable;
+    /* margin-block-end: 5%;   colocar espaço ABAIXO do menu e da navbar*/
+    margin-block-end: 5%;
+}
+
+#menu {
+    /*PARA CENTRALIZAR O TEXTO E MENU
+    display: flex;
+    float: center;
+    justify-content: center;
+     */
+    display: flex;
+    float: center;
+    justify-content: center;
+    font-size: 15px;
+    min-width: 190vh;
+    max-height: 100vh;
+    max-width: 300vh;
+    width: 95%;
+    height: auto;
+    float: center;
+    z-index: -1;
+    position: fixed;
+    /*não mudar - deixar fixed*/
+    top: 0%;
+    /*Superior - Esquerda - Inferior - Direita*/
+    margin: 2px 0px 0px 0px;
+    padding: 15px 0px 15px 0px;
+    /*Superior - Esquerda - Inferior - Direita*/
+    list-style: none;
+    background: linear-gradient(black, purple);
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 2px 1px #fdfbfb;
+    -webkit-box-shadow: 0 2px 1px #9c9c9c;
+    /* box-shadow:  é a cor da barrinha embaixo do menu (#720269, #02a017)*/
+    box-shadow: 0px 4px 6px 0px rgb(1, 85, 26);
+    /*Superior - Esquerda - Inferior - Direita*/
+}
+
+#menu li {
+    float: left;
+    /*Superior - Esquerda - Inferior - Direita*/
+    padding: 0px 5px 0px 0px;
+    position: relative;
+}
+
+#menu a {
+    float: left;
+    height: 25px;
+    /* padding: 0 15px; - importante, serve para mexer opções menu da direita para esquerda*/
+    padding: 0px 8px 8px 8px;
+    color: #f4e8e5;
+    text-transform: uppercase;
+    font: bold 12px/25px Arial, Helvetica;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #000;
+}
+
+#menu li:hover>a {
+    color: #63ed1f;
+    padding: 4px 10px 10px 10px;
+}
+
+*html #menu li a:hover {
+    /* IE6 */
+    color: #fafafa;
+    padding: 4px 0px 0px 0px;
+}
+
+#menu li:hover>ul {
+    display: block;
+}
+
+
+/* Sous-menu */
+
+#menu ul {
+    list-style: none;
+    /*  margin-top: 28px;  ---  é para espaçamento SUPERIOR dos itens do submenu em relação ao MENU*/
+    margin-top: 28px;
+    padding: 0;
+    display: none;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    z-index: 99999;
+    background: #444;
+    background: -moz-linear-gradient(#444, #111);
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #111), color-stop(1, #444));
+    background: -webkit-linear-gradient(#444, #111);
+    background: -o-linear-gradient(#444, #111);
+    background: -ms-linear-gradient(#444, #111);
+    background: linear-gradient(#444, #111);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#menu ul li {
+    margin-top: 28px;
+    float: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    -moz-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    -webkit-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+}
+
+#menu ul li:last-child {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#menu ul a {
+    /* padding: 10px; , é para LARGURA do item selecionado*/
+    padding: 10px;
+    height: auto;
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+    float: none;
+    text-transform: none;
+}
+
+*html #menu ul a {
+    /* IE6 */
+    height: 10px;
+    width: 100%;
+}
+
+*:first-child+html #menu ul a {
+    /* IE7 */
+    height: 10px;
+    width: 150px;
+}
+
+#menu ul card-body a:hover {
+    background: #6e0157;
+    /*background: #0186ba;
+ background: -moz-linear-gradient(#04acec, #0186ba);
+ background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
+ background: -webkit-linear-gradient(#04acec, #0186ba);
+ background: -o-linear-gradient(#04acec, #0186ba);
+ background: -ms-linear-gradient(#04acec, #0186ba);
+ background: linear-gradient(#04acec, #0186ba);
+ */
+}
+
+#menu ul li:first-child a {
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+}
+
+#menu ul li:first-child a:after {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #444;
+}
+
+#menu ul li:first-child a:hover:after {
+    /*cor SETINHA ao passar mouse nos itens do sub-menu*/
+    border-bottom-color: #fafcfd;
+}
+
+#menu ul li:last-child a {
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+
+/* Rétablissement du flottement */
+
+#menu:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+* html #menu {
+    zoom: 1;
+}
+
+
+/* IE6 */
+
+*:first-child+html #menu {
+    zoom: 1;
+}
+
+
+/* IE7 */
