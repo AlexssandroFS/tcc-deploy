@@ -2,10 +2,10 @@
     "name": "tcc",
     "version": "1.0.0",
     "description": "Trabalho de conclusão de Curso – Análise e Desenvolvimento de Sistemas – IFSP Campus Jacareí.",
-    "main": "app.js",
+    "main": "node app.js",
     "scripts": {
-        "dev": "nodemon start",
-        "start": "nodemon start",
+        "dev": "node app.js",
+        "start": "node app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [],
