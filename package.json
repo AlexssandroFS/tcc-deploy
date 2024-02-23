@@ -4,7 +4,7 @@
     "description": "Trabalho de conclusão de Curso – Análise e Desenvolvimento de Sistemas – IFSP Campus Jacareí.",
     "main": "node app.js",
     "scripts": {
-        "dev": "node app.js",
+        "dev": "app.js",
         "start": "node app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
