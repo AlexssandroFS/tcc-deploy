@@ -10,7 +10,6 @@ require('dotenv').config()
 const session = require('express-session'); /*utilizado para verificar sessao de usuario logado*/
 const cookieParser = require("cookie-parser");
 //const redditData = require('./data.json');
-const PORT = 4000;
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -124,7 +123,7 @@ app.get('/menurelatorios', (req, res) => {
 
 
   app.listen(process.env.PORT || 4000, () => {
-    console.log(`Server running on port: ${port}`);
+   
     console.log('acesse: http://localhost:4000/ ou acesse: http://localhost:4000/login')
 })
 
