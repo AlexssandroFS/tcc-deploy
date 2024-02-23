@@ -1,0 +1,899 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 04-Ago-2023 às 02:49
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `banco`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `cardapios`
+--
+
+CREATE TABLE `cardapios` (
+  `id` int(11) NOT NULL,
+  `itemcardapio` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `valor` double(10,2) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `categoriasid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `cardapios`
+--
+
+INSERT INTO `cardapios` (`id`, `itemcardapio`, `descricao`, `valor`, `createdAt`, `updatedAt`, `categoriasid`) VALUES
+(1, 'Açai Tradicional - Copo montado ', 'Copo montado de Açaí Puro para acréscimo de ingredientes.', 6.50, '2022-10-23 14:14:33', '2022-10-23 14:14:33', 18),
+(2, 'Cupuaçu Puro - Copo montado ', 'Cupuaçu Puro', 8.00, '2022-12-04 21:50:08', '2022-12-04 21:50:08', 18),
+(3, 'Mix Açaí / Cupuaçu - Copo montado ', 'Mix Açaí / Cupuaçu ', 7.50, '2022-12-04 21:57:11', '2022-12-04 21:57:11', 18),
+(4, 'Açaí tradicional - Copo Separado', 'Copo montado de Açaí Tradicional Puro sem acréscimo de ingredientes.	', 6.50, '2022-12-04 22:32:43', '2022-12-04 22:32:43', 19),
+(5, 'Sorvete no Copo ', 'Sorvete no Copo com 1 bola', 3.00, '2022-12-05 00:54:54', '2022-12-05 00:54:54', 4),
+(6, 'Sorvete na Casquinha', 'Sorvete na Casquinha - 1 bola', 4.50, '2022-12-05 00:55:55', '2022-12-05 00:55:55', 2),
+(7, 'Sorvete no Cestinha', 'Sorvete no Cestinha- 1 bola', 4.00, '2022-12-05 00:56:50', '2022-12-05 00:56:50', 3),
+(8, 'Picolé Cone diversos sabores', 'Picolé Cone diversos sabores', 6.00, '2022-12-05 00:59:02', '2022-12-05 00:59:02', 6),
+(9, 'Picolé ao leite ', 'Picolé ao leite - diversos sabores: leite condensado, chocolate, etc', 2.50, '2022-12-05 01:00:14', '2022-12-05 01:00:14', 6),
+(10, 'Picolé de Fruta  ', 'Picolé de Fruta - diversos sabores: uva, morango, limão, milho, açaí, abacaxi etc ', 1.00, '2022-12-05 01:01:26', '2022-12-05 01:01:26', 5),
+(11, 'Picolé de casquinha  ', 'Picolé de casquinha - diversos sabores: chocolate, trufado', 3.50, '2022-12-05 01:02:07', '2022-12-05 01:02:07', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categorias`
+--
+
+CREATE TABLE `categorias` (
+  `id` int(11) NOT NULL,
+  `nomecategoria` varchar(255) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nomecategoria`, `descricao`, `createdAt`, `updatedAt`) VALUES
+(1, 'Balas Diversas', 'balas diversos sabores', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(2, 'Sorvete na Casquinha', 'sorvete na casquinha', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(3, 'Sorvete na Cestinha', 'sorvete na cestinha', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(4, 'Sorvete no Copo', 'sorvete no copo', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(5, 'Picole de Frutas', 'sorvete', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(6, 'Picole ao Leite', 'picole ao leite', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(7, 'Picole Misto', 'sorvete', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(8, 'Chocolate em Barra', 'Barra de chocolate de 1kg', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(9, 'Bebida Refrigerante Lata', 'lata pequena', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(10, 'Bebida Refrigerante Garrafa', 'garrafa pequena', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(11, 'Bebida Suco Lata', 'lata pequena', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(12, 'Bebida Suco Garrafa', 'garrafa pequena', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(13, 'Agua Mineral com Gas garrafa', 'água mineral com gas garrafa	', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(14, 'Agua Mineral sem Gas garrafa', 'água mineral sem gas garrafa', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(15, 'Copo Pequeno', 'copo pequeno', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(16, 'Copo Médio 500ml', 'Descartáveis - copo médio 500ml', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(17, 'Copo Grande 1000ml', 'Descartáveis - copo grande 1000ml', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(18, 'Copo Montado', 'copo montado', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(19, 'Copo Separado', 'copo separado', '2022-09-20 21:35:39', '2022-09-20 21:35:39'),
+(20, 'Conveniência', 'produtos diversos', '2022-09-25 23:29:47', '2022-09-25 23:29:47'),
+(21, 'Bebida Alcoólica', 'bebida Alcoólica', '2022-09-25 23:30:13', '2022-09-25 23:30:13'),
+(22, 'Doces Diversos', 'doces sortidos', '2022-09-26 02:13:43', '2022-09-26 02:13:43'),
+(23, 'Balde de Açaí', 'balde de açaí puro', '2022-10-30 01:27:55', '2022-10-30 01:27:55'),
+(24, 'Coberturas Liquidas Diversas', 'sabores: morango, chocolate, kiwi', '2022-11-01 13:52:10', '2022-11-01 13:52:10'),
+(25, 'Descartáveis - Colheres', 'colher descartável pequena', '2022-11-08 12:53:52', '2022-11-08 12:53:52'),
+(26, 'Copo pequeno 300ml', 'Descartáveis copo pequeno 300ml', '2022-11-15 02:54:44', '2022-11-15 02:54:44'),
+(27, 'Chocolate', 'bis, pacote, confete', '2022-12-05 19:49:32', '2022-12-05 19:49:32'),
+(28, 'Leite Ninho em Pó', 'Lata de Leite Ninho em Pó', '2022-12-06 17:39:33', '2022-12-06 17:39:33'),
+(29, 'Leite Condensado', 'Lata de Leite Condensado', '2022-12-06 18:32:14', '2022-12-06 18:32:14'),
+(30, 'Cobertura de Chocolate Quente ', 'Cobertura de Chocolate Quente para Açaí e Sorvete', '2022-12-06 18:32:57', '2022-12-06 18:32:57');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `contatos`
+--
+
+CREATE TABLE `contatos` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefone` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `contatos`
+--
+
+INSERT INTO `contatos` (`id`, `email`, `telefone`, `createdAt`, `updatedAt`) VALUES
+(1, 'atenasacai@gmail.com', '1298187-6809', '2022-09-20 21:36:32', '2022-09-20 21:36:32'),
+(2, 'alex@gmail.com', '1297070-7070', '2022-09-20 21:36:32', '2022-09-20 21:36:32'),
+(3, 'alex@gmail.com', '1298187-6809', '2022-09-20 21:36:32', '2022-09-20 21:36:32'),
+(4, 'alexssss@gmail.com', '1298187-6809', '2022-09-20 21:36:32', '2022-09-20 21:36:32'),
+(5, 'alexssssssssssssssssss@gmail.com', '1298187-6809', '2022-10-07 17:56:56', '2022-10-07 17:56:56'),
+(6, 'alexssssssssssssssssss@gmail.com', '1298187-6809', '2022-10-07 18:10:00', '2022-10-07 18:10:00'),
+(7, 'alexssss@gmail.com', '1298187-6809', '2022-10-29 20:54:56', '2022-10-29 20:54:56'),
+(8, 'alexssandro.ferreira300@gmail.com', '1298187-6809', '2022-10-29 21:36:42', '2022-10-29 21:36:42'),
+(9, 'supervisor@gmail.com', '12997638877', '2022-11-08 12:00:39', '2022-11-08 12:00:39'),
+(10, 'atendente@gmail.com', '12997638199', '2022-11-08 12:03:20', '2022-11-08 12:03:20'),
+(11, 'sorveteriacrenata@crenata.com.br', '123961-2800', '2022-11-08 12:08:31', '2022-11-08 12:08:31'),
+(12, 'tadeu@gmail.com', '12323123', '2022-12-01 00:20:53', '2022-12-01 00:20:53'),
+(13, 'paula@gmail.com', '321313113', '2022-12-06 16:23:44', '2022-12-06 16:23:44'),
+(14, 'alexssandro.ferreira300@gmail.com', '1298312831', '2022-12-06 16:32:07', '2022-12-06 16:32:07'),
+(15, 'peterson@gmail.com', '12 9222-3232', '2023-06-13 17:38:01', '2023-06-13 17:38:01'),
+(16, 'pedro@gmail.com', '65 5433-3433', '2023-06-16 13:13:10', '2023-06-16 13:13:10'),
+(17, 'cliente@gmail.com', '12 9222-3232', '2023-06-22 17:44:52', '2023-06-22 17:44:52');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `despesas`
+--
+
+CREATE TABLE `despesas` (
+  `id` int(11) NOT NULL,
+  `nomedespesa` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `despesas`
+--
+
+INSERT INTO `despesas` (`id`, `nomedespesa`) VALUES
+(1, '13º Salários'),
+(2, 'Aparelho de Eletrônico'),
+(3, 'Aluguel'),
+(4, 'Aquisição de Eletrodoméstico'),
+(5, 'Aquisição de Eletroportáteis'),
+(6, 'Aquisição de Equipamento de Informática'),
+(7, 'Aquisição de Veículo'),
+(8, 'Aquisição de Imovel'),
+(9, 'Cheques Trocados/Recebidos'),
+(10, 'Cheques Descontados'),
+(11, 'Conta de Agua'),
+(12, 'Conta de Energia Elétrica'),
+(13, 'Conta de Telefone'),
+(14, 'Conta de Internet/Tv Cabo'),
+(15, 'Combustivel'),
+(16, 'Compra de Softwares'),
+(17, 'DPVAT Veicular'),
+(18, 'Emprestimo Bancário'),
+(19, 'Frete'),
+(20, 'Fatura de Cartão de Crédito'),
+(21, 'Financimento de Imovel'),
+(22, 'Financiamento de Veículo'),
+(23, 'Financiamento de Equipamento Eletroportáteis '),
+(24, 'Financiamento de Equipamento Eletrodoméstico'),
+(25, 'Financiamento de Equipamento de Informática'),
+(26, 'Folha de Pagamento'),
+(27, 'FGTS'),
+(28, 'Fornecedores'),
+(29, 'IPVA Veicular'),
+(30, 'INSS a Recolher'),
+(31, 'Impostos'),
+(32, 'Juros'),
+(33, 'Licenciamento Veicular'),
+(34, 'Manutenção de Eletroportáteis '),
+(35, 'Manutenção de Eletrodoméstico'),
+(36, 'Manutenção de Veículo'),
+(37, 'Manutenção de Imovel'),
+(38, 'Manutenção de Equipamento de Informática'),
+(39, 'Material de Consumo'),
+(40, 'Multa'),
+(41, 'Parcelamento de Equipamento Eletroportáteis '),
+(42, 'Parcelamento de Equipamento Eletrodoméstico'),
+(43, 'Parcelamento de Equipamento de Informática'),
+(44, 'Publicidade'),
+(45, 'Recebimento em Dinheiro'),
+(46, 'Recebimento Cartão de Crédito'),
+(47, 'Recebimento Cartão de Débito'),
+(48, 'Recebimento Pix'),
+(49, 'Recarga de Celular'),
+(50, 'Saldo Anterior'),
+(51, 'Saldo Atual'),
+(52, 'Serviços de Contabilidade'),
+(53, 'Seguro Residencial'),
+(54, 'Seguro Veicular'),
+(55, 'Taxas'),
+(56, 'Vale Transporte'),
+(57, 'Outros');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `despesasentradas`
+--
+
+CREATE TABLE `despesasentradas` (
+  `id` int(11) NOT NULL,
+  `descricao` varchar(255) NOT NULL,
+  `nrodocto` varchar(255) NOT NULL,
+  `datavalidade` date NOT NULL,
+  `valortotal` float(10,2) NOT NULL,
+  `despesasid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `despesasentradas`
+--
+
+INSERT INTO `despesasentradas` (`id`, `descricao`, `nrodocto`, `datavalidade`, `valortotal`, `despesasid`) VALUES
+(1, 'Posto Shell mês 05-2023', 'CF 001', '2023-05-11', 50.00, 15),
+(2, 'Aluguel mês 05-2023', 'Recibo N 001', '2023-05-11', 500.00, 3),
+(3, 'Conta de Agua mês 05-2023', 'Fatura 001 ', '2023-05-11', 50.56, 11),
+(4, 'Conta de Internet e TV a Cabo  05-2023', 'Fatura 001 ', '2023-06-10', 100.00, 14),
+(5, 'DPVAT Moto Honda Biz Placa HFD-3920 - 05-2023', 'Docto 0000333', '2023-05-19', 100.00, 17),
+(6, 'IPVA Moto Honda Biz Placa HFD-3920 - 05-2023', 'Docto 0000331', '2023-05-25', 50.00, 29),
+(7, 'Licenciamento Moto Honda Biz Placa HFD-3920 - 05-2023', 'Docto 0000332', '2023-05-26', 100.00, 33),
+(8, 'Recarga Celular Empresa 1298877-4433 - 05-2023', 'Fatura 001 - 05-2023', '2023-06-02', 30.00, 49),
+(9, '10 Canetas,  2 Pacotes de Papel Sulfite - Papelaria Belo Presents', 'Nota Fiscal 909', '2023-06-06', 12.50, 39);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `despesassaidas`
+--
+
+CREATE TABLE `despesassaidas` (
+  `id` int(11) NOT NULL,
+  `datapagto` date NOT NULL,
+  `descricaosaida` varchar(255) NOT NULL,
+  `valortotalsaida` float(10,2) NOT NULL,
+  `despesasidentradas` int(11) NOT NULL,
+  `formaspagtosid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `despesassaidas`
+--
+
+INSERT INTO `despesassaidas` (`id`, `datapagto`, `descricaosaida`, `valortotalsaida`, `despesasidentradas`, `formaspagtosid`) VALUES
+(1, '2023-05-14', 'Conta de Agua 05-2023  Fatura 001 - Nro docto bancario 3232131231', 50.56, 3, 3),
+(2, '2023-05-14', 'Aluguel 05-2023  Recibo N 001 - Nro docto bancario 32321 - Boleto Brasil', 500.00, 2, 3),
+(3, '2023-05-15', 'Recarga Celular empresa 05-2023 - Pagto Banco Bradesco docto 9880', 30.00, 8, 14),
+(4, '2023-05-15', 'Internet empresa 05-2023 - Boleto Bradesco docto 9885', 100.00, 4, 14),
+(5, '2023-05-15', 'IPVA Moto Honda Biz Placa HFD-3920 - 05-2023', 50.00, 6, 14),
+(6, '2023-05-15', '10 Canetas, 2 Pacotes de Papel Sulfite - Papelaria Belo Presents', 12.50, 9, 2),
+(7, '2023-05-22', 'Posto Shell mês 05-2023 CF 001 - docto 324242', 50.00, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `enderecos`
+--
+
+CREATE TABLE `enderecos` (
+  `id` int(11) NOT NULL,
+  `endereco` varchar(255) NOT NULL,
+  `nro` varchar(10) NOT NULL,
+  `complemento` varchar(150) NOT NULL,
+  `bairro` varchar(255) NOT NULL,
+  `cidade` varchar(255) NOT NULL,
+  `cep` varchar(25) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `estadosid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `enderecos`
+--
+
+INSERT INTO `enderecos` (`id`, `endereco`, `nro`, `complemento`, `bairro`, `cidade`, `cep`, `createdAt`, `updatedAt`, `estadosid`) VALUES
+(1, 'Rua Conceição do Mato Dentro', '999999999', 'casa', 'Centro', 'Jacareí', '12.360-460', '2022-09-20 21:36:05', '2022-09-20 21:36:05', 5),
+(2, 'Rua C', '99', 'casa', 'Centro', 'Jacareí', '12.360-460', '2022-09-20 21:36:05', '2022-09-20 21:36:05', 14),
+(3, 'Rua C', '99', 'casa', 'Centro', 'Jacareí', '12.360-460', '2022-09-20 21:36:05', '2022-09-20 21:36:05', 13),
+(4, 'Rua C', '99', 'casa', 'Centro', 'Jacareí', '12.360-460', '2022-09-20 21:36:05', '2022-09-20 21:36:05', 25),
+(5, 'Maria Amélia Barreto', '125', 'casa A', 'Ponte Alta', ' Aparecida do Norte', '12570-000', '2022-10-29 20:54:56', '2022-10-29 20:54:56', 19),
+(6, 'Rua do Centro Sul', '6969', 'casa A', 'centro', 'Jacareí', '12.567-890', '2022-10-29 21:36:42', '2022-10-29 21:36:42', 25),
+(7, 'Maria Silva Borges', '555', 'Apto 401', 'Cidade Alta', 'Norte de Cima', '11.545-777', '2022-11-08 12:00:39', '2022-11-08 12:00:39', 5),
+(8, 'Maria Amélia Barreto', '', '', 'Planaltina', 'Aparecida do Norte', '12570-000', '2022-11-08 12:03:20', '2022-11-08 12:03:20', 13),
+(9, 'Rua Alfredo Ramos', '149', '', 'Centro', 'Jacareí', ' 12308-420', '2022-11-08 12:08:31', '2022-11-08 12:08:31', 25),
+(10, 'Rua B', '22', '', 'Centro', 'Campestre', '12.322-131', '2022-12-01 00:20:53', '2022-12-01 00:20:53', 13),
+(11, 'Rua Bruarde', '21', '', 'Nossa Senhora Aparecida', 'Brumadinho', '12.322-132', '2022-12-06 16:23:44', '2022-12-06 16:23:44', 13),
+(12, 'Rua Pedro Cunha de Oliveira Albuquerque', '69', 'Apto 301 - Bloco A', 'Centro', 'Jacarei', '12320.-323', '2022-12-06 16:32:07', '2022-12-06 16:32:07', 25),
+(13, 'Rua teste', '69', 'casa', 'centro', 'Conchal', '12.3430-343', '2023-06-13 17:38:01', '2023-06-13 17:38:01', 16),
+(14, 'Rua  Teste Teste 3', '4344', 'Apto 201 A', 'Joao Vinte Três', 'Peruibe', '32.566-767', '2023-06-16 13:13:10', '2023-06-16 13:13:10', 14),
+(15, 'rua  54554', '3', 'Apto 201 A', 'centro', 'Santana da Vargem', '12.3430-343', '2023-06-22 17:44:52', '2023-06-22 17:44:52', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `entregas`
+--
+
+CREATE TABLE `entregas` (
+  `id` int(11) NOT NULL,
+  `dataentrega` datetime NOT NULL,
+  `valorentrega` double(10,2) NOT NULL,
+  `tempoentrega` enum('Selecionar','5min','15min','30min','45min','1h','1h15min','1h30min','2hs') NOT NULL DEFAULT '5min',
+  `formaentrega` enum('Selecionar','Retirar','Motoboy') NOT NULL DEFAULT 'Selecionar',
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `entregas`
+--
+
+INSERT INTO `entregas` (`id`, `dataentrega`, `valorentrega`, `tempoentrega`, `formaentrega`, `createdAt`, `updatedAt`) VALUES
+(1, '0000-00-00 00:00:00', 5.00, '15min', 'Motoboy', '2022-09-20 21:38:31', '2022-09-20 21:38:31'),
+(2, '0000-00-00 00:00:00', 5.00, '15min', 'Retirar', '2022-09-20 21:38:31', '2022-09-20 21:38:31'),
+(3, '0000-00-00 00:00:00', 5.00, '15min', 'Motoboy', '2022-09-20 21:38:31', '2022-09-20 21:38:31');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `estados`
+--
+
+CREATE TABLE `estados` (
+  `id` int(11) NOT NULL,
+  `estados` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `estados`
+--
+
+INSERT INTO `estados` (`id`, `estados`, `createdAt`, `updatedAt`) VALUES
+(1, 'Acre', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(2, 'Alagoas', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(3, 'Amapá', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(4, 'Amazonas', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(5, 'Bahia', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(6, 'Ceará', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(7, 'Distrito Federal', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(8, 'Espírito Santo', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(9, 'Goiás', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(10, 'Maranhão', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(11, 'Mato Grosso', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(12, 'Mato Grosso do Sul', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(13, 'Minas Gerais', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(14, 'Pará', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(15, 'Paraíba', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(16, 'Paraná', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(17, 'Pernambuco', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(18, 'Piauí', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(19, 'Rio de Janeiro', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(20, 'Rio Grande do Norte', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(21, 'Rio Grande do Sul', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(22, 'Rondônia', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(23, 'Roraima', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(24, 'Santa Catarina', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(25, 'São Paulo', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(26, 'Sergipe', '2022-09-20 21:35:32', '2022-09-20 21:35:32'),
+(27, 'Tocantins', '2022-09-20 21:35:32', '2022-09-20 21:35:32');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `formapagtos`
+--
+
+CREATE TABLE `formapagtos` (
+  `id` int(11) NOT NULL,
+  `formapagto` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `formapagtos`
+--
+
+INSERT INTO `formapagtos` (`id`, `formapagto`, `createdAt`, `updatedAt`) VALUES
+(1, 'Cartão Débito Visa', '2022-09-20 21:58:00', '2022-09-20 21:58:00'),
+(2, 'Cartão Crédito Visa', '2022-09-20 21:58:00', '2022-09-20 21:58:00'),
+(3, 'Dinheiro', '2022-09-20 21:58:00', '2022-09-20 21:58:00'),
+(4, 'Pix', '2022-09-20 21:58:00', '2022-09-20 21:58:00'),
+(5, 'Transferência Bancária', '2022-09-20 21:58:00', '2022-09-20 21:58:00'),
+(6, 'Cartão Crédito Mastercard', '2022-09-23 22:50:47', '2022-09-23 22:50:47'),
+(7, 'Cartão Débito Mastercard', '2022-09-24 00:55:44', '2022-09-24 00:55:44'),
+(8, 'Cartão Crédito Elo', '2022-09-26 02:16:14', '2022-09-26 02:16:14'),
+(9, 'Cartão Débito Elo', '2022-09-26 02:40:33', '2022-09-26 02:40:33'),
+(10, 'American Express Crédito', '2022-09-26 02:50:27', '2022-09-26 02:50:27'),
+(11, 'American Express Débito', '2022-09-26 02:54:03', '2022-09-26 02:54:03'),
+(12, 'Dinners Club Débito', '2022-09-26 02:57:20', '2022-09-26 02:57:20'),
+(13, 'Dinners Club Crédito', '2022-09-26 02:57:36', '2022-09-26 02:57:36'),
+(14, 'Débito em Conta Bancária', '2023-05-28 00:41:27', '2023-05-28 00:41:27');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `fornecedores`
+--
+
+CREATE TABLE `fornecedores` (
+  `id` int(11) NOT NULL,
+  `razaosocial` varchar(255) NOT NULL,
+  `nomefantasia` varchar(255) NOT NULL,
+  `cnpj` varchar(25) NOT NULL,
+  `ramoatuacao` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `enderecosid` int(11) NOT NULL,
+  `contatosid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `fornecedores`
+--
+
+INSERT INTO `fornecedores` (`id`, `razaosocial`, `nomefantasia`, `cnpj`, `ramoatuacao`, `createdAt`, `updatedAt`, `enderecosid`, `contatosid`) VALUES
+(1, 'Atenas Doces e Alimentos Ltda', 'Atenas doces & cia', '33.333.333/3333-33', 'alimentos, doces, açaí', '2022-10-14 19:27:26', '2022-10-14 19:27:26', 1, 1),
+(2, 'Maribeu Descartáveis e Papelaria Ltda', 'Maribeu descartáveis', '11.111.111/1111-11', 'bebidas, sucos, refrigerantes', '2022-10-14 19:27:26', '2022-10-14 19:27:26', 2, 2),
+(3, 'Palucia Doces, Balas e Artigos Festivos Ltda', 'balas & doces Palucia', '22.222.222/2222-22', 'material descartável', '2022-10-14 19:27:26', '2022-10-14 19:27:26', 3, 3),
+(4, 'RefriGel Ltda', 'RefriGel', '44.444.444/4444-44', 'refrigerante', '2022-10-14 19:27:26', '2022-10-14 19:27:26', 4, 4),
+(5, 'Rota do Açaí Ltda', 'Rota Açaí', '11.111.545/0022-22', 'Balde de Polpa de Açaí', '2022-10-29 20:54:56', '2022-10-29 20:54:56', 5, 7),
+(6, 'Crenata Sorveteria EIRELI', 'Sorveteria Crenata', '22.544.777/0001-88', 'Sorvetes de frutas, ao leite e massas, coberturas e casquinhas', '2022-11-08 12:08:31', '2022-11-08 12:08:31', 9, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `login`
+--
+
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
+  `usuariologin` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `statuslogin` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `tipousuarioid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `login`
+--
+
+INSERT INTO `login` (`id`, `usuariologin`, `senha`, `statuslogin`, `createdAt`, `updatedAt`, `tipousuarioid`) VALUES
+(1, 'alexssandro', 'alex12345', 'Ativo', '2022-10-29 21:36:42', '2022-10-29 21:36:42', 1),
+(2, 'tadeu', '1234', '2', '2022-12-01 00:20:53', '2022-12-01 00:20:53', 2),
+(3, 'paula', '1234', 'Ativo', '2022-12-06 16:23:44', '2022-12-06 16:23:44', 3),
+(4, 'alexssandrofs', 'alex123', 'Ativo', '2022-12-06 16:32:07', '2022-12-06 16:32:07', 5),
+(5, 'peterson', '12345', 'Inativo', '2023-06-13 17:38:01', '2023-06-13 17:38:01', 1),
+(6, 'pedro', 'pedro', 'Ativo', '2023-06-19 15:05:36', '2023-06-19 15:05:36', 4),
+(7, 'testecliente', 'teste', 'Ativo', '2023-06-22 17:44:52', '2023-06-22 17:44:52', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `id` int(11) NOT NULL,
+  `qtde` int(11) NOT NULL,
+  `valorunit` float(10,2) NOT NULL,
+  `totalparcial` float(10,2) NOT NULL,
+  `desconto` decimal(10,0) NOT NULL,
+  `valorfinal` decimal(10,0) NOT NULL,
+  `datapedido` datetime DEFAULT NULL,
+  `usuariosid` int(11) NOT NULL,
+  `formaagtosid` int(11) NOT NULL,
+  `produtosidentradas` int(11) NOT NULL,
+  `entregasid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produtos`
+--
+
+CREATE TABLE `produtos` (
+  `id` int(11) NOT NULL,
+  `nomeprod` varchar(255) NOT NULL,
+  `qtdeminima` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `categoriasid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id`, `nomeprod`, `qtdeminima`, `createdAt`, `updatedAt`, `categoriasid`) VALUES
+(1, 'Chocolate em Barra', 9, '2022-09-20 21:37:27', '2022-09-20 21:37:27', 8),
+(2, 'Bebida Refrigerante Lata Coca Cola', 13, '2022-09-20 21:37:27', '2022-09-20 21:37:27', 9),
+(3, 'Copo pequeno 300ml', 30, '2022-12-06 13:05:47', '2022-12-06 13:05:47', 26),
+(4, 'Balde de Açaí', 4, '2022-12-06 00:39:55', '2022-12-06 00:39:55', 23),
+(5, 'Pacote Colher Descartável pequena 50 unidades', 2, '2022-12-06 00:41:36', '2022-12-06 00:41:36', 25),
+(6, 'Caixa de Bis Chocolate', 3, '2022-12-06 00:42:45', '2022-12-06 00:42:45', 27),
+(7, 'Caixa de Bis chocolate branco', 3, '2022-12-06 00:43:36', '2022-12-06 00:43:36', 27),
+(8, 'Lata de Leite Ninho em Pó', 3, '2022-12-06 17:45:42', '2022-12-06 17:45:42', 28),
+(9, 'Lata de Leite Condensado', 3, '2022-12-15 03:38:22', '2022-12-15 03:38:22', 29),
+(10, 'Teste de Produto', 3, '2023-03-06 20:03:14', '2023-03-06 20:03:14', 13);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produtosentradas`
+--
+
+CREATE TABLE `produtosentradas` (
+  `id` int(11) NOT NULL,
+  `marca` varchar(255) NOT NULL,
+  `doctofiscal` varchar(255) NOT NULL,
+  `datacompra` date NOT NULL,
+  `datafabricacao` date NOT NULL,
+  `datavalidade` date NOT NULL,
+  `statusvalidade` varchar(255) NOT NULL,
+  `qtdecompra` int(11) NOT NULL,
+  `valorunit` double(10,2) NOT NULL,
+  `valortotal` double(10,2) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `produtosid` int(11) NOT NULL,
+  `fornecedoresid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `produtosentradas`
+--
+
+INSERT INTO `produtosentradas` (`id`, `marca`, `doctofiscal`, `datacompra`, `datafabricacao`, `datavalidade`, `statusvalidade`, `qtdecompra`, `valorunit`, `valortotal`, `createdAt`, `updatedAt`, `produtosid`, `fornecedoresid`) VALUES
+(1, 'Nestle', 'NF 001', '2022-12-15', '2022-12-14', '2022-12-29', 'Produto com validade em dia! Vencerá em 15 dia(s).', 10, 5.00, 50.00, '2022-09-20 21:37:27', '2022-09-20 21:37:27', 1, 1),
+(2, 'Coca-Cola', 'NF 002', '2022-12-15', '2022-12-05', '2022-11-28', 'Urgente: Produto validade VENCIDA a 7 dia(s).', 60, 2.00, 120.00, '2022-09-20 21:37:27', '2022-09-20 21:37:27', 2, 6),
+(3, 'Copoplastil', 'NF 001', '2022-12-05', '2022-12-01', '2023-03-31', 'Produto com validade em dia! Vencerá em 120 dia(s).', 8, 2.50, 20.00, '2022-12-06 13:05:47', '2022-12-06 13:05:47', 3, 2),
+(4, 'Top Açaí', 'NF 007', '2022-12-05', '2022-12-05', '2023-01-06', 'Produto com validade em dia! Vencerá em 32 dia(s).', 3, 100.55, 301.65, '2022-12-06 00:39:55', '2022-12-06 00:39:55', 4, 5),
+(5, 'Plastic', 'NF 001', '2022-12-05', '2022-12-05', '2023-04-05', 'Produto com validade em dia! Vencerá em 121 dia(s).', 4, 3.00, 12.00, '2022-12-06 00:41:36', '2022-12-06 00:41:36', 5, 2),
+(6, 'Nestle', 'NF 008', '2022-12-05', '2022-12-05', '2022-12-29', 'Produto com validade em dia! Vencerá em 24 dia(s).', 10, 1.50, 15.00, '2022-12-06 00:42:45', '2022-12-06 00:42:45', 6, 3),
+(7, 'Nestle', 'NF 008', '2022-12-05', '2022-12-05', '2022-12-06', 'Atenção: Produto com validade comprometida! Vencerá em 1 dia(s)!', 10, 1.50, 15.00, '2022-12-06 00:43:36', '2022-12-06 00:43:36', 7, 3),
+(8, 'Nestle', 'NF 001', '2022-12-06', '2022-12-15', '2022-12-15', 'Cuidado! Produto vence hoje!', 10, 4.50, 45.00, '2022-12-06 17:45:42', '2022-12-06 17:45:42', 8, 1),
+(9, 'Nestle', 'NF 001', '2022-12-15', '2022-12-15', '2023-05-31', 'Produto com validade em dia! Vencerá em 167 dia(s).', 5, 3.50, 17.50, '2022-12-15 03:38:22', '2022-12-15 03:38:22', 9, 1),
+(10, 'Nestle', 'NF 002', '2023-03-28', '2023-03-27', '2023-05-06', 'Produto com validade em dia! Vencerá em 40 dia(s).', 2, 3.50, 7.00, '2023-04-01 22:08:02', '2023-04-01 22:08:02', 9, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `produtossaidas`
+--
+
+CREATE TABLE `produtossaidas` (
+  `id` int(11) NOT NULL,
+  `qtdsaida` int(11) NOT NULL,
+  `valorunitariosaida` double(10,2) NOT NULL,
+  `valortotalsaida` double(10,2) NOT NULL,
+  `datasaida` date NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `produtosidentradas` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `produtossaidas`
+--
+
+INSERT INTO `produtossaidas` (`id`, `qtdsaida`, `valorunitariosaida`, `valortotalsaida`, `datasaida`, `createdAt`, `updatedAt`, `produtosidentradas`) VALUES
+(1, 3, 3.50, 10.50, '2022-12-07', '2022-12-07 10:17:39', '2022-12-07 10:17:39', 9),
+(2, 6, 1.50, 9.00, '2023-02-14', '2023-02-14 12:59:59', '2023-02-14 12:59:59', 6),
+(3, 2, 100.50, 201.00, '2023-03-14', '2023-03-14 13:23:57', '2023-03-14 13:23:57', 4),
+(4, 3, 2.00, 6.00, '2023-03-14', '2023-03-14 13:47:54', '2023-03-14 13:47:54', 2),
+(5, 1, 3.50, 3.50, '2023-04-05', '2023-04-01 20:16:33', '2023-04-01 20:16:33', 9),
+(6, 1, 1.50, 1.50, '2023-03-28', '2023-04-01 20:41:07', '2023-04-01 20:41:07', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipousuarios`
+--
+
+CREATE TABLE `tipousuarios` (
+  `id` int(11) NOT NULL,
+  `tipousuario` varchar(255) NOT NULL,
+  `statusperfil` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tipousuarios`
+--
+
+INSERT INTO `tipousuarios` (`id`, `tipousuario`, `statusperfil`, `createdAt`, `updatedAt`) VALUES
+(1, 'Administrador', 'Ativo', '2023-06-22 21:40:09', '2023-06-22 21:40:09'),
+(2, 'Supervisor	', 'Ativo', '2023-06-22 21:43:35', '2023-06-22 21:43:35'),
+(3, 'Atendente', 'Ativo', '2023-06-22 21:47:59', '2023-06-22 21:47:59'),
+(4, 'Gerente', 'Ativo', '2023-06-22 21:48:11', '2023-06-22 21:48:11'),
+(5, 'Cliente', 'Ativo', '2023-06-22 21:48:19', '2023-06-22 21:48:19');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `cpf` varchar(255) DEFAULT NULL,
+  `datanasc` date DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `enderecosid` int(11) NOT NULL,
+  `contatosid` int(11) NOT NULL,
+  `loginid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`, `cpf`, `datanasc`, `createdAt`, `updatedAt`, `enderecosid`, `contatosid`, `loginid`) VALUES
+(1, 'Alexssandro F S', '221.411.656-89', '2000-05-29', '2022-10-29 21:36:42', '2022-10-29 21:36:42', 6, 8, 1),
+(2, 'Tadeu Fulano', '222.222.222-22', '2022-11-30', '2022-12-01 00:20:53', '2022-12-01 00:20:53', 10, 12, 2),
+(3, 'Paula Andrade', '999.000.999-00', '2022-12-06', '2022-12-06 16:23:44', '2022-12-06 16:23:44', 11, 13, 3),
+(4, 'Alexssandro Ferreira da Silva', '089.222.000.232-32', '2022-03-20', '2022-12-06 16:32:07', '2022-12-06 16:32:07', 12, 14, 4),
+(5, 'Peterson Calixto Forts', '343.434.343-43', '2023-06-13', '2023-06-13 17:38:01', '2023-06-13 17:38:01', 13, 15, 5),
+(6, 'Pedro Borges', '434.543.453-76', '2023-06-19', '2023-06-19 15:02:49', '2023-06-19 15:02:49', 14, 16, 6),
+(7, 'teste', '444.555.666-34', '2023-06-22', '2023-06-22 16:14:06', '2023-06-22 16:14:06', 15, 17, 7);
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `cardapios`
+--
+ALTER TABLE `cardapios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `categoriasid` (`categoriasid`) USING BTREE;
+
+--
+-- Índices para tabela `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `contatos`
+--
+ALTER TABLE `contatos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `despesas`
+--
+ALTER TABLE `despesas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `despesasentradas`
+--
+ALTER TABLE `despesasentradas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `despesa` (`despesasid`) USING BTREE;
+
+--
+-- Índices para tabela `despesassaidas`
+--
+ALTER TABLE `despesassaidas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `despesas` (`despesasidentradas`) USING BTREE,
+  ADD KEY `formaspagto` (`formaspagtosid`);
+
+--
+-- Índices para tabela `enderecos`
+--
+ALTER TABLE `enderecos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `estados` (`estadosid`);
+
+--
+-- Índices para tabela `entregas`
+--
+ALTER TABLE `entregas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `estados`
+--
+ALTER TABLE `estados`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `formapagtos`
+--
+ALTER TABLE `formapagtos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `fornecedores`
+--
+ALTER TABLE `fornecedores`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `enderecos` (`enderecosid`),
+  ADD KEY `contatos` (`contatosid`);
+
+--
+-- Índices para tabela `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tipousuario` (`tipousuarioid`);
+
+--
+-- Índices para tabela `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `formapgto` (`formaagtosid`),
+  ADD KEY `entrega` (`entregasid`),
+  ADD KEY `produtosentradas` (`produtosidentradas`) USING BTREE;
+
+--
+-- Índices para tabela `produtos`
+--
+ALTER TABLE `produtos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `categorias` (`categoriasid`);
+
+--
+-- Índices para tabela `produtosentradas`
+--
+ALTER TABLE `produtosentradas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fornecedores` (`fornecedoresid`),
+  ADD KEY `produtos` (`produtosid`);
+
+--
+-- Índices para tabela `produtossaidas`
+--
+ALTER TABLE `produtossaidas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produtosentradas` (`produtosidentradas`);
+
+--
+-- Índices para tabela `tipousuarios`
+--
+ALTER TABLE `tipousuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `contatos` (`contatosid`) USING BTREE,
+  ADD KEY `endereco` (`enderecosid`),
+  ADD KEY `login` (`loginid`) USING BTREE;
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `cardapios`
+--
+ALTER TABLE `cardapios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de tabela `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT de tabela `contatos`
+--
+ALTER TABLE `contatos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de tabela `despesas`
+--
+ALTER TABLE `despesas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT de tabela `despesasentradas`
+--
+ALTER TABLE `despesasentradas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de tabela `despesassaidas`
+--
+ALTER TABLE `despesassaidas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `enderecos`
+--
+ALTER TABLE `enderecos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT de tabela `entregas`
+--
+ALTER TABLE `entregas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `estados`
+--
+ALTER TABLE `estados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT de tabela `formapagtos`
+--
+ALTER TABLE `formapagtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de tabela `fornecedores`
+--
+ALTER TABLE `fornecedores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de tabela `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de tabela `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `produtos`
+--
+ALTER TABLE `produtos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `produtosentradas`
+--
+ALTER TABLE `produtosentradas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `produtossaidas`
+--
+ALTER TABLE `produtossaidas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de tabela `tipousuarios`
+--
+ALTER TABLE `tipousuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
