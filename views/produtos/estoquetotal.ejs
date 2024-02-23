@@ -1,0 +1,267 @@
+<link href="../../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../css/tables_view.css" rel="stylesheet">
+<link href="../../../js/jquery.js" rel="stylesheet">
+<link href='../../../css/bootstrap.min.css' rel='stylesheet'>
+<style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Track */
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    #imghome {
+        display: none;
+    }
+</style>
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+<script>
+    function calculaEstoque() {
+        var qtdecompra = parseInt(document.getElementById('valor1').value, 10);
+        var qtdsaida = parseInt(document.getElementById('valor2').value, 10);
+
+        //  let valorqtdestoque = qtdecompra - qtdsaida;
+
+        document.getElementById('valorqtdestoque').value = qtdecompra - qtdsaida;
+
+        let valorestoque = valortotal - valortotalsaida;
+
+        if (qtdecompra > qtdsaida && valorqtdestoque > 0) {
+            statusestoque.innerHTML = "Estoque em Dia.";
+        } else if (datavalidade > datafabricacao && dayDifference > 0) {
+            statusestoque.innerHTML = "Atenção, estoque no mínimo!";
+        } else if (qtdecompra < qtdsaida || dayDifference < 0) {
+            statusestoque.innerHTML = "Urgente, comprar produto!";
+
+
+            //abaixo server para ATUALIZAR O CAMPO QUE IRÁ SALVAR NO DB o resultado da função que aparece no HTML no EDIT/NEW
+            let tot = statusestoque.innerHTML;
+            document.getElementById('updateStatusEstoque').value = tot
+        }
+    }
+</script>
+
+</head>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="wrapper container-fluid">
+            <br><br><br>
+            <section class="container-fluid" id="pdf2htmldiv">
+                <div class="container-fluid">
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                    <script type="text/javascript"
+                        src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                    <div class="responsive container row col-md-12">
+                        <center>
+                            <div class="col-md-12">
+                                <h4 class="col-md-12">Relatório GERAL para Controle de Estoque ATUAL<b
+                                        style="color: rgb(111, 15, 194);">: ENTRADAS - SAÍDAS </b>.
+                            </div>
+                            <div class="row col-md-12">
+                                <div class="col-md-8">
+                                    <a onclick="location = '/menurelatorios'"
+                                        style='font-size:28px;color:rgb(17, 59, 247)'
+                                        title="Voltar a Tela de Relatórios">Menu Relatórios</a>
+                                </div>
+                                <div class="col-md-1">
+                                    <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                        <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                                </div>
+                            </div>
+                            <table id="example"
+                                class="table border-light table-bordered table-responsive-sm table-hover container-fluid"
+                                style="width:100%; overflow-x:auto;"><br>
+                                <div class="w3-container responsive col-md-12">
+                                    <thead class="responsive bg-dark container text-center">
+                                        <tr class="responsive table-active table-dark">
+                                            <th scope="col "
+                                                style="color:rgb(255, 255, 251); background: rgb(134, 1, 19);">ID
+                                                Entrada Agrupado</th>
+                                            <th scope="col ">Qtde Laçto Entrada</th>
+                                            <th scope="col ">Qtde Laçto Saída</th>
+                                            <th scope="col ">Nome do Produto</th>
+                                            <th scope="col ">Qtde Total Entrada Produto</th>
+                                            <th scope="col ">Qtde Total Saída Produto</th>
+                                            <th scope="col "
+                                                style="color:rgb(255, 255, 251); background: rgb(112, 1, 163);">Qtde
+                                                ATUAL</th>
+                                            <th scope="col ">Status Estoque</th>
+                                            <th scope="col ">Valor Unitário Produto</th>
+                                            <th scope="col ">Soma Valor Total Entrada Produto</th>
+                                            <th scope="col ">Soma Valor Total Saída Produto</th>
+                                            <th scope="col "
+                                                style="color:rgb(255, 255, 251); background: rgb(1, 134, 8);">Valor
+                                                Total ATUAL</th>
+
+                                            <!--  <th scope="col ">Ações</th>-->
+                                        </tr>
+                                    </thead>
+                                    <tbody class="responsive text-center">
+                                        <% for(let s of valorAtualQtdeSaidas){%>
+                                            <% for(let e of valorAtualQtdeEntradas){%>
+                                                <% if(s.Id_Entrada_na_Saida==e.Id_Produto){%>
+
+                                                    <tr class="text-center">
+                                                        <th
+                                                            style="color:rgb(255, 255, 251); background: rgb(134, 1, 19);">
+                                                            <%=e.Id_Produto%>
+                                                        </th>
+                                                        <th>
+                                                            <%=e.Qtde_Lançtos_na_Entrada%>
+                                                        </th>
+                                                        <th>
+                                                            <%=s.Qtde_Lançtos_Entradas_na_Saida%>
+                                                        </th>
+
+                                                        <th>
+                                                            <%=e.Nome_Prod%>
+                                                        </th>
+
+                                                        <th id="valor1">
+                                                            <%=e.Soma_Qtde_Entradas%>
+                                                        </th>
+
+                                                        <th id="valor2">
+
+                                                            <%=s.Soma_Qtde_Saidas%>
+                                                        </th>
+                                                        <th
+                                                            style="color:rgb(255, 255, 251); background: rgb(112, 1, 163);">
+                                                            <b>
+                                                                <%= (e.Soma_Qtde_Entradas - s.Soma_Qtde_Saidas)%>
+                                                            </b>
+                                                        </th>
+                                                       
+                                                        </th>
+                                                        <th>
+                                                        <th>
+                                                            <%=e.Valor_Unitario%>
+
+
+                                                        </th>
+                                                        <th>
+                                                            R$
+                                                            <%=e.Valor_Total_Entradas%>
+                                                        </th>
+                                                        <th>
+                                                            R$
+                                                            <%=s.Valor_Total_Saidas%>
+                                                        </th>
+
+                                                        <td
+                                                            style="color:rgb(255, 255, 251); background: rgb(1, 134, 8);">
+                                                            <b> R$<%= (e.Valor_Total_Entradas -
+                                                                    s.Valor_Total_Saidas).toFixed(2)%>
+                                                            </b>
+
+                                                        </td>
+
+                                </div>
+                    </div>
+
+                    </td>
+                    <% }%>
+                        <% } %>
+
+                            <% }%>
+                                </tr>
+                                <tfoot class="responsive text-center border-light container-fluid "
+                                    style="width:100%; overflow-x:auto; ">
+                                    <tr>
+                                        <th scope="col ">ID Produto</th>
+                                        <th scope="col ">Qtde Laçto Entrada</th>
+                                        <th scope="col ">Qtde Laçto Saída</th>
+                                        <th scope="col ">Nome do Produto</th>
+                                        <th scope="col ">Qtde Total Entrada Produto</th>
+                                        <th scope="col ">Qtde Total Saída Produto</th>
+                                        <th scope="col ">Qtde ATUAL</th>
+                                        <th scope="col ">Status Estoque</th>
+                                        <th scope="col ">Valor Unitário Produto</th>
+                                        <th scope="col ">Total Entrada Produto</th>
+                                        <th scope="col ">Total Saída Produto</th>
+                                        <th scope="col ">Valor Total ATUAL</th>
+
+
+                                        <!--  <th scope="col ">Ações</th>-->
+                                    </tr>
+                                </tfoot>
+                                <br>
+                                </table>
+                </div>
+        </div>
+        <br><br>
+        </div>
+        <script type='text/javascript'
+            src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                                                                                                                                                                                Passando para o Português
+                                                                                                                                                                                */
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    "language": {
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrado de _MAX_ total registros)",
+                        "oPaginate": {
+                            "sFirst": "First",
+                            "sLast": "Last",
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior"
+                        },
+
+                        "sProcessing": "Processando...",
+                        "sSearch": "Pesquisar:",
+                        "sSearchPlaceholder": "",
+                        "sUrl": "",
+
+                    }
+                });
+            });
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="/js/alertas.js"></script>
+        <script src="../../../js/validarDados.js ">
+        </script>
+</body>

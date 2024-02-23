@@ -1,0 +1,267 @@
+<link href="../../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../css/tables_view.css" rel="stylesheet">
+<link href="../../../js/jquery.js" rel="stylesheet">
+<link href='../../../css/bootstrap.min.css' rel='stylesheet'>
+<style>
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Track */
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    #imghome {
+        display: none;
+    }
+</style>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+<body className='snippet-body'>
+    <%- include('../../partials/home'); %>
+        <div class="wrapper container-fluid">
+            <br><br><br>
+            <section class="container-fluid col-md-12" id="pdf2htmldiv">
+                <div class="container-fluid">
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                    <script type="text/javascript"
+                        src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                    <div class="responsive container col-md-12">
+                        <center>
+                            <h4 class="col-12 ">Listagem geral <b style="color: rgb(111, 15, 194);">ENTRADA de
+                                    Despesa</b>, atualmente temos:
+                                <b style="color: red;">
+                                    "<%=countDespEntrada%>" entrada(s)</b>.
+                                <br </center>
+                                <br>O valor total das ENTRADAS de Despesas é:
+                                R$<b style="color: red;">
+                                    <%=somaGeralDespesas%>.
+                                </b>
+                    </div>
+                    <div class="container-fluid responsive col-md-12" id="pdf2htmldiv">
+                        <div class="container responsive row col-md-12">
+                            <table id="example"
+                                class="w3-container-fluid col-md-12 table  border-light table-bordered table-responsive-sm table-hover"
+                                style="width:100%; overflow-x:auto;">
+                                <div class="w3-container responsive container responsive row col-md-12">
+                                    <div class="col-md-3">
+                                        <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                            l.Tipousuario.tipousuario=='Gerente' ||
+                                            l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
+                                            <form method="GET" action="/despesas/entradas/new">
+                                                <button action="submit" class="btn btn-danger text-left"
+                                                    title="Cadastrar Novo Produto">Cadastrar ENTRADA de Despesa</button>
+                                            </form>
+
+                                            <% } else { %>
+
+                                                <% } %>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <form method="GET" action="/despesas/caddespesa">
+                                            <button action="submit" class="btn btn-primary text-left"
+                                                title="Gerenciar Nome de Produto Novo">Gerenciar Nome de
+                                                Despesa Nova</button>
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <form method="GET" action="/despesas/saidas">
+                                            <button action="submit" class="btn btn-dark text-white text-left"
+                                                title="Gerenciar SAÍDA Produto">Gerenciar SAÍDA de
+                                                Despesa</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                            <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="w3-container-fluid responsive col-md-12">
+                                    <thead class="w3-container-fluid responsive bg-dark text-center col-md-12">
+                                        <tr class="responsive table-active table-dark">
+                                            <!--0-->
+                                            <th scope="col ">ID Entrada</th>
+                                            <th scope="col ">ID Despesa</th>
+                                            <th scope="col ">Nome Despesa</th>
+                                            <th scope="col ">Descrição</th>
+                                            <th scope="col ">Nro Documento</th>
+                                            <th scope="col ">Vencimento</th>
+                                            <th scope="col ">Valor Total</th>
+                                            <th scope="col ">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="w3-container-fluid responsive text-center float-justify col-md-12">
+                                        <%let contador=0 %>
+                                            <% for(let c of despesasentradas){%>
+                                                <tr class="text-center">
+                                                    <th>
+                                                        <%=c.id%>
+                                                    </th>
+                                                    <th>
+                                                        <%=c.despesasid%>
+                                                    </th>
+                                                    <td>
+                                                        <%=c.Despesa.nomedespesa%>
+                                                    </td>
+                                                    <th>
+                                                        <%=c.descricao%>
+                                                    </th>
+                                                    <th>
+                                                        <%=c.nrodocto%>
+                                                    </th>
+                                                    <th>
+                                                        <%=c.datavalidade%>
+                                                    </th>
+                                                    <th>
+                                                        <%=c.valortotal%>
+                                                    </th>
+                                                    <th>
+                                                        <div
+                                                            class="w3-container-fluid responsive float-justify col-md-12">
+                                                            <div class="row w3-container-fluid responsive col-md-12">
+                                                                <div class="col-md-4">
+                                                                    <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                                                        l.Tipousuario.tipousuario=='Gerente' ||
+                                                                        l.Tipousuario.tipousuario=='Supervisor' ||
+                                                                        l.tipousuarioid==2) {%>
+                                                                        <a
+                                                                            onclick="location = '/despesas/entradas/<%= c.id%>'"><i
+                                                                                style='font-size:28px;color:rgb(17, 59, 247)'
+                                                                                class="far fa-clipboard fa-xl"
+                                                                                aria-hidden="true"
+                                                                                title="Visualisar Dados Despesa"></i>
+                                                                        </a>
+                                                                        <% } else { %>
+                                                                            <% } %>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                                                        l.Tipousuario.tipousuario=='Gerente' ||
+                                                                        l.Tipousuario.tipousuario=='Supervisor' ||
+                                                                        l.tipousuarioid==2) {%>
+                                                                        <a
+                                                                            onclick="location = '/despesas/entradas/<%= c.id%>/edit'"><i
+                                                                                style='font-size:28px;color:rgb(6, 218, 52)'
+                                                                                class="fas fa-edit fa-xl"
+                                                                                aria-hidden="true"
+                                                                                title="Editar Esta Entrada de Despesa"></i>
+                                                                        </a>
+                                                                        <% } else { %>
+
+                                                                            <% } %>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <% if(l.Tipousuario.tipousuario=='Administrador' )
+                                                                        {%>
+                                                                        <form method="POST"
+                                                                            action="/despesas/entradas/<%= c.id %>?_method=DELETE"
+                                                                            onsubmit="return del();">
+                                                                            <button action="submit"><i
+                                                                                    style='font-size:20px;color:rgb(218, 6, 6);'
+                                                                                    class="fas fa-trash-alt"
+                                                                                    title="Deletar Esta Entrada de Despesa"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                        <% } else { %>
+
+                                                                            <% } %>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </th>
+
+                                </div>
+
+                                </td>
+                                <% }%>
+                                    </tr>
+                                    <tfoot class="responsive text-center border-light container-fluid col-md-12"
+                                        style="width:100%; overflow-x:auto;">
+                                        <tr>
+                                            <th scope="col ">ID Entrada</th>
+                                            <th scope="col ">ID Despesa</th>
+                                            <th scope="col ">Nome Despesa</th>
+                                            <th scope="col ">Descrição</th>
+                                            <th scope="col ">Nro Documento</th>
+                                            <th scope="col ">Vencimento</th>
+                                            <th scope="col ">Valor Total</th>
+                                            <th scope="col ">Ações</th>
+                                        </tr>
+                                    </tfoot>
+                            </table>
+                    </div>
+           <br> <br> </section>
+        </div>
+        <script type='text/javascript'
+            src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                      Passando para o Português
+                      */
+                $('#example').DataTable({
+                    "language": {
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrado de _MAX_ total registros)",
+                        "oPaginate": {
+                            "sFirst": "First",
+                            "sLast": "Last",
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior"
+                        },
+
+                        "sProcessing": "Processando...",
+                        "sSearch": "Pesquisar:",
+                        "sSearchPlaceholder": "",
+                        "sUrl": "",
+
+                    }
+                });
+            });
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="/js/alertas.js"></script>
+        
+</body>

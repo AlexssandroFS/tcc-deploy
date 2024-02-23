@@ -202,25 +202,7 @@ roteador.get('/relatorioprodutos', async(req, res) => {
             return value;
         };
 
-        var agrupados = groupBy(carros, 'marca');
-        console.log(agrupados);
-        /* const categorias = await Categoria.findByPk(produtos.categoriasid, {
-            include: [
-                { model: Produto }
-            ]
-        });
-*/
-
-        /*FILTRO PARA PESQUISA
-        User.findAll({ where: { US_USERNAME: req.query.search } }).then(users => {
-            res.render('main/users', {
-                title: "Usuarios",
-                usuario: users,
-            });
-        });
-        */
-
-        //codigo abaixo é para pegar a CATEGORIA do produto
+           //codigo abaixo é para pegar a CATEGORIA do produto
         let vetorCategorias = []
         for (let produto of produtos) {
             let cat = await Categoria.findByPk(produto.categoriasid);
@@ -481,12 +463,14 @@ roteador.post('/entradas', async(req, res) => {
         const valorunit = req.body.valorunit;
         const valortotal = req.body.valortotal;
         //const statusestoque = req.body.statusestoque;
+        const dataatual = req.body.dataatual;
+
 
         //dados vindos de Models/Migrations Fornecedor
         const produtosid = req.body.nomeprod;
         const fornecedoresid = req.body.razaosocial;
 
-        console.log(marca, doctofiscal, datacompra, datafabricacao, datavalidade, statusvalidade, qtdecompra, valorunit, valortotal, produtosid, fornecedoresid);
+        console.log(marca, doctofiscal, datacompra, datafabricacao, datavalidade, statusvalidade, qtdecompra, valorunit, valortotal,dataatual, produtosid, fornecedoresid);
 
         await ProdutoEntrada.create({
             marca,
@@ -498,7 +482,7 @@ roteador.post('/entradas', async(req, res) => {
             qtdecompra,
             valorunit,
             valortotal,
-
+            dataatual, 
             produtosid,
             fornecedoresid
         });
@@ -588,13 +572,19 @@ roteador.get('/entradas/:id', async(req, res) => {
 roteador.get('/entradas/:id/edit', async(req, res) => {
     //console.log(categorias);
     const { id } = req.params;
-
+   /* try {*/
     const listarprodnome = await Produto.findAll({
         order: [
             ['nomeprod', 'ASC'],
         ],
     });
 
+    const produtos = await ProdutoEntrada.findAll({
+        include:[
+            {model: Produto}
+        ],
+    });
+   
     const produtosentradas = await ProdutoEntrada.findByPk(id, {
         include: [
             { model: Produto },
@@ -624,8 +614,122 @@ roteador.get('/entradas/:id/edit', async(req, res) => {
     });
     const fornecedor = await Fornecedore.findByPk(produtosentradas.fornecedoresid);
 
-    res.render('produtos/entradas/edit', { listarprodnome, produtosentradas, categorias, categoriasNome, nomeproduto, categoriasvalue, dadosfornecedor, fornecedor })
-})
+
+        ////inicio somatório quantidade de produtos cadastrados SAÍDA PROD. ESTOQUE
+        const produtossaidas = await ProdutoSaida.findAll({
+            /*  include: [{
+                         model: ProdutoEntrada,
+                  },
+
+              ],
+              */
+            attributes: [
+                [sequelize.col('id'), 'id_saidas'],
+                [sequelize.col('produtosidentradas'), 'id_Entradas'],
+                //[sequelize.col('ProdutoEntrada.valorunit'), 'vl_unitario'],
+                //[sequelize.fn('sum', sequelize.col('ProdutoEntrada.qtdecompra')), 'total_entradas'],
+                [sequelize.fn('sum', sequelize.col('qtdsaida')), 'total_saidas'],
+                //[sequelize.fn('sum', sequelize.col('ProdutoEntrada.valortotal')), 'Valor_Geral_entradas'],
+                [sequelize.fn('sum', sequelize.col('valortotalsaida')), 'Valor_Geral_saidas'],
+
+                [sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
+
+                //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançtos_Id_Saidas'],
+
+            ],
+            order: ['id'],
+            group: ['produtosidentradas'],
+            distinct: true,
+            raw: true,
+        });
+
+        console.log(produtossaidas);
+
+        var valorAtualQtdeSaidas = produtossaidas.map(estoquesaida);
+
+        function estoquesaida(elemento2) {
+
+            return {
+                Id_Saida: elemento2.id_saidas,
+                Id_Entrada_na_Saida: elemento2.id_Entradas,
+                Qtde_Lançtos_Entradas_na_Saida: elemento2.Qtde_Lançamentos_Id_Entradas_Saidas,
+                Soma_Qtde_Saidas: elemento2.total_saidas,
+                Valor_Total_Saidas: elemento2.Valor_Geral_saidas,
+            }
+
+        }
+
+        valorAtualQtdeSaidas.forEach(estoquesaida => {
+            console.log(estoquesaida);
+            //  console.log("A SAÍDA foi de " + elemento2.Soma_Qtde_Saidas + " unidade(s) de " + elemento2.Nome_Prod + " no BD do estoque. " +
+            //    "O Valor Total Atual de Entrada menos a Saída é: R$" + elemento2.ValorEstoqueAtual + ". A Quantidade Total de Produtos Atual, Entadas menos a Saídas é: " + elemento2.QtdeEstoqueAtual);
+
+        })
+
+        const prodentradas = await ProdutoEntrada.findAll({
+            include: [
+                //  { model: ProdutoSaida },
+                { model: Produto }
+            ],
+            attributes: [
+                [sequelize.col('produtosid'), 'id_produtos'],
+              //  [sequelize.col('id'), 'id_entradas'],
+                [sequelize.col('nomeprod'), 'nomeprod'],
+                [sequelize.col('valorunit'), 'vl_unitario'],
+                [sequelize.fn('sum', sequelize.col('qtdecompra')), 'total_entradas'],
+                [sequelize.col('qtdeminima'), 'estoque_minimo'],
+                [sequelize.fn('sum', sequelize.col('valortotal')), 'Valor_Geral_entradas'],
+                //[sequelize.fn('sum', sequelize.col('valortotalsaida')), 'Valor_Geral_saidas'],
+
+                [sequelize.fn('COUNT', sequelize.col('produtosid')), 'Qtde_Lançtos_Id_Entradas'],
+
+                //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
+
+            ],
+
+            order: ['nomeprod'],
+            group: ['produtosid'],
+            distinct: true,
+            raw: true,
+        });
+
+        console.log(prodentradas);
+
+
+        var valorAtualQtdeEntradas = prodentradas.map(estoqueentrada);
+
+        function estoqueentrada(elemento2) {
+            return {
+                Id_Produto: elemento2.id_produtos,
+                Nome_Prod: elemento2.nomeprod,
+             //   Id_Entrada: elemento2.id_Entrada,
+                Estoque_Minimo: elemento2.estoque_minimo,
+
+                Qtde_Lançtos_na_Entrada: elemento2.Qtde_Lançtos_Id_Entradas,
+
+                Valor_Unitario: elemento2.vl_unitario,
+                Soma_Qtde_Entradas: elemento2.total_entradas,
+                // Soma_Qtde_Saidas: elemento2.total_saidas,
+                Valor_Total_Entradas: elemento2.Valor_Geral_entradas,
+                //  Valor_Total_Saidas: elemento2.Valor_Geral_saidas,
+
+                // QtdeEstoqueAtual: elemento2.total_entradas - elemento2.total_saidas,
+                // ValorEstoqueAtual: (elemento2.Valor_Geral_entradas - elemento2.Valor_Geral_saidas),
+
+            }
+        }
+
+        //  var valorAtualEstoqueMinimo = produtosentradas.map(estoqueminimo);
+        valorAtualQtdeEntradas.forEach(estoqueentrada => {
+            console.log(estoqueentrada);
+            //  console.log("A SAÍDA foi de " + elemento2.Soma_Qtde_Saidas + " unidade(s) de " + elemento2.Nome_Prod + " no BD do estoque. " +
+            //    "O Valor Total Atual de Entrada menos a Saída é: R$" + elemento2.ValorEstoqueAtual + ". A Quantidade Total de Produtos Atual, Entadas menos a Saídas é: " + elemento2.QtdeEstoqueAtual);
+
+        })
+    
+    res.render('produtos/entradas/edit', {valorAtualQtdeEntradas, valorAtualQtdeSaidas, produtos, prodentradas, listarprodnome, produtosentradas, categorias, categoriasNome, nomeproduto, categoriasvalue, dadosfornecedor, fornecedor })
+/*catch (err) {}*/
+});
 
 // *******************************************
 // UPDATE - updates a particular produtos
@@ -644,12 +748,12 @@ roteador.patch('/entradas/:id', async(req, res) => {
         const qtdeestoque = req.body.qtdeestoque;
         const valorunit = req.body.valorunit;
         const valortotal = req.body.valortotal;
-
+        const dataatual = req.body.dataatual;
         const produtosid = req.body.nomeprod;
         const fornecedoresid = req.body.razaosocial;
 
         console.log('Atributos do campo do req.body: ', marca, doctofiscal, datacompra, datafabricacao, datavalidade, statusvalidade, qtdecompra,
-            qtdeestoque, valorunit, valortotal, produtosid, fornecedoresid);
+            qtdeestoque, valorunit, valortotal, dataatual, produtosid, fornecedoresid);
 
         await ProdutoEntrada.update({
             marca,
@@ -662,6 +766,7 @@ roteador.patch('/entradas/:id', async(req, res) => {
             qtdeestoque,
             valorunit,
             valortotal,
+            dataatual,
             produtosid,
             fornecedoresid
 

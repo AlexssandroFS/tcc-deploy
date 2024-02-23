@@ -1,0 +1,111 @@
+body {
+    background-color: aliceblue;
+    /*background: linear-gradient(90deg, #014f0d, #b3038f);*/
+}
+
+#wrap {
+    width: 400px;
+    height: 98%;
+    margin: 0 auto;
+    text-align: left;
+    margin-top: 8px;
+    padding: 5px;
+    background: rgb(150, 43, 150);
+    font-family: AvenirLTStd, Georgia, 'Times New Roman', Times, serif, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 16px;
+    border-radius: 5%;
+    border-color: black;
+    border-style: ridge;
+}
+
+#wrap .cont_details fieldset,
+.cont_order fieldset {
+    margin: 10px;
+    padding: 20px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#wrap legend {
+    font-size: 16px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    padding-bottom: 10px;
+}
+
+#wrap .cont_details input {
+    margin-bottom: 10px;
+    color: black;
+}
+
+#wrap label {
+    display: block;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+}
+
+#wrap label.inlinelabel {
+    display: inline;
+}
+
+#wrap .cont_order input {
+    margin-bottom: 5px;
+}
+
+#wrap .cont_order p {
+    padding-top: 5px;
+}
+
+#wrap input[type="radio"] {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#wrap input[type="text"]:hover,
+#wrap input[type="text"]:active {
+    /*background-color: rgb(4, 163, 41);*/
+}
+
+#wrap input#submit {
+    margin: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 3%;
+    border: none;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+}
+
+#wrap input#submit:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgb(3, 3, 3);
+    /* Lowering the shadow */
+}
+
+#wrap div#totalPrice {
+    padding: 8px;
+    font-weight: bold;
+    /*background-color: rgb(4, 163, 41);*/
+    height: 2px;
+    text-align: center;
+    line-height: 10px;
+}
+
+#wrap label.radiolabel {
+    font-weight: normal;
+    display: inline;
+}

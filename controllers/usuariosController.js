@@ -197,13 +197,12 @@ roteador.get('/new', async(req, res) => {
             ['tipousuario', 'ASC'],
         ],
     });
-
-
-    if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
-        res.render('usuarios/new', { log, estados, tipousuario });
-    } else {
-        res.render('usuarios/erroAcessoPerfilUsuarios');
-    }
+/* l.tipousuarioid == '3' || l.tipousuarioid == '5'*/
+if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+    res.render('usuarios/new', { log, estados, tipousuario });
+} else {
+    res.render('usuarios/erroAcessoPerfilUsuarios');
+}
 
     // 1 - Administrador
     // 2-  Supervidor

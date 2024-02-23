@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/tables_view.css" rel="stylesheet">
+    <link href="/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>Top Açaí - Page</title>
+    <style>
+        #imghome {
+            display: none;
+        }
+    </style>
+</head>
+
+<body className='snippet-body' onclick="Mult()" id="validar">
+    <%- include('../../partials/home'); %>
+        <div class="wrapper w3-container">
+            <section class="container-fluid">
+                <div class="container-fluid responsive">
+                    <center>
+                        <h4>Você está cadastrando uma SAÍDA de Estoque do Produto: <b style="color: red;">
+                               </h4></h4>
+                    </center>
+                    <br>
+                    <form class="responsive container-fluid" id="validar" id="updateIDProd" onclick="Mult()" action="/produtos/saidas/<%=produtossaidas.id%>?_method=PATCH" id="view" method="POST" onsubmit="return save();">
+                        <div class="responsive container-fluid text-left  row-col-12">
+                            <div class="container-fluid border float-center">
+                                <h5>Dados de Identificação do Produto:</h5>
+                                <div class="form-row">
+                                    <div class="form col-md-2">
+                                        <img class="rounded-circle" src="/img/perfilusuario/produtos.jpg" style="width:150px; padding:0px,0px,opx,20px; height:80px">
+                                    </div>
+                                    
+                                    <div class="form-group col-md-2">
+                                        <label for="id">ID do Produto</label>
+                                        <input type="text" id="valueIDNomeProd" class="form-control" id="produtosid" placeholder="" name="produtosid" value="<%=produtossaidas.produtosid%>" disabled autofocus/>
+
+                                    </div>
+                                   
+                                    <div class="form-group col-md-5">
+                                        <label for="nomeprod">Nome do Produto</label>
+                                        <select id="atualizarIDProd" onChange="updateIDProd()" id="nomeprod" class="form-select" name="nomeprod" required autofocus>
+                                        <option value="<%=produtossaidas.produtosid%>"> <%=produtossaidas.Produto.nomeprod%> </option>
+                                        <% for(prod of dadosprodutos) { %>
+                                            <option value="<%=prod.id%>">
+                                                <%=prod.nomeprod%>
+                                        </option>
+                                        <% } %>
+                                            </select>
+
+                                        <footer>
+                                            <b>Obs:</b> Ao TROCAR o Nome do Produto, será <b>ATUALIZADO ID do Produto</b> e <b>Valor Unitário</b>.
+                            </footer>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="id">Valor ATUAL Entrada Produto</label>
+                    <input type="text" id="valueIDNomeProd" class="form-control" id="produtosid" placeholder="" name="produtosid" value="<%=produtossaidas.produtosid%>" disabled autofocus/>
+
+                </div>
+        </div>
+
+        <br>
+
+        <br>
+        <h5>Dados do Documento Fiscal de Compra do Produto:</h5>
+        <div class="form-row" id="validar">
+            <div class="form-group col-md-2">
+                <label for="datasaida">Data Saída Produto</label>
+                <input type="date" class="form-control" id="date-1" id="datasaida" name="datasaida" value="<%=produtossaidas.datasaida%>" required autofocus/>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="qtdsaida">Qtde Saída Produto</label>
+                <input type="number" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57" class="form-control" id="qtdsaida" oninput="Mult()" value="<%=produtossaidas.qtdsaida%>" name="qtdsaida"
+                    required autofocus/>
+            </div>
+
+            <<div class="form-group col-md-2">
+                <label for="valorunit">Valor Unitário</label>
+                <input type="text" class="form-control" min="0" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 46 && event.charCode <= 57" oninput="Mult()" name="valorunit" id="text" autofocus disabled>
+                <footer>
+                    <b>Obs:</b> Ao TROCAR o Nome do Produto, será <b>ATUALIZADO o Valor Unitário ABAIXO</b> e <b>utilizado/copiado ACIMA</b>.
+                </footer>
+                <select type="text" class="form-control" id="updateValorUnit" id="multiSaida" name="valorunit" value="" autofocus disabled> <!--required-->
+                                            <b> 
+                                        <option value="<%=produtossaidas.Produto.id%>"> <%=produtossaidas.Produto.valorunit%> </option>
+                                                <% for(f of dadosprodutos) { %>
+                                                    <option value="<%=f.id%>">
+                                                        <%=f.valorunit%></option>
+                                         </b>
+                                            <% } %>
+                                                </select>
+
+        </div>
+        <div class="form-group col-md-2">
+            <label for="valortotal">Valor Total</label>
+            <input type="text" min="0" name="valortotal" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 46 && event.charCode <= 57" class="form-control" id="valortotal" placeholder="" value="<%=produtossaidas.valortotal%>"
+                required autofocus/>
+            <footer>
+                <b>Obs:</b> Valor automático, mas caso altere, declarar com <b>"PONTO". Ex: R$2.5 ou R$1150.50</b>.
+            </footer>
+        </div>
+        </div>
+        <br> <br>
+        </div>
+        <!-- Script -->
+        <script src="../../../js/validarDados.js">
+        </script>
+
+        <br>
+        <div class="container-fluid responsive col-10 text-center">
+            <br>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="text-center col-md-4">Qual ação deseja realizar?</h4>
+            </div>
+            <div class="row col-12">
+                <div class="col-md-4" id="divrigth"><button type="submit" class="btn btn-success btn-sm-3 profile-button text-white" onsubmit="return save();"><i class="fa fa-floppy-o" title="Salvar Alterações deste Produto" aria-hidden="true" style="font-size: 25px;">
+                                </i>
+                            </button>
+                </div>
+                <div class="col-md-4" id="divrigth">
+                    <a href="/produtos/entradas ">Voltar para Listagem dos Produtos</a>
+                </div>
+            </div>
+        </div>
+        </form>
+        </div>
+
+        </section>
+        </div>:
+        <br><br>
+        <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="../js/alertas.js "></script>
+        <br>
+        <%- include('../../partials/footer'); %>
+</body>
+
+</html>

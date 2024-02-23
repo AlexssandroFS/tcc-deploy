@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> TOP ACAÍ - PAGE </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../js/bootstrap.min.js">
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='../css/bootstrap.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <nav>
+        <div class="navbar">
+            <i class='bx bx-menu' style="font-size: 25px; color:rgb(245, 245, 245)"> MENU</i>
+            <div class="logo" style="font-size: 0px; color:rgb(3, 175, 83)">
+                <img id="avatar" class="menu--label" src="/img/home/logo.jpg" style="right: 60px; height: 69px;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <div class="sidebar-logo">
+                    <span class="logo-name" style="font-size: 0px; color:rgbgb(3, 175, 83)">  </span>
+                    <img id="avatar" class="menu--label" src="/img/home/logo.jpg" style="right: 40px; height: 60px;">
+
+                    <i class='bx bx-x'></i>
+                </div>
+                <ul class=" links ">
+                    <li><a onclick="location='/home' " style="font-size: 30px; color:rgb(245, 63, 39)">HOME</a></li>
+                    <li><a onclick="location='/usuarios'" style="font-size: 15px;">Perfil Usuarios</a></li>
+                    <li><a onclick="location='/fornecedores' " style="font-size: 15px;">Fornecedores</a></li>
+
+                    <li>
+                        <a href="# " style="font-size: 15px;">Estoque</a>
+                        <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+                        <ul class="htmlCss-sub-menu sub-menu ">
+                            <li><a onclick="location='/produtos' ">Produtos</a></li>
+                            <li>
+                                <a onclick="location='/categorias' ">Categorias</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="# " style="font-size: 15px;">Relatórios</a>
+                        <i class='bx bxs-chevron-down js-arrow arrow '></i>
+                        <ul class="js-sub-menu sub-menu ">
+                            <li><a onclick="location='/relatorioatendentes' ">Atendentes</a></li>
+                            <li><a onclick="location='/relatorioclientes' ">Usuários</a></li>
+                            <li><a onclick="location='/relatoriofornec' ">Fornecedores</a></li>
+                            <li><a onclick="location='/relatorioprodutos' ">Produtos</a></li>
+                            <li><a onclick="location='/relatoriocategorias' ">Categorias</a></li>
+                            <li><a onclick="location='/relatoriovendas' ">Vendas</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="# " style="font-size: 15px;">Manut. Site</a>
+                        <i class='bx bxs-chevron-down js-arrow arrow '></i>
+                        <ul class="js-sub-menu sub-menu ">
+                            <li><a onclick="location='/manut-site-cardapio' ">Cardápio</a></li>
+                            <li><a onclick="location='/manut-site-galeriapedidos' ">Galeria Pedidos</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <li><a onclick="location='/logout' " style="color:rgb(98, 226, 43); font-size: 30px;">SAIR</a></li>
+                    </li>
+
+                    </li>
+            </div>
+            </ul>
+
+        </div>
+        <!--onclick="location='logout' "
+            <div class="search-box ">
+                <i class='bx bx-search'></i>
+                <div class="input-box ">
+                    <input type="text " placeholder="Search... ">
+                </div>
+            </div>
+        -->
+
+        </div>
+    </nav>
+    <br><br><br>
+
+    <center> <img src="./img/slide/slide-1.jpg" style="width: 180vh; height:80vh;" alt=" " id="imghome "><br>
+        <div class="wrapper w3-container">
+            <section class="container-fluid">
+                <div class="container-fluid">
+                    <div class="col-md-12 container-fluid text-left " id="imghome">
+                        <%- include('../partials/contagem');%>
+
+                    </div>
+                    <br>
+
+            </section>
+            </div>
+    </center>
+    <br><br>
+
+    <script src="../js/script.js"></script>
+
+</body>
+
+</html>

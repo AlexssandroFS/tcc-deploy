@@ -1,0 +1,250 @@
+<link href="../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/tables_view.css" rel="stylesheet">
+<link href="../../public/js/jquery.js" rel="stylesheet">
+<link href='../../css/bootstrap.min.css' rel='stylesheet'>
+<style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Track */
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    #imghome {
+        display: none;
+    }
+</style>
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+
+</head>
+
+<body className='snippet-body' onclick="statusestoque()">
+    <%- include('../partials/home'); %>
+        <div class="wrapper container-fluid">
+            <br><br><br>
+            <section class="container-fluid">
+                <div class="container-fluid">
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                    <script type="text/javascript"
+                        src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                    <div class="responsive container row col-md-12">
+                        <center>
+                            <div class="col-md-12">
+                                <h4>Relatório GERAL para Controle de Estoque <b
+                                        style="color: rgb(111, 15, 194);">MÍNIMO: </b>Entradas - Saídas.
+                            </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-md-8">
+                            <a onclick="location = '/menurelatorios'" style='font-size:28px;color:rgb(17, 59, 247)'
+                                title="Voltar a Tela de Relatórios">Menu Relatórios</a>
+                        </div>
+                        <div class="col-md-1">
+                            <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                        </div>
+                    </div>
+                    <br>
+
+                    <table id="example"
+                        class="w3-container-fluid responsive table border-light table-bordered table-responsive-sm table-hover"
+                        style="width:100%; overflow-x:auto;"><br>
+
+                        <div class="w3-container-fluid responsive">
+                            <thead class="responsive bg-dark container text-center">
+                                <tr class="responsive table-active table-dark">
+                                    <th scope="col ">Nome do Produto</th>
+                                    <th scope="col " style="color:rgb(255, 255, 251); background: rgb(1, 142, 41);">
+                                        Produto Entrada</th>
+
+                                    <th scope="col ">Status de Produtos no Estoque </th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="w3-container-fluid responsive col-md-10 text-center">
+                                <% for(let s of valorAtualQtdeSaidas){%>
+                                    <% for(let e of valorAtualQtdeEntradas) {%>
+                                        <%if (s.Id_Entrada_na_Saida==e.Id_Produto) {%>
+                                            <script>
+                                                /*
+                                            onBlur	remove o foco do elemento
+                                            onChange	muda o valor do elemento
+                                            onClick	o elemento é clicado pelo usuário
+                                            onFocus	o elemento é focado
+                                            onKeyPress	o usuário pressiona uma tecla sobre o elemento
+                                            onLoad	carrega o elemento por completo
+                                            onMouseOver	define ação quando o usuário passa o mouse sobre o elemento
+                                            onMouseOut	define ação quando o usuário retira o mouse sobre o elemento
+                                            onSubmit	define ação ao enviar um formulário
+                                */
+                                            function statusestoque() {
+                                                //valores "Dif_Estoque" e "Estoque_Minimo" são pegos através de ID's: id="Dif_Estoque" e id="Estoque_Minimo" 
+                                                //var Soma_Qtde_Entradas = document.getElementById("e.Soma_Qtde_Entradas").value;
+                                                //   var Soma_Qtde_Saidas = document.getElementById("s.Soma_Qtde_Saidas").value;
+
+                                                var Dif_Estoque = document.getElementById("Dif_Estoque").value;;
+                                                var Estoque_Minimo = document.getElementById("Estoque_Minimo").value;
+                                                //var Estoque_Minimo = 40;
+                                                //  var statusestoqueminimo = "";
+
+                                                //  let numberSelected = 0;
+                                                // for (let i = 0; i < s.Id_Entrada_na_Saida; i++) {
+                                                if (Dif_Estoque > Estoque_Minimo) {
+                                                    //statusestoqueminimo = "Qtde atual: " + Dif_Estoque + ". Produto com estoque OK! Acima do Mínimo que é: " + Estoque_Minimo + ".";
+                                                    statusestoqueminimo = "Produto com estoque OK! Está acima do Estoque Mínimo!";
+                                                    //   alert(statusestoqueminimo);
+                                                } else if (Dif_Estoque > 0 && Dif_Estoque < Estoque_Minimo) {
+                                                    //statusestoqueminimo = "Qtde atual: " + Dif_Estoque + ". Atenção, acompanhar produto, abaixo do mínimo que é: " + Estoque_Minimo + ".";
+                                                    statusestoqueminimo = "Atenção, acompanhar produto, pois está abaixo do Estoque mínimo!";
+                                                    //   alert(statusestoqueminimo);
+                                                } else if (Dif_Estoque == Estoque_Minimo) {
+                                                    //statusestoqueminimo = "Qtde atual: " + Dif_Estoque + ".   Cuidado, Produto do estoque chegou ao Mínimo que é: " + Estoque_Minimo + ".";
+                                                    statusestoqueminimo = "Cuidado, Produto em estoque atingiu o valor do Estoque Mínimo!";
+                                                    //  alert(statusestoqueminimo);
+                                                } else if (Dif_Estoque == 0) { //&& someqtdeentradas == someqtdesaidas
+                                                    //statusestoqueminio = "Qtde atual: " + Dif_Estoque + ".   Urgente, Produto com estoque ZERADO! O Mínimo é: " + Estoque_Minimo + ".";
+                                                    statusestoqueminimo = "Urgente, Produto com estoque ZERADO!";
+                                                    // alert(statusestoqueminimo);
+                                                } 
+                                                
+                                                //else if (Soma_Qtde_Saidas > Soma_Qtde_Entradas && Dif_Estoque < Soma_Qtde_Entradas) {
+                                                   // statusestoqueminimo = "Qtde atual: " + Dif_Estoque + ".  Ops, valor de Saída não pode ser maior que a Entrada. Valor Entrada: " + Soma_Qtde_Entradas + " e Valor Saída: " + Soma_Qtde_Saidas + ".";
+                                                    // alert(statusestoqueminimo);
+                                              //  }
+                                                document.getElementById("demo").innerHTML = statusestoqueminimo;
+                                                //     numberSelected++;
+                                                // }
+                                                //  return numberSelected;
+                                            }
+                                        </script>
+                                            <tr class="text-center">
+                                                <th>
+                                                    <%=e.Nome_Prod%>
+                                                </th>
+                                                <th id="idproduto"
+                                                    style="color:rgb(255, 255, 251); background: rgb(1, 142, 41);">
+                                                    <%=e.Id_Produto%>
+                                                </th>
+                                                <th>
+                                                    <style>
+                                                        .caixa {
+                                                            -webkit-border-radius: 20px !important;
+                                                            -moz-border-radius: 20px !important;
+                                                            border-radius: 20px !important;
+                                                            color: #0f0f0f;
+                                                            background: #1cd0f8;
+                                                            font-size: 20px;
+                                                        }
+                                                    </style>
+                                                    <b class="p-3 mb-2 bg-warning text-black;"
+                                                        style="border-radius: 10px; font-size: 15px;">
+                                                        Qtde Atual:</b> <input class="caixa text-center" placeholder=""
+                                                        value="<%=Dif_Estoque = e.Soma_Qtde_Entradas - s.Soma_Qtde_Saidas%>"
+                                                        id="Dif_Estoque" name="Dif_Estoque" type="text" size="10"
+                                                        maxlength="5" height="3px" width=5px disabled autofocus />
+                                                    <b>
+                                                        Estoque Mínimo: </b> <input class="caixa text-center"
+                                                        placeholder="" value="<%=e.Estoque_Minimo%>" id="Estoque_Minimo"
+                                                        name="Estoque_Minimo" type="text" size="10" maxlength="5"
+                                                        height="3px" width=5px disabled autofocus />
+                                                    <br><br>
+                                                    <p id="demo" onplay="statusestoque"> </p>
+                                                </th>
+                        </div>
+                </div>
+                <% }%>
+                    <% }%>
+                        <% }%>
+                            <tfoot class="responsive text-center border-light container-fluid "
+                                style="width:100%; overflow-x:auto; ">
+                                <tr>
+                                    <th scope="col ">Nome do Produto</th>
+                                    <th scope="col ">ID Produto Entrada</th>
+                                    <th scope="col ">Status de Produtos no Estoque </th>
+                                </tr>
+                            </tfoot>
+                            <br>
+                            </table>
+        </div>
+        </div>
+
+        </div>
+        <script type='text/javascript'
+            src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Passando para o Português
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    */
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    "language": {
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrado de _MAX_ total registros)",
+                        "oPaginate": {
+                            "sFirst": "First",
+                            "sLast": "Last",
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior"
+                        },
+
+                        "sProcessing": "Processando...",
+                        "sSearch": "Pesquisar:",
+                        "sSearchPlaceholder": "",
+                        "sUrl": "",
+
+                    }
+                });
+            });
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="../../js/alertas.js "></script>
+        <script src="../../../js/validarDados.js ">
+        </script>
+        <br> <br>
+
+</body>
+<br> <br>
+
+
+</html>

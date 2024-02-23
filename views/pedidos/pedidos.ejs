@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/tables_view.css" rel="stylesheet">
+    <link href="/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <title>Top Açaí - Page</title>
+    <style>
+        #imghome {
+            display: none;
+        }
+    </style>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+        var currentRow = 0;
+        var AddTableRow = function() {
+            var newRow = $("<tr>");
+            var cols = "";
+            cols += '<td>Nome:<input type="text" name="usuarios[' + currentRow + '][nome]"></td>';
+            cols += '<td>CPF:<input type="text" name="usuarios[' + currentRow + '][cpf]"></td>';
+            cols += '<td>Cargo:<select name="usuarios[' + currentRow + '][cargo]">';
+            cols += '<option value="gerente" name="usuarios[' + currentRow + '][gerente]">Gerente</option>';
+            cols += '<option value="Professor" name="usuarios[' + currentRow + '][Professor]">Professor</option>';
+            cols += '<option value="Programador" name="usuarios[' + currentRow + '][Programador]">Programador</option>';
+            cols += '</select></td>';
+            cols += '<td>E-Mail:<input type="text" name="usuarios[' + currentRow + '][email]"></td>';
+            cols += '<td>Parentesco:<input type="text" name="usuarios[' + currentRow + '][parentesco]"></td>';
+            cols += '<td>Valor:<input type="text" id="txt2" onblur="calcular()" name="usuarios[' + currentRow + '][valor]" class="valor"></td>';
+            cols += '<td class="actions">Ações:';
+            cols += '<button class="btn btn-large btn-danger" onclick="$(this).parent().parent().remove()" type="button">Remover</button>';
+            cols += '</td>';
+            newRow.append(cols);
+            $("#products-table").append(newRow);
+            currentRow++;
+            return false;
+        };
+
+
+
+        function calcular() {
+            var total = 0;
+            var x = document.getElementsByClassName("valor");
+            for (var i = 0; i < x.length; i++) {
+                total += parseFloat(x[i].value);
+            }
+            document.getElementById("result").value = total;
+        }
+    </script>
+
+</head>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="wrapper w3-container">
+            <section class="container-fluid">
+                <div class="container-fluid responsive">
+                    <center>
+                        <h4>Você está cadastrando itens ao Pedido: <b style="color: red;">
+                               <br></h4></b></h4>
+                    </center>
+
+                    <br> <br>
+                    <div class="container-fluid row col-12">
+                        <div class="form-group col-md-10">
+                            <button class="btn btn-large btn-primary" type="button" onclick="AddTableRow()">
+                        Adicionar Itens ao Pedido
+                      </button>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="titulo">Valor Total:</label>
+                            <input type="text" class="form-control" name="responsavel" id="result" readonly>
+                        </div>
+                    </div>
+
+
+                    <br/>
+                    <form class="container-fluid" action="/pedidos" method="POST" onsubmit="return save();">
+
+                        <table id="products-table">
+                            <tr>
+                                <td>ID:<input type="text" name="usuarios[' + currentRow + '][id]"></td>
+                                <td>Qtde:<input type="text" name="usuarios[' + currentRow + '][qtde]"></td>
+                                <td>Forma de Pagto :<select name="usuarios[' + currentRow + '][formapagto]" autofocus>
+                                            <% for(fp of formapagto) { %>
+                                                <option value="<%=fp.id%>">
+                                                    <%=fp.formapagto%>
+                                                </option>
+                                                <% } %>
+                                                    </select>
+                                    <option value="Programador" name="usuarios[' + currentRow + '][Programador]">Programador</option>
+                                    </select>
+                                </td>
+                                <td>E-Mail:<input type="text" name="usuarios[' + currentRow + '][email]"></td>
+                                <td>Parentesco:<input type="text" name="usuarios[' + currentRow + '][parentesco]"></td>
+                                <td>Valor:<input type="text" id="txt2" onblur="calcular()" name="usuarios[' + currentRow + '][valor]" class="valor"></td>
+                                <td class="actions">Ações:
+                                    <button class="btn btn-large btn-danger" onclick="$(this).parent().parent().remove()" type="button">Remover</button>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br/>
+
+                        <br> <br>
+
+                </div>
+                </form>
+        </div>
+        </div>
+
+        <br>
+
+        </div>
+
+        </section>
+        </div>
+        <script src="/js/alertas.js"></script>
+
+        <br> <br>
+</body>
+
+</html>

@@ -1,0 +1,260 @@
+<script type='text/javascript' src='../../js/jquery.js'></script>
+
+<style>
+    #imghome {
+        display: none;
+    }
+
+    /* width */
+</style>
+</head>
+
+
+<body className='snippet-body'>
+    <%- include('../../partials/home'); %>
+        <div class="wrapper w3-container-fluid" style="width:100%; overflow-x:auto;">
+            <section class="w3-container-fluid">
+                <br><br><br>
+                <div class="w3-container-fluid">
+                    <div class="responsive w3-container text-left row col-12">
+                        <center>
+                            <h4>Você está editando os dados do Produto: <b style="color: red;">SAÍDA de Estoque </b>do
+                                Produto:</h4>
+                            <h3 style="color: rgb(132, 4, 158);">
+                                <b>
+                                    <%=nomeproduto.nomeprod%>
+                                </b>
+                            </h3>
+                            <br>
+                        </center>
+                        <br>
+                        <form class="responsive container-fluid" id="validar" oninput="Mult()"
+                            action="/produtos/saidas/<%=produtossaidas.id%>?_method=PATCH" id="view" method="POST"
+                            onsubmit="return save();">
+                            <div class="responsive container-fluid text-left  row-col-12">
+                                <div class="container-fluid border float-center">
+                                    <h5>Dados de Identificação do Produto:</h5>
+                                    <div class="form-row">
+                                        <div class="form col-md-2">
+                                            <img class="rounded-circle" src="/img/perfilusuario/produtos.jpg"
+                                                style="width:150px; padding:0px,0px,opx,20px; height:80px">
+                                        </div>
+                                        <div class="form-group col-md-1">
+                                            <label for="id">ID Saída Produto</label>
+                                            <input type="text" class="form-control" id="id" placeholder="" name="id"
+                                                value="<%=produtossaidas.id%>" disabled autofocus />
+                                        </div>
+                                        <div class="form-group col-md-1">
+                                            <label for="produtosidentradas">ID Entrada Produto</label>
+                                            <input type="text" id="valueIDNomeProd" id="valueValor"
+                                                class="form-control" id="produtosidentradas" placeholder=""
+                                                name="produtosidentradas" value="<%=produtossaidas.produtosidentradas%>"
+                                                disabled autofocus />
+                                        </div>
+                                                        
+                                        <div class="form-group col-md-5">
+                                            <label for="nomeprod">Nome Produto</label>
+                                            <select class="form-control" id="atualizarIDProd" onChange="updateIDProd()"
+                                                id="nomeprod" class="form-select" name="nomeprod" required autofocus>
+                                                <option value="<%=nomeproduto.id%>">
+                                                    <%=nomeproduto.nomeprod%>
+                                                </option>
+                                                <% for(prod of listarentradas) { %>
+                                                    <option value="<%=prod.id%>">
+                                                        <%=prod.Produto.nomeprod%>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+
+                                            <footer>
+                                                <b>Obs:</b> Ao TROCAR o Nome do Produto, será <b>ATUALIZADO ID do
+                                                    Produto</b> e abaixo informado o valor a ser preenchido no campo:<b>
+                                                    "Valor Unitário ATUALIZADO"</b>.
+                                            </footer>
+                                        </div>
+
+                                        <div class="form-group col-md-2 ">
+                                            <label for="id ">Valor Unitário Produto</label>
+                                            <b><input type="text " class="form-control " min="0 "
+                                                    value="<%=produtossaidas.ProdutoEntrada.valorunit%>" onkeypress="return (event.charCode == 8 || event.charCode == 0)
+                                        ? null : event.charCode >= 46 && event.charCode<=57" oninput="Mult() " name=""
+                                                    autofocus disabled> </b>
+
+                                            <footer>
+                                                <b>Obs:</b> Valor atual no Banco de Dados</b>.
+                                            </footer>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <h5>Dados do Documento Fiscal de Compra do Produto:</h5>
+                                    <!--id="validar " refere-se ao arquivo .js ValidarDados para checar vencimentodata-->
+                                    <div class="form-row " id="validar ">
+                                        <div class="form-group col-md-2 ">
+                                            <label for="datasaida ">Data Saída Produto</label>
+                                            <input type="date " class="form-control " id="date-1 " id="datasaida "
+                                                name="datasaida " value="<%=produtossaidas.datasaida%>" required
+                                                autofocus />
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="qtdsaida">Qtde Saída Produto</label>
+                                            <input type="number" min="0"  id="multiSaida"
+                                                name="qtdsaida" oninput="Mult()"
+                                                onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                class="form-control" id="qtdsaida" value="<%=produtossaidas.qtdsaida%>"
+                                                required autofocus />
+                                            <footer>
+                                                <b>Obs:</b> Altere a <b>Quantidade</b> conforme necessário.
+                                            </footer>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label
+                                                style="color: rgb(253, 252, 255); background-color: rgb(92, 4, 174); font-size: 15px;"
+                                                for="id">ATUALIZAR Valor Unitário </label>
+                                            <b><input type="float" class="form-control" min="0" oninput="Mult()"
+                                                    onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 46 && event.charCode <= 57"
+                                                    id="valorunitariosaida" name="valorunitariosaida" required
+                                                    autofocus> </b>
+
+                                            <select class="form-control" id="valueValor" onchange="updateIDProd"
+                                                id="valorunit" type="float" name="valorunit" oninput="Mult()" autofocus
+                                                disabled>
+                                                <% for(prod of listarentradas) { %>
+                                                    <option value="<%=prod.id%>">
+                                                        <%=prod.valorunit%>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+                                            <footer>
+                                                <b>Obs:</b> Use o valor acima para <b>ATUALIZAR</b> o campo <b> "Valor
+                                                    Unitário ATUALIZADO"</b>.
+                                            </footer>
+
+                                        </div>
+
+                                        
+                                        <div class="form-group col-md-2">
+                                            <label for="valortotalsaida">Valor Total</label>
+                                            <input type="float" min="0" name="valortotalsaida" id="valortotal" 
+                                                onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 46 && event.charCode <= 57"
+                                                class="form-control" id="valortotalsaida" placeholder=""
+                                                value="<%=produtossaidas.valortotalsaida%>" required autofocus />
+                                            <footer>
+                                                <b>Obs:</b> Valor automático, mas caso altere, declarar com <b>"PONTO".
+                                                    Ex: R$2.5 ou R$1150.50</b>.
+                                            </footer>
+                                        </div>
+
+                                        <div class="form-group col-md-4">
+                                            <label for="fornecedoresid">Fornecedor do Produto</label>
+                                            <input type="text" min="0" name="" id="valueIDNomeProd" id="valueFornec"
+                                                onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 46 && event.charCode <= 57"
+                                                class="form-control" id="fornecedoresid" placeholder=""
+                                                value="<%=fornecedores.razaosocial%>" disabled autofocus />
+
+                                        </div>
+                                    </div>
+
+
+                                    <br> <br>
+                                </div>
+                                                               
+                                <script>
+                                            //inicio função para MULTIPLICAR a qtde comprada pelo valor unitario para salvar no BD
+                                            function Mult() {
+                                                var valorItem = document.getElementById('valueIDNomeProd');
+                                                var mult = 1;
+                                                var ipts = document.querySelectorAll('input[oninput="Mult()"]');
+                                                for (var x = 0; x < ipts.length; x++) {
+                                                    var valorItem = parseFloat(ipts[x].value);
+                                                    if (mult > 0 && mult === 0)
+                                                        mult = valorItem;
+                                                    else {
+                                                        !isNaN(valorItem) ? mult *= parseFloat(valorItem) : null;
+                                                        console.log(mult);
+                                                    }
+                                                }
+                                                document.querySelector('#valortotal').value = mult.toFixed(2);
+                                            }
+                                            ///////////////////////////////////////////////////////////////////////
+
+                                            //INICIO atualizar o ID do produto na edição na SAÍDA DE PRODUTOS
+                                            function updateIDProd() {
+                                        
+                                                var select = document.getElementById('atualizarIDProd');
+                                                var option = select.options[select.selectedIndex];
+                                                //var select = document.getElementById('atualizarValor');
+                                                //abaixo para atualizar o ID do produto para EDICAO
+                                                document.getElementById('valueIDNomeProd').value = option.value;
+                                        
+                                                //abaixo pega valor unitario atual atraves do ID do PRODUTO ao fazer a troca valoru unitario produto
+                                                document.getElementById('valueValor').value = option.value;
+                                                //document.getElementById('valueCategoria').value = option.value;
+                                        
+                                        
+                                                // var t1 = document.querySelector('input[name="valorunit"]');
+                                                //// var t2 = document.querySelector('textarea[name="valorunit"]');
+                                                // t2.value = t1.value;
+                                        
+                                            }
+                                        
+                                            updateIDProd(); //formulario recebe atraves do "id="update"
+                                            //FIM atualizar o ID do produto na edição na SAÍDA DE PRODUTO
+                                        
+                                        
+                                            ///////////////////////////////////////////////////////////////////////
+                                        </script>
+
+
+                                <br>
+                                
+                                <div class="col-md-4 d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-right">Qual ação deseja realizar?</h4>
+                                </div>
+                                <div class="row col-md-12">
+                                    <div class="col-md-1">
+                                        <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                            l.Tipousuario.tipousuario=='Gerente' ||
+                                            l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
+
+                                            <button type="submit"
+                                                class="btn btn-success btn-sm-3 profile-button text-white"
+                                                onsubmit="return edit();"><i
+                                                    title="Salvar Alterações Desta Saída de Produto do Estoque"
+                                                    style="font-size: 15px;">Salvar</i></button>
+                                            <% } else { %>
+
+                                                <% } %>
+                                    </div>
+
+
+                                    <div class="col-md-1">
+                                        <% if(l.Tipousuario.tipousuario=='Administrador' ) {%>
+                                            <form method="POST"
+                                                action="/produtos/saidas/<%= produtossaidas.id %>?_method=DELETE"
+                                                id="view" onsubmit="return del();">
+                                                <button action="submit" class="btn btn-danger btn-sm-1 text-white"
+                                                    title="Deletar Esta Saída de Produto do Estoque"><i
+                                                        style="font-size: 15px;">Deletar</i>
+                                                </button>
+                                            </form>
+                                            <% } else { %>
+
+                                                <% } %>
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <a href="/produtos/saidas">Voltar para Listagem de Saída de Produtos</a>
+                                    </div>
+
+                                </div>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <br>
+
+            </section>
+        </div>
+        <script src="/js/alertas.js"></script>
+</body>

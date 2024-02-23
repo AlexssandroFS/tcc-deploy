@@ -1,0 +1,234 @@
+<link href="../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/tables_view.css" rel="stylesheet">
+<link href="../../js/jquery.js" rel="stylesheet">
+<link href='../../css/bootstrap.min.css' rel='stylesheet'>
+<style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Track */
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    #imghome {
+        display: none;
+    }
+</style>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="wrapper w3-container">
+            <br><br><br><br>
+            <section class="container-fluid">
+                <div class=" container-fluid">
+                    <div class="responsive container text-left row-col-12">
+                        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                        <script type="text/javascript"
+                            src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                        <div class="container-fluid responsive" id="pdf2htmldiv">
+                            <div class="container responsive row col-md-12">
+                                <table id="example"
+                                    class="table  border-light table-bordered table-responsive-sm  container-fluid float-justify"
+                                    style="width:100%; overflow-x:auto;">
+                                        <div class="responsive container text-left row col-md-12">
+                                            <div class="col-md-3">
+                                                <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                                    l.Tipousuario.tipousuario=='Gerente' ) {%>
+                                                    <form method="GET" action="/tipousuarios/new">
+                                                        <button action="submit" class="btn btn-danger text-left"
+                                                            title="Criar Novo Perfil">Novo Tipo de Usuário</button>
+                                                    </form>
+                                                    <% } else { %>
+
+                                                        <% } %>
+                                            </div>
+                                            <div class="container responsive row col-md-8">
+                                            <h4>Atualmente temos:
+                                                <b style="color: red;">
+                                                    "<%=countTipoUsuario%>" </b> Tipos de Usuários <b
+                                                    style="color: rgb(111, 15, 194);">"cadastrados"</b>.
+                                            </div>
+
+                                        <div class="w3-container-fluid responsive col-md-1">
+                                            <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                                <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                                        </div>
+
+                                    </div>
+
+                                    <br>
+                                    <!-- table-striped -->
+                                    <thead class="w3-container-fluid responsive bg-dark text-center">
+                                        <tr class="table-active table-dark">
+                                            <!--1-->
+                                            <th scope="col">ID</th>
+                                            <!--2-->
+                                            <th scope="col ">Tipos de Usuários</th>
+                                            <!--3-->
+                                            <th scope="col ">Status Perfil</th>
+                                            <!--3-->
+                                            <th scope="col ">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody
+                                        class="w3-container-fluid border-dark table-bordered table-responsive-sm text-center col-md-12">
+                                        <% for(let c of perfil) {%>
+                                            <tr class="text-center">
+                                                <th>
+                                                    <b>
+                                                        <%=c.id%>
+                                                    </b>
+                                                </th>
+                                                <td>
+                                                    <%=c.tipousuario%>
+                                                </td>
+                                                <td>
+                                                    <%=c.statusperfil%>
+                                                </td>
+                                                <td>
+                                                    <div
+                                                                    class="w3-container-fluid responsive float-justify row col-md-12">
+                                                                    <div class="w3-container-fluid row col-md-12">
+                                                                        <div class="col-md-4">
+                                                                            <!-- <a href="/admin/<%= c.id%>" class="btn btn-warning btn-sm-1">View</a>-->
+                                                                            <a onclick="location = '/tipousuarios/<%= c.id%>'"><i
+                                                                                style='font-size:28px;color:rgb(17, 59, 247)'
+                                                                                class="far fa-clipboard fa-xl" aria-hidden="true"
+                                                                                    title="Visualisar Dados Produto"
+                                                                                    ></i>
+                                                                            </a>
+                                                                        </div>
+                                                                        <% if(l.Tipousuario.tipousuario=='Administrador'
+                                                                            || l.Tipousuario.tipousuario=='Gerente' ||
+                                                                            l.Tipousuario.tipousuario=='Supervisor' ||
+                                                                            l.tipousuarioid==2) {%>
+
+                                                                            <div class="col-md-4">
+                                                                                <a
+                                                                                    onclick="location = '/tipousuarios/<%= c.id%>/edit'"><i
+                                                                                        style='font-size:28px;color:rgb(6, 218, 52)'
+                                                                                         class="fas fa-edit fa-xl"
+                                                                                        aria-hidden="true"title="Editar Este Produto"
+                                                                                       ></i>
+                                                                                </a>
+                                                                            </div>
+                                                                            <% } else { %>
+
+                                                                                <% } %>
+                                                                                    <% if(l.Tipousuario.tipousuario=='Administrador'
+                                                                                        ){%>
+                                                                                        <div class="col-md-4">
+                                                                                            <form method="POST"
+                                                                                                action="/tipousuarios/<%= c.id %>?_method=DELETE"
+                                                                                                id="view"
+                                                                                                onsubmit="return del();">
+                                                                                                <button action="submit"><i
+                                                                                                        style='font-size:20px;color:rgb(218, 6, 6);'
+                                                                                                        class="fas fa-trash-alt"
+                                                                                                        
+                                                                                                    title="Deletar Este Produto"></i>
+
+                                                                                                </button>
+                                                                                            </form>
+                                                                                        </div>
+                                                                                        <% } else { %>
+
+                                                                                            <% } %>
+                                                                    </div>
+
+                                                                </div>
+                                                </td>
+                                                <% }%>
+                                            </tr>
+                                    <tfoot class="text-center border-light container-fluid"
+                                        style="width:100%; overflow-x:auto;">
+
+                                        <tr>
+                                            <!--1-->
+                                            <th scope="col">ID</th>
+                                            <!--2-->
+                                            <th scope="col ">Tipos de Usuários</th>
+                                            <!--3-->
+                                            <th scope="col ">Status Perfil</th>
+
+                                            <th scope="col ">Ações</th>
+                                        </tr>
+                                    </tfoot>
+                                    <br>
+                                </table>
+                            </div>
+                        </div>
+            </section>
+        </div>
+        <script type='text/javascript'
+            src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                                                                                                                                                                                                                                                            Passando para o Português
+                                                                                                                                                                                                                                                            */
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    "language": {
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrado de _MAX_ total registros)",
+                        "oPaginate": {
+                            "sFirst": "First",
+                            "sLast": "Last",
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior"
+                        },
+
+                        "sProcessing": "Processando...",
+                        "sSearch": "Pesquisar:",
+                        "sSearchPlaceholder": "",
+                        "sUrl": "",
+
+                    }
+                });
+            });
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="/js/alertas.js"></script>
+
+
+</body>

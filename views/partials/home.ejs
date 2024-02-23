@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script
+    src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  <title>TOP AÇAÍ</title>
+  <link rel="canonical" href="https://codepen.io/corbpie/pen/LYNwGdE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css'>
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!--config. compartilhada para outras paginas-->
+
+  <link href="../../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../css/tables_view.css" rel="stylesheet">
+  <link href="../../../js/jquery.js" rel="stylesheet">
+  <link href='../../../css/bootstrap.min.css' rel='stylesheet'>
+  <link href='../../../css/font-awesome.css' rel='stylesheet'>
+
+  <link href='../../../css/style.css' rel='stylesheet'>
+
+
+  <script>
+    window.console = window.console || function (t) { };
+  </script>
+
+
+  <!--INICIO configuração RELOGIO-->
+
+<script>
+  // Função para formatar 1 em 01
+  const zeroFill = n => {
+    return ('0' + n).slice(-2);
+  }
+
+  // Cria intervalo
+  const interval = setInterval(() => {
+    // Pega o horário atual
+    const now = new Date();
+
+    const data = zeroFill(now.getUTCDate()) + '/' + zeroFill((now.getMonth() + 1)) + '/' + now.getFullYear();
+    console.log(data);
+
+    // Exibe na tela usando a div#data
+    //document.getElementById('data').innerHTML = data;
+
+    // Formata a data conforme dd/mm/aaaa hh:ii:ss
+    const dataHora = zeroFill(now.getUTCDate()) + '/' + zeroFill((now.getMonth() + 1)) + '/' + now.getFullYear() + ' ' + zeroFill(now.getHours()) + ':' + zeroFill(now.getMinutes()) + ':' + zeroFill(now.getSeconds());
+
+    // Exibe na tela usando a div#data-hora
+    document.getElementById('data-hora').innerHTML = dataHora;
+
+  }, 1000);
+</script>
+<!--FIM configuração RELOGIO-->
+</head>
+
+<body translate="no" onload="time()"> <!-- translate="no" onload="time()"  chama função do relógio-->
+  <div class='dashboard'>
+    <div class="dashboard-nav">
+      <!--<header><a href="#!" class="menu-toggle"><i class="fas fa-clock-o"></i></a>
+        
+        <a href="#" class="brand-logo">
+          <div class="col-md-4">
+            <img src="../../../img/home/logo.jpg" style="max-width: 20ch;max-height: 8ch;" alt=" ">
+            </div>
+            
+        </a>
+        <br>
+
+      </header>-->
+      <!--icons https://www.w3schools.com/icons/fontawesome5_icons_users_people.asp -->
+      <nav class="dashboard-nav-list float-center"><a onclick=" location='/home' " class="dashboard-nav-item active"><i
+            class="fas fa-home"></i>
+          Home </a>
+
+        <!-- INICIO OPÇÃO MENU CATEGORIAS -->
+
+        <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+              class="fas fa-clipboard-list"></i> Categorias </a>
+          <div class='dashboard-nav-dropdown-menu'>
+            <a onclick=" location='/categorias' " class="dashboard-nav-dropdown-item">Listar</a>
+            <%if(l.Tipousuario.tipousuario=="Administrador" ||l.Tipousuario.tipousuario=="Gerente" ||
+              l.Tipousuario.tipousuario=="Supervisor" || l.tipousuarioid==2){%>
+              <a onclick=" location='/categorias/new'" class="dashboard-nav-dropdown-item">Nova</a>
+              <!-- 
+  1 - Administrador
+  2- Supervidor
+  3 - Atendente
+  4 - Gerente
+  5 - Cliente
+-->
+              <% } else { %>
+                <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
+                <% } %>
+          </div>
+        </div><!-- FIM OPÇÃO MENU CATEGORIAS -->
+
+
+        <!-- INICIO OPÇÃO MENU CARDÁRPIOS -->
+        <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+              class="fas fa-hamburger"></i> Cardápios </a>
+          <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU CARDÁRPIOS -->
+            <a onclick=" location='/cardapios'" class="dashboard-nav-dropdown-item">Listar</a>
+            <a onclick=" location='/cardapios/new'" class="dashboard-nav-dropdown-item">Novo</a>
+          </div><!--FIM SUB OPÇÃO MENU CARDÁRPIOS -->
+        </div><!-- FIM OPÇÃO MENU CARDÁRPIOS -->
+
+        <!-- INICIO OPÇÃO MENU DESPESAS -->
+        <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+              class="far fa-money-bill-alt" aria-hidden="true"></i>
+            Despesas </a>
+          <div class='dashboard-nav-dropdown-menu'>
+
+            <!-- INICIO SUB OPÇÃO MENU DESPESAS - CADASTRAR NOME DE DESPESA -->
+            <div class='dashboard-nav-dropdown'>
+              <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-circle"
+                  style='font-size:12px;color:rgb(255, 208, 0)'></i>Nome da Despesa </a>
+              <div class='dashboard-nav-dropdown-menu'>
+                <a onclick=" location='/despesas/caddespesa' " class="dashboard-nav-dropdown-item">Listar</a>
+                <a onclick=" location='/despesas/caddespesa/new'" class="dashboard-nav-dropdown-item">Nova</a>
+              </div>
+            </div>
+            <!-- FIM SUB OPÇÃO MENU DESPESAS - CADASTRAR NOME DE DESPESA -->
+
+            <!-- INICIO SUB OPÇÃO MENU DESPESAS - CADASTRAR ENTRADA DE DESPESA -->
+            <div class='dashboard-nav-dropdown'>
+              <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-circle"
+                  style='font-size:12px;color:rgb(255, 208, 0)'></i>Entrada de Despesa </a>
+              <div class='dashboard-nav-dropdown-menu'>
+                <a onclick=" location='/despesas/entradas' " class="dashboard-nav-dropdown-item">Listar</a>
+                <a onclick=" location='/despesas/entradas/new'" class="dashboard-nav-dropdown-item">Nova</a>
+              </div>
+            </div>
+            <!-- FIM SUB OPÇÃO MENU DESPESAS - CADASTRAR ENTRADA DE DESPESA -->
+
+            <!-- INICIO SUB OPÇÃO MENU DESPESAS - CADASTRAR SAÍDA DE DESPESA -->
+            <div class='dashboard-nav-dropdown'>
+              <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-circle"
+                  style='font-size:12px;color:rgb(255, 208, 0)'></i>Saída de Despesa </a>
+              <div class='dashboard-nav-dropdown-menu'>
+                <a onclick=" location='/despesas/saidas' " class="dashboard-nav-dropdown-item">Listar</a>
+                <a onclick=" location='/despesas/saidas/new'" class="dashboard-nav-dropdown-item">Nova</a>
+              </div>
+            </div><!-- FIM SUB OPÇÃO MENU DESPESAS - CADASTRAR SAÍDA DE DESPESA -->
+          </div><!-- FIM DIV SECUNDARIA MENU OPÇÕES -->
+        </div><!-- FIM MENU DESPESAS -->
+
+
+        <!-- INICIO OPÇÃO MENU FORNECEDORES -->
+        <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+              class="fas fa-shipping-fast"></i> Fornecedores </a>
+          <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU FORNECEDORES -->
+            <a onclick=" location='/fornecedores'" class="dashboard-nav-dropdown-item">Listar</a>
+            <a onclick=" location='/fornecedores/new'" class="dashboard-nav-dropdown-item">Novo</a>
+          </div><!--FIM SUB OPÇÃO MENU FORNECEDORES -->
+        </div><!-- FIM OPÇÃO MENU FORNECEDORES -->
+
+        <!-- INICIO OPÇÃO MENU Forma Pagto -->
+        <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+              class="fas fa-credit-card"></i> Formas Pagto </a>
+          <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU Forma Pagto -->
+            <a onclick=" location='/formapagtos'" class="dashboard-nav-dropdown-item">Listar</a>
+            <a onclick=" location='/formapagtos/new'" class="dashboard-nav-dropdown-item">Novo</a>
+          </div><!--FIM SUB OPÇÃO MENU Forma Pagto -->
+        </div><!-- FIM OPÇÃO MENU Forma Pagto -->
+
+        <!-- INICIO OPÇÃO MENU PRODUTOS -->
+        <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+              class="fas fa-list"></i>
+            Produtos </a>
+          <div class='dashboard-nav-dropdown-menu'>
+
+            <!-- INICIO SUB OPÇÃO MENU PRODUTOS - CADASTRAR NOME DE PRODUTO -->
+            <div class='dashboard-nav-dropdown'>
+              <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-circle"
+                  style='font-size:12px;color:rgb(255, 208, 0)'></i>Nome do Produto </a>
+              <div class='dashboard-nav-dropdown-menu'>
+                <a onclick=" location='/produtos/cadprod' " class="dashboard-nav-dropdown-item">Listar</a>
+                <a onclick=" location='/produtos/cadprod/new'" class="dashboard-nav-dropdown-item">Novo</a>
+              </div>
+            </div>
+            <!-- FIM SUB OPÇÃO MENU PRODUTOS - CADASTRAR NOME DE PRODUTO -->
+
+            <!-- INICIO SUB OPÇÃO MENU PRODUTO - CADASTRAR ENTRADA DE PRODUTO -->
+            <div class='dashboard-nav-dropdown'>
+              <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-circle"
+                  style='font-size:12px;color:rgb(255, 208, 0)'></i>Entrada de Produto </a>
+              <div class='dashboard-nav-dropdown-menu'>
+                <a onclick=" location='/produtos/entradas' " class="dashboard-nav-dropdown-item">Listar</a>
+                <a onclick=" location='/produtos/entradas/new'" class="dashboard-nav-dropdown-item">Nova</a>
+              </div>
+            </div>
+            <!-- FIM SUB OPÇÃO MENU PRODUTO - CADASTRAR ENTRADA DE PRODUTO -->
+
+            <!-- INICIO SUB OPÇÃO MENU PRODUTO - CADASTRAR SAÍDA DE PRODUTO -->
+            <div class='dashboard-nav-dropdown'>
+              <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-circle"
+                  style='font-size:12px;color:rgb(255, 208, 0)'></i>Saída de Produto </a>
+              <div class='dashboard-nav-dropdown-menu'>
+                <a onclick=" location='/produtos/saidas' " class="dashboard-nav-dropdown-item">Listar</a>
+                <a onclick=" location='/produtos/saidas/new'" class="dashboard-nav-dropdown-item">Nova</a>
+              </div>
+            </div> <!-- FIM SUB OPÇÃO MENU PRODUTO - CADASTRAR SAÍDA DE PRODUTO -->
+          </div><!-- FIM DIV SECUNDARIA MENU OPÇÕES -->
+        </div><!-- FIM MENU PRODUTO -->
+
+        <!-- INICIO OPÇÃO MENU Tipo Usuario -->
+        <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+              class="fas fa-user-tie"></i> Tipo Usuario </a>
+          <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU Tipo Usuario -->
+            <a onclick=" location='/tipousuarios'" class="dashboard-nav-dropdown-item">Listar</a>
+            <a onclick=" location='/tipousuarios/new'" class="dashboard-nav-dropdown-item">Novo</a>
+          </div><!--FIM SUB OPÇÃO MENU Tipo Usuario -->
+        </div><!-- FIM OPÇÃO MENU Tipo Usuario -->
+
+        <!-- INICIO OPÇÃO MENU USUÁRIOS -->
+        <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+              class="fas fa-users"></i> Usuários </a>
+          <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU USUÁRIOS -->
+            <a onclick=" location='/usuarios' " class="dashboard-nav-dropdown-item">Listar</a>
+           <%if(l.Tipousuario.tipousuario=="Administrador" ||l.Tipousuario.tipousuario=="Gerente" ||
+              l.Tipousuario.tipousuario=="Supervisor" || l.tipousuarioid==2){%>
+              <a onclick=" location='/usuarios/new'" class="dashboard-nav-dropdown-item">Novo</a>
+              
+              <% } else { %>
+                <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
+                 <% } %>
+          <a onclick=" location='/usuarios/<%= l.Usuario.id%>/'" class="dashboard-nav-dropdown-item">
+            <i class="fas fa-circle" style='font-size:12px;color:rgb(255, 208, 0)'> </i> Meu Perfil</a>
+              
+          </div><!--FIM SUB OPÇÃO MENU USUÁRIOS -->
+        </div><!-- FIM OPÇÃO MENU USUÁRIOS -->
+
+
+        <!-- INICIO OPÇÃO MENU Relatórios -->
+        <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
+              class="fas fa-database"></i> Relatórios </a>
+          <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU Relatórios -->
+            <a onclick=" location='/menurelatorios'" class="dashboard-nav-dropdown-item">Listar</a>
+          </div><!--FIM SUB OPÇÃO MENU Relatórios -->
+        </div><!-- FIM OPÇÃO MENU Relatórios -->
+
+        <!--<div class="nav-item-divider"></div>-->
+        <br>
+      </nav>
+    </div>
+    <div class='dashboard-app'>
+
+      <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
+        <div id="imgheader" class="w3-container row col-md-12">
+          <div class="container col-md-7">
+            <%- include('../partials/nomeprograma'); %>
+          </div>
+          <div class="container col-md-5">
+            <%- include('../login/nome_usuario_logado'); %>
+           
+ </div>
+
+  <div class="w3-container row col-md-12">
+     <!--INICIO configuração RELOGIO-->
+     <div class=" col-md-5">
+      <div class="float-center" id="data-hora" style="font-size:20px; color: rgb(13, 14, 13);">
+        Data/Hora </div>
+    </div>
+         <!--FIM configuração RELOGIO-->
+
+    <div class="col-md-5">
+        <!-- INICIO OPÇÃO MENU USUÁRIOS -->
+        <a style='cursor: pointer;font-size:25px;' onclick=" location='/usuarios/<%= l.Usuario.id%>/'">
+        
+           <i class="fas fa-users" style='font-size:20px;color:rgb(255, 208, 0)'></i> Acessar Meu Perfil </a>
+    </div>
+  <!-- FIM OPÇÃO MENU USUÁRIOS -->
+  <div class="col-md-2">
+  <button class="btn btn-danger" style="max-width: 20ch;max-height: 10ch;"><a onclick="location='/logout'"><i
+    class="fas fa-sign-out-alt"></i>
+  Logout </a></button>
+</div>
+       
+ </div>
+      </header>
+
+
+      <div class='dashboard-content'>
+        <div class='container'>
+          <br> <br> <br>
+          <div class='card-body w3-container-fluid responsive col-md-12' id="imghome">
+
+            <center>
+              <div class="w3-container col-md-12">
+                <img src="../img/logoPGDE.png" style="max-width: 50ch; max-height: 40ch;" id="imghome" alt=" ">
+
+                <img src="../img/slide/slide-1.jpg" style="max-width: 50h; max-height: 40ch;" id="imghome" alt=" ">
+              </div>
+            </center>
+
+            <br>
+            <div class="container col-md-12" id="footerHome" id="imghome">
+              <%- include('../partials/footerHome'); %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+    <script id="rendered-js">
+      const mobileScreen = window.matchMedia("(max-width: 990px )");
+      $(document).ready(function () {
+        $(".dashboard-nav-dropdown-toggle").click(function () {
+          $(this).closest(".dashboard-nav-dropdown").
+            toggleClass("show").
+            find(".dashboard-nav-dropdown").
+            removeClass("show");
+          $(this).parent().
+            siblings().
+            removeClass("show");
+        });
+        $(".menu-toggle").click(function () {
+          if (mobileScreen.matches) {
+            $(".dashboard-nav").toggleClass("mobile-show");
+          } else {
+            $(".dashboard").toggleClass("dashboard-compact");
+          }
+        });
+      });
+      //# sourceURL=pen.js
+    </script>
+
+</body>
+
+</html>

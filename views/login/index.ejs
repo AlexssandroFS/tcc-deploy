@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <title>Top Açaí - Page</title>
+
+    <!-- a biblioteca form awesome é usada para adicionar ícones ao nosso formulário -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <!-- incluindo o arquivo de folha de estilo -->
+    <link href="../css/login.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body id="imglogincadastro" style="background: url('../img/walpaperlogin.jpg') ">
+
+    <div class="login-box container-fluid text-center" id="arealogin">
+        <h2 id="titulologin" style="color: yellowgreen">Bem-Vindo ao PGDE</h2>
+        <h5>Programa de Gerenciamento de Despesa e Estoque </h5>
+        <h2>Acesse sua conta: </h2>
+        <h2 style="color: yellow">TOP AÇAÍ</h2> 
+        <!-- O 'auth' aponta para 'auth' em login.js, é a rota de solicitação POST para verificar os dados no BD-->
+        <form action="/login" method="post">
+            <div class="textbox">
+                <label for="usuariologin" class="form-label">Nome de Usuário para Login
+					<!-- fonte dos icones do login -->
+					<i class="fas fa-user"></i>
+				</label>
+                <input type="text" name="usuariologin" placeholder="  Usuário para Login" id="usuariologin" required>
+            </div>
+
+            <div class="textbox">
+                <label for="senha" class="form-label">Infome sua Senha
+					<i class="fas fa-lock"></i>
+				</label>
+                <input class="form-label" type="password" name="senha" placeholder="senha aqui..." id="senha" required>
+                <br><br></div>
+            <div> <br>
+            </div>
+            <!--            <div class="textbox">
+                <label for="txtTipousuario" class="form-label">Tipo Perfil para Login
+                        <select id="tipousuario" class="form-control" name="tipousuario" autofocus required
+                        style="font-size:20px; padding: 0% 2% 0 0%; text-align: center;">
+                                            <option selected>Escolher...</option>
+                                            <option value="Administrador">Administrador</option>
+                                            <option value="Supervisor">Supervisor</option>
+                                            <option value="Atendente">Atendente</option>
+                                            <option value="Cliente">Cliente</option>
+                                            </select>
+                </div>
+                -->
+
+            <input aria-hidden="true" class="form-label" type="submit" class="btn" id="login" value="Login" style=" width: 82h; height: 7vh; border-radius: 10px; cursor: pointer; color: #fff; border-color:#fff; font-size: 35px;">
+
+            <div>
+                <p>Ainda não tem cadastro ?</p>
+                <a onclick="location = '/login/new'" target="_blank" id="cadastro" onclick="return confirm('Você realmente deseja realizar o cadastro?');"> Cadastre-se aqui...</a>
+                <br> <br>
+
+                <a onclick="location = '/'" target="_blank" id="titulologin" onclick="return confirm('Você realmente deseja voltar a página principal?');"> Voltar Página Principal</a>
+
+            </div>
+        </form>
+        <br>
+    </div>
+</body>
+
+</html>
+
+
+<!--
+
+    <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+
+<body>
+    <form method="post" class="form-login" autocomplete="off">
+        <div class="title">
+            <h1 style="text-align: center; margin-bottom: 30px;">Login</h1>
+            <div class="card">
+                <div class="lineInput">
+                    <label for="">E-mail</label>
+                    <input type="text" id="email">
+                </div>
+                <div class="lineInput">
+                    <label for="">Password</label>
+                    <input type="text" id="senha">
+                </div>
+                <input id="submit" class="botao-enviar-login" type="submit" value="login">
+            </div>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById('submit').addEventListener('click', function(e) {
+            e.preventDefault();
+            var email = document.getElementById('email').value;
+            var senha = document.getElementById('senha').value;
+
+            if (email == '' || senha == '') {
+                alert('Preencha todos os campos!');
+                return;
+            }
+            if (email != 'alexssandro@gmail.com' || senha != '12345') {
+                alert('Email ou senha incorretos!');
+            }
+            if (email === 'alexssandro@gmail.com' && senha === '12345') {
+                alert('Login realizado com sucesso!');
+                window.location.href = 'http://localhost:2000/entrada';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+-->

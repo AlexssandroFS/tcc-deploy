@@ -1,0 +1,174 @@
+<html>
+
+<head>
+    <title>Google Charts Tutorial</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+    </script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            packages: ['corechart']
+        });
+    </script>
+
+    <style>
+        html,
+        body {
+            width: auto;
+            height: auto;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            background-color: white;
+        }
+        
+        .box {
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 1rem;
+            margin: 1rem;
+            background-color: silver;
+            /* calco para descontar a margem da largura do box se aumenta a marge tem que ajustar aqui tb */
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container-fluid responsive wrapper">
+
+        <div id="container" class="box" style=" width: 450px;
+        height: 300px;">
+        </div>
+
+        <div id="container2" class="box" style=" width: 450px;
+        height: 300px;">
+        </div>
+    </div>
+
+    <div class="container-fluid responsive wrapper">
+
+        <div id="container3" class="box" style=" width: 450px;
+        height: 300px;">
+        </div>
+
+        <div id="container4" class="box" style=" width: 450px;
+        height: 300px;">
+        </div>
+    </div>
+
+
+
+
+    <script language="JavaScript">
+        function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+                ['Copo', 'Acai'],
+                ['Açaí 300ml', 10],
+                ['Açaí 500ml', 10],
+                ['Açaí 1000ml', 20]
+            ]);
+
+            var options = {
+                title: 'Vendas - Maior saída (Copo de Açai)'
+            };
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.PieChart(document.getElementById('container'));
+            chart.draw(data, options);
+        }
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+
+
+
+    <script language="JavaScript">
+        function drawChart() {
+            // Define the chart to be drawn.
+            // let json = JSON.parse('{ "domingo":300 , "segunda":100 , "terca":150, "quarta":100 , "quinta":180,  "sexta":100 ,  "sabado":400}')
+
+            var data = google.visualization.arrayToDataTable([
+                ['month', 'junho'],
+                ['domingo', 900],
+                ['segunda', 1000],
+                ['terca', 1170],
+                ['quarta', 1250],
+                ['quinta', 1030],
+                ['sexta', 800],
+                ['sabado', 1800]
+            ]);
+
+            var options = {
+                title: 'Vendas da Semana (valores em R$)'
+            };
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.PieChart(document.getElementById('container2'));
+            chart.draw(data, options);
+        }
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+
+
+    <script language="JavaScript">
+        function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+                ['Copo', 'Acai'],
+                ['Açaí 300ml', 10],
+                ['Açaí 500ml', 10],
+                ['Açaí 1000ml', 20]
+            ]);
+
+            var options = {
+                title: 'Vendas - Maior saída (Copo de Açai)'
+            };
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ColumnChart(document.getElementById('container3'));
+            chart.draw(data, options);
+        }
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+
+
+    <script language="JavaScript">
+        function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+                ['month', ''],
+                ['domingo', 900],
+                ['segunda', 1000],
+                ['terca', 1170],
+                ['quarta', 1250],
+                ['quinta', 1030],
+                ['sexta', 800],
+                ['sabado', 1800]
+            ]);
+
+            var options = {
+                title: 'Vendas da Semana (valores em R$)'
+            };
+
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ColumnChart(document.getElementById('container4'));
+            chart.draw(data, options);
+        }
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+
+
+
+
+</body>
+
+</html>
+
+</html>

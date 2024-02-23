@@ -1,0 +1,460 @@
+<style>
+    #imghome {
+        display: none;
+    }
+</style>
+</head>
+
+<body className='snippet-body'>
+    <%- include('../../partials/home'); %>
+        <div class="wrapper w3-container-fluid" style="width:100%; overflow-x:auto;">
+            <section class="w3-container-fluid">
+                <br><br><br>
+                <div class="w3-container-fluid">
+                    <div class="responsive w3-container text-left row col-12">
+                        <center>
+                            <h4>Você está editando os dados de <b style="color: red;">ENTRADA de Produto no Estoque
+                                </b>do Produto:</h4>
+                            <h3 style="color: rgb(132, 4, 158);">
+                                <b>
+                                    <%=nomeproduto.nomeprod%>
+                                </b>
+                            </h3>
+                            <br>
+                        </center>
+                        <br>
+
+                        <form class="responsive container-fluid" id="validar"
+                            action="/produtos/entradas/<%=produtosentradas.id%>?_method=PATCH" id="view" method="POST"
+                            onsubmit="return save();">
+                            <div class="responsive container-fluid text-left  row-col-12">
+                                <div class="container-fluid border float-center">
+                                    <h5>Dados de Identificação do Produto:</h5>
+                                    <div class="form-row">
+                                        <div class="form col-md-3">
+                                            <img class="rounded-circle" src="/img/perfilusuario/produtos.jpg"
+                                                style="width:150px; padding:0px,0px,opx,20px; height:80px">
+                                        </div>
+                                        <div class="form-group col-md-1">
+                                            <label for="id">ID Entrada Produto</label>
+                                            <input type="text" class="form-control" id="id" placeholder="" name="id"
+                                                value="<%=produtosentradas.id%>" disabled autofocus />
+                                        </div>
+                                        <script>
+                                            //INICIO atualizar o ID do produto na edição na ENTRADA DE PRODUTOS
+                                            function updateIDProd() {
+
+                                                var select = document.getElementById('atualizarIDProd');
+                                                var option = select.options[select.selectedIndex];
+                                                //var select = document.getElementById('atualizarValor');
+                                                //abaixo para atualizar o ID do produto para EDICAO
+                                                document.getElementById('valueIDNomeProd').value = option.value;
+
+                                                //abaixo pega valor unitario atual atraves do ID do PRODUTO ao fazer a troca valoru unitario produto
+                                                document.getElementById('valueValor').value = option.value;
+                                                // document.getElementById('valueCategoria').value = option.value;
+
+
+                                                // var t1 = document.querySelector('input[name="valorunit"]');
+                                                //// var t2 = document.querySelector('textarea[name="valorunit"]');
+                                                // t2.value = t1.value;
+
+                                            }
+
+                                            updateIDProd(); //formulario recebe atraves do "id="update"
+                                            //FIM atualizar o ID do produto na edição na ENTRADA DE PRODUTO
+
+                                        </script>
+
+                                        <div class="form-group col-md-1">
+                                            <label for="produtosid">ID Produto</label>
+                                            <input type="text" id="valueIDNomeProd" class="form-control" id="produtosid"
+                                                placeholder="" name="produtosid"
+                                                value="<%=produtosentradas.Produto.id%>" disabled autofocus />
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="nomeprod">Nome Produto</label>
+                                            <select id="atualizarIDProd" onChange="updateIDProd()" id="nomeprod"
+                                                class="form-select" name="nomeprod" required autofocus>
+                                                <option value="<%=nomeproduto.id%>">
+                                                    <%=nomeproduto.nomeprod%>
+                                                </option>
+                                                <% for(prod of listarprodnome) { %>
+                                                    <option value="<%=prod.id%>">
+                                                        <%=prod.nomeprod%>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+
+                                            <footer>
+                                                <b>Obs:</b> Ao TROCAR o Nome do Produto, será <b>ATUALIZADO ID do
+                                                    Produto</b>.
+                                            </footer>
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <label for="marca">Marca</label>
+                                            <input type="text" class="form-control" id="marca" placeholder=""
+                                                name="marca" value="<%=produtosentradas.marca%>" autofocus />
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="form-row">
+                                        <h5>Dados do Documento Fiscal de Compra do Produto:</h5>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-3">
+                                                <label for="doctofiscal">Nota/Cupom Fiscal</label>
+                                                <input type="text" class="form-control" id="doctofiscal" placeholder=""
+                                                    name="doctofiscal" value="<%=produtosentradas.doctofiscal%>"
+                                                    autofocus />
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="datacompra">Data Compra</label>
+                                                <input type="date" class="form-control" id="datacompra"
+                                                    name="datacompra" value="<%=produtosentradas.datacompra%>"
+                                                    autofocus />
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="valorunit">Valor Unitário</label>
+                                                <input type="float" min="0"
+                                                    onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 46 && event.charCode <= 57"
+                                                    class="form-control" id="valorunit" oninput="Mult()"
+                                                    value="<%=produtosentradas.valorunit%>" name="valorunit" required
+                                                    autofocus />
+                                                <footer>
+                                                    Obs: Declarar Valor com "PONTO", assim R$2.5 ou R$1150.50
+                                                </footer>
+                                            </div>
+
+                                            <div class="form-group col-md-2">
+                                                <label for="qtdecompra">Qtde Compra</label>
+                                                <input type="number" min="0"
+                                                    onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                    class="form-control" id="qtdecompra" oninput="Mult()"
+                                                    value="<%=produtosentradas.qtdecompra%>" name="qtdecompra" required
+                                                    autofocus />
+                                            </div>
+                                            <script>  //inicio função para MULTIPLICAR a qtde comprada pelo valor unitario para salvar no BD
+                                                function Mult() {
+                                                    var valorItem = document.getElementById('valueIDNomeProd');
+                                                    var mult = 1;
+                                                    var ipts = document.querySelectorAll('input[oninput="Mult()"]');
+                                                    for (var x = 0; x < ipts.length; x++) {
+                                                        var valorItem = parseFloat(ipts[x].value);
+                                                        if (mult > 0 && mult === 0)
+                                                            mult = valorItem;
+                                                        else {
+                                                            !isNaN(valorItem) ? mult *= parseFloat(valorItem) : null;
+                                                            console.log(mult);
+                                                        }
+                                                    }
+                                                    document.querySelector('#valortotal').value = mult.toFixed(2);
+                                                }
+                                                ///////////////////////////////////////////////////////////////////////
+                                            </script>
+                                            <div class="form-group col-md-2">
+                                                <label for="valortotal">Valor Total</label>
+                                                <input type="float" min="0"
+                                                    onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 46 && event.charCode <= 57"
+                                                    class="form-control" id="valortotal" placeholder=""
+                                                    name="valortotal" value="<%=produtosentradas.valortotal%>" required
+                                                    autofocus />
+                                                <footer>
+                                                    Obs: Valor automático, mas caso altere, declarar com "PONTO", assim
+                                                    R$2.5 ou R$1150.50
+                                                </footer>
+                                            </div>
+                                        </div>
+                                        <br> <br>
+                                    </div>
+
+                                    <h5>Dados para Controle de Validade do Estoque:</h5>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-2">
+                                            <label for="datafabricacao">Data Fabricação</label>
+                                            <input type="date" class="form-control" id="datafabricacao"
+                                                name="datafabricacao" value="<%=produtosentradas.datafabricacao%>"
+                                                autofocus />
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                            <label for="dataatual">Data Atual</label>
+                                            <input type="date" class="form-control" id="date-1" id="dataatual" min="1"
+                                                max="1" name="dataatual" value="<%=produtosentradas.dataatual%>"
+                                                autofocus />
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="datavalidade">Data Validade</label>
+                                            <input type="date" class="form-control" id="date-2" id="datavalidade"
+                                                name="datavalidade" value="<%=produtosentradas.datavalidade%>"
+                                                autofocus />
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <input class="btn btn-dark btn-sm-3 profile-button text-white" type="button"
+                                                value="Click Verificar Validade" id="validar" required autofocus>
+
+                                            <b> <label type="text" id="statusvalidade" name="statusvalidade"
+                                                    style="color: blueviolet; font-size: 20px;" required autofocus />
+                                                Status
+                                                Aqui ... </label>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row col-md-12">
+                                        <div id="data-hora" style="color:white;">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label> Status SALVO no BD: </label>
+                                            <input class="form-control col-md-8" type="text" id="demo"
+                                                name="statusvalidade" value="<%=produtosentradas.statusvalidade%>"
+                                                disabled>
+                                        </div>
+                                        <div class="form-group col-md-8">
+                                            <label style="color:red;"> Status a ser ATUALIZADO no BD:
+                                            </label>
+                                            <b>
+                                                <input class="form-control col-md-12" type="text" style="color:red;"
+                                                    class="form-control" name="statusvalidade"
+                                                    id="updateStatusValidade">
+                                            </b>
+                                        </div>
+
+
+
+                                        <script>
+                                            //codigo javascript para BLOQUEAR inserção de números em determinado input
+                                            //fim da função que analisa as possibilidades condicionais para o status da validade do produto
+                                            // Declaring and initializing variables
+                                            // const validar = document.getElementById("validar");
+                                            //const statusvalidade = document.getElementById("statusvalidade");
+                                            let validar = document.getElementById("validar");
+                                            let statusvalidade = document.getElementById("statusvalidade");
+
+                                            validar.addEventListener("click", () => {
+                                                //Create a Date object from input value
+                                                // const date1 = dataatual;
+                                                // const date2 = datavalidade;
+
+                                                let dataatual = new Date(document.getElementById("date-1").value);
+                                                let datavalidade = new Date(document.getElementById("date-2").value);
+
+                                                //Check if the input dates are valid
+                                                //If valid calculate the difference
+                                                if (dataatual.getTime() && datavalidade.getTime()) {
+                                                    //Calculate difference in time using getTime function
+                                                    //getTime calculates number of years since January 1,1970
+                                                    let timeDifference = datavalidade.getTime() - dataatual.getTime();
+
+                                                    //Since this value is in milliseconds we need to convert it into days
+                                                    //We want the difference to be a non-negative number. Hence we use Math.abs()
+                                                    let dayDifference = Math.abs(timeDifference / (1000 * 3600 * 24));
+                                                    //difdias.innerHTML = `A diferenca entre as duas data e <span>${dayDifference}</span> dias`;
+
+                                                    if (datavalidade > dataatual && dayDifference > 2) {
+                                                        statusvalidade.innerHTML = "Produto com validade em dia! " + "Vencerá em " + dayDifference + " dia(s).";
+                                                    } else if (datavalidade > dataatual && dayDifference > 0) {
+                                                        statusvalidade.innerHTML = "Atenção: Produto com validade comprometida! Vencerá em " + dayDifference + " dia(s)!";
+                                                    } else if (datavalidade < dataatual || dayDifference < 0) {
+                                                        statusvalidade.innerHTML = "Urgente: Produto validade VENCIDA a " + dayDifference + " dia(s).";
+                                                    } else {
+                                                        statusvalidade.innerHTML = "! Produto vence hoje!";
+                                                    }
+
+                                                    //abaixo server para ATUALIZAR O CAMPO QUE IRÁ SALVAR NO DB o resultado da função que aparece no HTML no EDIT/NEW
+                                                    let tot = statusvalidade.innerHTML;
+                                                    document.getElementById('updateStatusValidade').value = tot
+
+                                                    //inicio id demo
+                                                    // <p id="demo" id="statusvalidade" name="statusvalidade"></p>
+                                                    //  FAZ A CÓPIA DO RESULTADO DA FUNÇÃO AO REALIZAR O "VERIFICAR VALIDADE"
+                                                    let html = document.getElementById("statusvalidade").innerHTML;
+                                                    document.getElementById("demo").innerHTML = html;
+
+                                                    //fim id demo
+                                                }
+                                                //Else display that the input is valid
+                                                else {
+                                                    statusvalidade.innerHTML = "Por favor, selecione uma data valida";
+                                                }
+                                                return validar;
+                                                console.log(statusvalidade);
+                                            });
+                                            //fim da função que analisa as possibilidades condicionais para o status da validade do produto
+
+                                        </script>
+                                    </div>
+
+                                    <script>
+                                       // window.onload = function () {
+                                         //  document.getElementById("meuElemento").click();
+                                       // }
+                                       function statusestoque() {
+                                            //valores "Dif_Estoque" e "Estoque_Minimo" são pegos através de ID's: id="Dif_Estoque" e id="Estoque_Minimo" 
+                                            //var Soma_Qtde_Entradas = document.getElementById("e.Soma_Qtde_Entradas").value;
+                                            //   var Soma_Qtde_Saidas = document.getElementById("s.Soma_Qtde_Saidas").value;
+
+                                            var Dif_Estoque = document.getElementById("Dif_Estoque").value;;
+                                            var Estoque_Minimo = document.getElementById("Estoque_Minimo").value;
+                                            //var Estoque_Minimo = 40;
+                                            //  var statusestoqueminimo = "";
+
+                                            //  let numberSelected = 0;
+
+                                            if (Dif_Estoque > Estoque_Minimo) {
+                                                //statusestoqueminimo = "Qtde atual: " + Dif_Estoque + ". Produto com estoque OK! Acima do Mínimo que é: " + Estoque_Minimo + ".";
+                                                statusestoqueminimo = "Produto com estoque OK! Está acima do Estoque Mínimo!";
+                                                //   alert(statusestoqueminimo);
+                                            } else if (Dif_Estoque > 0 && Dif_Estoque < Estoque_Minimo) {
+                                                //statusestoqueminimo = "Qtde atual: " + Dif_Estoque + ". Atenção, acompanhar produto, abaixo do mínimo que é: " + Estoque_Minimo + ".";
+                                                statusestoqueminimo = "Atenção, acompanhar produto, pois está abaixo do Estoque mínimo!";
+                                                //   alert(statusestoqueminimo);
+                                            } else if (Dif_Estoque == Estoque_Minimo) {
+                                                //statusestoqueminimo = "Qtde atual: " + Dif_Estoque + ".   Cuidado, Produto do estoque chegou ao Mínimo que é: " + Estoque_Minimo + ".";
+                                                statusestoqueminimo = "Cuidado, Produto em estoque atingiu o valor do Estoque Mínimo!";
+                                                //  alert(statusestoqueminimo);
+                                            } else if (Dif_Estoque == 0) { //&& someqtdeentradas == someqtdesaidas
+                                                //statusestoqueminio = "Qtde atual: " + Dif_Estoque + ".   Urgente, Produto com estoque ZERADO! O Mínimo é: " + Estoque_Minimo + ".";
+                                                statusestoqueminimo = "Urgente, Produto com estoque ZERADO!";
+                                                // alert(statusestoqueminimo);
+                                            } //else if (Soma_Qtde_Saidas > Soma_Qtde_Entradas && Dif_Estoque < Soma_Qtde_Entradas) {
+                                            // statusestoqueminimo = "Qtde atual: " + Dif_Estoque + ".  Ops, valor de Saída não pode ser maior que a Entrada. Valor Entrada: " + Soma_Qtde_Entradas + " e Valor Saída: " + Soma_Qtde_Saidas + ".";
+                                            // alert(statusestoqueminimo);
+                                            //  }
+                                            document.getElementById("demo").innerHTML = statusestoqueminimo;
+                                            //     numberSelected++;
+                                            // }
+                                            //  return numberSelected;
+                                        }
+                                    </script>
+
+                                    <h5>Dados para Controle do Estoque:</h5>
+                                    <div class="form-row col-md-12">
+                                        <div class="form-group col-md-2">
+                                            <label for="qtdeminima"> Estoque Mínimo</label>
+                                            <input type="number" class="form-control" id="qtdeminima" placeholder=""
+                                                name="qtdeminima" value="<%=produtosentradas.Produto.qtdeminima%>"
+                                                autofocus disabled />
+                                        </div>
+
+                                        <div class="form-group col-md-2">
+                                            <label for="qtdeestoque"> Estoque Atual</label>
+
+                                            <% for(let s of valorAtualQtdeSaidas){%>
+                                                <% for(let e of valorAtualQtdeEntradas){%>
+                                                    <% if(s.Id_Entrada_na_Saida==e.Id_Produto &&
+                                                        produtosentradas.id==s.Id_Entrada_na_Saida ){%>
+
+                                                        <input type="number" class="form-control" id="qtdeestoque"
+                                                            placeholder="" name="qtdeestoque"
+                                                            value="<%= (e.Soma_Qtde_Entradas - s.Soma_Qtde_Saidas)%>"
+                                                            autofocus disabled />
+
+                                                        <% } else { %>
+                                                            <% } %>
+
+                                                                <% if(e.Id_Produto==produtosentradas.id &&
+                                                                    s.Soma_Qtde_Saidas==0){%>
+                                                                    <input type="number" class="form-control"
+                                                                        id="Dif_Estoque" id="qtdeestoque" placeholder=""
+                                                                        name="qtdeestoque"
+                                                                        value="<%= (e.Soma_Qtde_Entradas - s.Soma_Qtde_Saidas)%>"
+                                                                        autofocus disabled />
+
+                                                                    <% } else { %>
+                                                                        <% } %>
+
+                                                                            <% } %>
+                                                                                <% } %>
+
+                                        </div>
+
+                                        <div class="form-group row col-md-7">
+                                            <label for="statusestoque">
+                                                Status
+                                                Estoque
+                                                Atual</label>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Script -->
+                                    <script src="../../../js/validarDados.js">
+                                    </script>
+
+                                    <br>
+                                    <div class="form-row">
+                                        <h5>Dados do Fornecedor dos Produtos:</h5>
+
+                                        <div class="form-group col-md-10">
+                                            <label for="razaosocial">Fornecedor</label>
+                                            <select id="razaosocial" class="form-select col-md-8" name="razaosocial"
+                                                autofocus>
+                                                <option value="<%=fornecedor.id%>">
+                                                    <%=fornecedor.razaosocial%>
+                                                </option>
+                                                <% for(f of dadosfornecedor) { %>
+                                                    <option value="<%=f.id%>">
+                                                        <%=f.razaosocial%>
+                                                    </option>
+                                                    <% } %>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="col-md-4 d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Qual ação deseja realizar?</h4>
+                </div>
+                <div class="row col-md-12">
+                    <div class="col-md-1">
+                        <% if(l.Tipousuario.tipousuario=='Administrador' || l.Tipousuario.tipousuario=='Gerente' ||
+                            l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
+
+                            <button type="submit" class="btn btn-success btn-sm-3 profile-button text-white"
+                                onsubmit="return edit();"><i
+                                    title="Salvar Alterações Desta Entrada de Produto do Estoque"
+                                    style="font-size: 15px;">Salvar</i></button>
+                            <% } else { %>
+
+                                <% } %>
+                    </div>
+
+
+                    <div class="col-md-1">
+                        <% if(l.Tipousuario.tipousuario=='Administrador' ) {%>
+                            <form method="POST" action="/produtos/entradas/<%= produtosentradas.id %>?_method=DELETE"
+                                id="view" onsubmit="return del();">
+                                <button action="submit" class="btn btn-danger btn-sm-1 text-white"
+                                    title="Deletar Esta Entrada de Produto do Estoque"><i
+                                        style="font-size: 15px;">Deletar</i>
+                                </button>
+                            </form>
+                            <% } else { %>
+
+                                <% } %>
+                    </div>
+
+                    <div class="col-md-8">
+                        <a href="/produtos/entradas">Voltar para Listagem de Entradas de Produtos</a>
+                    </div>
+
+                </div>
+                </form>
+        </div>
+        </div>
+        </section>
+        </div><br>
+        <br>
+        <script src="/js/alertas.js"></script>
+</body>

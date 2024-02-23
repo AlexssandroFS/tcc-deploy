@@ -1,0 +1,183 @@
+<link href="../../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../css/tables_view.css" rel="stylesheet">
+<link href="../../../js/jquery.js" rel="stylesheet">
+<link href='../../../css/bootstrap.min.css' rel='stylesheet'>
+<style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Track */
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    #imghome {
+        display: none;
+    }
+</style>
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+</head>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="wrapper container-fluid">
+            <br><br><br>
+            <section class="container-fluid" id="pdf2htmldiv">
+                <div class="container-fluid">
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                    <script type="text/javascript"
+                        src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                    <div class="responsive container row col-md-12">
+                        <center>
+                            <div class="col-md-12">
+                                <h4>Relatório com <b style="color: rgb(111, 15, 194);">Entrada de</b>
+                                    <b style="color: red;">
+                                        "<%=countRelProd%>" </b> <b style="color: rgb(111, 15, 194);"> Produtos</b> e
+                                    suas respectivas Notas Fiscais e Fornecedores.
+                                    <br>
+                            </div>
+                            <div class="row col-md-12">
+                                <div class="col-md-8">
+                                    <a onclick="location = '/menurelatorios'"
+                                            style='font-size:28px;color:rgb(17, 59, 247)'
+                                            title="Voltar a Tela de Relatórios">Menu Relatórios</a>
+                                </div>
+                                <div class="col-md-1">
+                                    <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                        <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                                </div>
+                            </div> 
+                    </center>
+                    <table id="example"
+                        class="table border-light table-bordered table-responsive-sm table-hover container-fluid"
+                        style="width:100%; overflow-x:auto;">
+
+                </div>
+
+                <div class="w3-container responsive">
+                    <thead class="responsive bg-dark container text-center">
+                        <tr class="responsive table-active table-dark">
+                            <!--0-->
+                            <th scope="col ">Nome do Produto</th>
+                            <th scope="col">Nota/Cupom Fiscal</th>
+                            <th scope="col ">Categoria</th>
+                            <!--3-->
+                            <th scope="col">Razao Social do Fornecedor</th>
+                            <!-- <th scope="col ">Ações</th>-->
+                        </tr>
+                    </thead>
+                    <tbody class="responsive text-center">
+                        <%let contador=0 %>
+                            <% for(let c of produtosentradas){%>
+                                <tr class="text-center">
+                                    <th>
+                                        <%=c.Produto.nomeprod%>
+                                    </th>
+
+                                    <th>
+                                        <%=c.doctofiscal%>
+                                    </th>
+
+                                    <td>
+                                        <%=vetorCategorias[contador]%>
+                                            <% contador++ %>
+                                    </td>
+                                    <th>
+                                        <%=c.Fornecedore.razaosocial%>
+                                    </th>
+
+
+                                    <% }%>
+                                </tr>
+                    <tfoot class="responsive text-center border-light container-fluid "
+                        style="width:100%; overflow-x:auto; ">
+                        <tr>
+                            <th scope="col ">Nome do Produto</th>
+                            <th scope="col">Nota/Cupom Fiscal</th>
+                            <th scope="col ">Categoria</th>
+                            <!--3-->
+                            <th scope="col">Razao Social do Fornecedor</th>
+                            <!-- <th scope="col ">Ações</th>-->
+                        </tr>
+                    </tfoot>
+                    <br>
+                    </table>
+                </div>
+        </div>
+        </div>
+
+        </section>
+        </div>
+        <script type='text/javascript'
+            src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                                                            Passando para o Português
+                                                            */
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    "language": {
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrado de _MAX_ total registros)",
+                        "oPaginate": {
+                            "sFirst": "First",
+                            "sLast": "Last",
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior"
+                        },
+
+                        "sProcessing": "Processando...",
+                        "sSearch": "Pesquisar:",
+                        "sSearchPlaceholder": "",
+                        "sUrl": "",
+
+                    }
+                });
+            });
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="/js/alertas.js"></script>
+        <br> <br>
+</body>
+
+</html>

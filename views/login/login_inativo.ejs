@@ -1,0 +1,94 @@
+<link href="../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    img {
+        border-radius: 10%;
+    }
+    
+    .btn-success:hover {
+        color: #fff;
+        background-color: #030303;
+        border-color: #030303;
+    }
+    
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #030303;
+        border-color: #030303;
+    }
+    
+    .btn-success {
+        color: #fff;
+        background-color: #af05c5;
+        border-color: #5ccc00;
+    }
+    
+    .btn-primary {
+        color: #fff;
+        background-color: #298019;
+        border-color: #298019;
+    }
+    
+    .btn-round {
+        border-radius: 30px !important;
+        text-decoration: none;
+        padding: 50 0 70px;
+    }
+    
+    .btn {
+        font-size: 15px;
+        font-weight: 600;
+        padding: 9px 25px;
+        border-width: 2px;
+        box-shadow: 0 3px 8px 0 rgba(41, 49, 89, .15), inset 0 0 0 1px hsla(0, 0%, 100%, .1);
+    }
+    
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+    
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+    /*[404 error page]
+    --------------------------*/
+    
+    @keyframes bob {
+        0% {
+            top: 0;
+        }
+        50% {
+            top: 0.2em;
+        }
+    }
+</style>
+<br>
+<h2 style="text-align: center;">
+    Olá, "login" <b style="color:red;"> <%= log[0].usuariologin%></b> com "perfil"
+    <b style="color:rgb(7, 18, 7); background-color: rgb(244, 242, 246);"> <%= log[0].Tipousuario.tipousuario%></b> está "INATIVO"!!!
+</h2>
+<br>
+<div class="w3-container-fluid col-md-12">
+
+    <center>
+
+        <img src="../img/verificar_acesso.jpg" id="imgautenticalogin" alt=" "><br>
+        <br> <br>
+
+        <p>Escolha uma opção: </p>
+        <h2><b>  <a class="btn btn-success btn-round" href="/login">Voltar ao Login</a></b></h2>
+    </center>
+</div>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr" style="width:100%;">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Top Açaí - Page</title>
+    <!-- boostrap MENU -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- boostrap MENU -->
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../js/bootstrap.min.js">
+
+    <!-- boostrap TABELAS -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
+    <!-- boostrap MENU -->
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='../css/bootstrap.min.css' rel='stylesheet'>
+    <link href="../css/tables_view.css" rel="stylesheet">
+    <link href="../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href='../css/font-awesome.css' rel='stylesheet'>
+    <script type='text/javascript' src='../js/jquery.js'></script>
+    </script>
+    <link rel="stylesheet" href="../../public/css/style2.css">
+</head>
+
+<body className='snippet-body w3-container-fluid responsive'>
+    <div class="wrapper w3-container responsive">
+        <section class="w3-container-fluid responsive">
+            <div class="wrapper w3-container-fluid responsive">
+                <nav>
+                    <div class="navbar">
+                        <div class="row mt-12">
+                            <div class="nav-links col-md-9">
+                                <ul class="col-md-12" id="menu">
+                                    <li>
+                                        <a onclick="location='/home' " class="menu--link" style="font-size: 20px; color:rgba(18, 226, 125, 0.981);">
+                                            <i class="menu--icon  fa fa-fw fa-home" style="font-size: 20px;"> </i> HOME</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="'#'" style="font-size: 15px;">
+                                            <i class="menu--icon  fa fa-fw fa-users"></i> Usuário</a>
+                                        <ul class="htmlCss-sub-menu sub-menu">
+
+                                            <!--   <li><a onclick="location = '/login/<%= l.id%>/perfil/'">Perfil Login</a></li> -->
+                                            <% if(l.id == l.Usuario.loginid) {%>
+                                                <li><a onclick=" location='/usuarios/<%= l.Usuario.id%>/' ">Gerenciar Perfil Usuario</a></li>
+                                                <% } else { %>
+                                                    <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
+                                                    <% } %>
+                                                        <li><a onclick="location='/usuarios' ">Gerenciar Usuarios</a></li>
+                                                        <li><a onclick="location='/tipousuarios' ">Gerenciar Tipos de Usuarios</a> </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a onclick="location='/fornecedores'" style="font-size: 15px;">
+                                            <i class="menu--icon fa fa-fw fa-user "></i> Fornecedor</a>
+                                    </li>
+                                    <li>
+
+                                        <a onclick="location='/categorias'" style="font-size: 15px;">
+                                            <i class="menu--icon fa fa-fw fa-user "></i> Categoria</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" style="font-size: 15px;">
+                                            <i class="menu--icon fa fa-fw fa-list"></i> Produto</a>
+                                        <ul class="htmlCss-sub-menu sub-menu">
+                                            <li><a onclick="location='/produtos/cadprod' ">Novo Produto</a></li>
+                                            <li><a onclick="location='/produtos/entradas' ">Entradas</a></li>
+                                            <li><a onclick="location='/produtos/saidas' ">Saídas</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="# " style="font-size: 15px;">
+                                            <i class="menu--icon fa fa-fw fa-list"></i> Despesa</a>
+                                        <ul class="htmlCss-sub-menu sub-men">
+                                            <li><a onclick="location='/despesas/caddespesa' ">Nova Despesa</a></li>
+                                            <li><a onclick="location='/despesas/entradas' ">Entradas</a></li>
+                                            <li><a onclick="location='/despesas/saidas' ">Saídas</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a onclick="location='/cardapios'" style="font-size: 15px;">
+                                            <i class="menu--icon fa fa-fw fa-user "></i> Cardápios</a>
+                                    </li>
+                                    <li>
+                                        <a onclick="location='/formapagtos'" style="font-size: 15px;">
+                                            <i class="menu--icon fa fa-fw fa-user "></i> Forma Pagto</a>
+                                    </li>
+
+
+                                    <li>
+                                        <a onclick="location='/menurelatorios'" style="font-size: 15px;">
+
+                                            <i class="menu--icon fa fa-fw fa-bar-chart-o "></i> Relatórios
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a onclick="location='/logout'"><button id="botao" style="background: #c20404; width: 22h; height: 4vh; border-radius: 6px; cursor: pointer; color: #fff; border:#fff; font-size: 20px;">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        SAIR</button></a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </nav>
+                <div class="w3-container">
+                    <center>
+                        <div class="w3-container col-md-12" id="nomeprograma">
+                            <%- include('../partials/nomeprograma'); %>
+                        </div>
+                        <div class="container row col-md-12" id="logado">
+                            <div class="container col-md-8 ">
+                                <%- include('../login/nome_usuario_logado'); %>
+                            </div>
+
+                            <div class="w3-container col-md-3" id="data-hora" style="color:rgb(6, 0, 3); font-size: 20px;">
+                            </div>
+                        </div>
+                    </div>
+
+
+                        <div class="w3-container-fluid responsive col-md-12 " id="imghome">
+                            <div class="container row col-md-12">
+                                <!--  <div class="container col-md-3 ">
+                                <img src="../img/slide/home.jpg " id="imgpaperhome " alt=" ">
+                            </div>
+                            -->
+                                <div class="resume-section" id="about">
+                                    <img src="../img/logoPGDE.png" id="imghome" alt=" ">
+                                </div>
+                                <div class="container col-md-6 ">
+                                    <img src="../img/slide/slide-1.jpg" id="imghome" alt=" ">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="container col-md-12" id="footerHome">
+                                <%- include('../partials/footerHome'); %>
+                            </div>
+                        </div>
+
+                    </center>
+                    <script>
+                        //https://metring.com.br/data-e-hora-em-tempo-real-com-javascript
+                        // Função para formatar 1 em 01
+                        const zeroFill = n => {
+                            return ('0' + n).slice(-2);
+                        }
+
+                        // Cria intervalo
+                        const interval = setInterval(() => {
+                            // Pega o horário atual
+                            const now = new Date();
+
+                            const data = zeroFill(now.getUTCDate()) + '/' + zeroFill((now.getMonth() + 1)) + '/' + now.getFullYear();
+                            console.log(data);
+
+                            // Exibe na tela usando a div#data
+                            //document.getElementById('data').innerHTML = data;
+
+                            // Formata a data conforme dd/mm/aaaa hh:ii:ss
+                            const dataHora = zeroFill(now.getUTCDate()) + '/' + zeroFill((now.getMonth() + 1)) + '/' + now.getFullYear() + ' ' + zeroFill(now.getHours()) + ':' + zeroFill(now.getMinutes()) + ':' + zeroFill(now.getSeconds());
+
+                            // Exibe na tela usando a div#data-hora
+                            document.getElementById('data-hora').innerHTML = dataHora;
+                        }, 1000);
+                    </script>
+                </div>
+
+        </section>
+        </div>
+
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+
+<style>
+        #imghome {
+            display: none;
+        }
+    </style>
+</head>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="wrapper w3-container">
+            <section class="container-fluid">
+                <br> <br> <br> <br>
+                <div class="container-fluid">
+                    <div class="responsive container text-left row-col-12">
+                        <center>
+                            <h4>Você está no cadastro de <b style="color: red;">Novo Cardápio:</b>
+                            </h4><br>
+                        </center>
+                        <br>
+
+                        <form class="container" action="/cardapios" method="POST" onsubmit="return save();">
+
+                            <div class="container responsive row col-md-12">
+
+                                <div class="form-row col-md-3">
+                                    <div class="col-md-2">
+                                        <img class="rounded" src="/img/perfilusuario/cardapios.jpg" style="width:160px; height:210px">
+                                    </div>
+                                </div>
+
+                                <div class="responsive container border text-left row col-md-9">
+                                    <div class="form-group col-md-12">
+                                        <label for="itemcardapio">Item do Cardápio</label>
+                                        <input type="text" class="form-control " id="itemcardapio " placeholder="Açai Tradicional" name="itemcardapio" required autofocus/>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="descricao">Descrição do Cardápio</label>
+                                        <input type="text " class="form-control " id="descricao " placeholder="Acompanhamento: morango, banana, chocolate granulado, castanha." name="descricao" required autofocus/>
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label for="dadosCategoria">Categoria do Cardápio</label>
+                                        <select id="dadosCategoria " class="form-control " name="nomecategoria" required autofocus/>
+                                        <option value="Escolher "> Escolher </option>
+                                        <% for(cat of dadosCategoria) { %>
+                                            <option value="<%=cat.id%>">
+                                                <%= cat.nomecategoria%>
+                                            </option>
+                                            <% } %>
+                                                </select>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label for="valor">Valor</label>
+                                        <input type="float" min="0"
+                                                    onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 46 && event.charCode <= 57"
+                                                    class="form-control" id="valor" placeholder="R$ 6.50"
+                                                    name="valor" required
+                                                    autofocus />
+                                               
+                                    </div>
+                                    <footer>
+                                        <b>
+                                        Obs: Campo "Valor" deve declarar com "PONTO", assim R$2.5 ou R$1150.50
+                                    </b>
+                                    </footer>
+                                </div>
+                            </div>
+
+                            <br> <br>
+                            <div class="responsive container  text-center row col-md-6">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-right">Qual ação deseja realizar?</h4>
+                                </div>
+                                <div class="row container">
+                                    <div class="col-md-2 float-end "><button type="submit" class="btn btn-success btn-sm-3 profile-button text-white" onsubmit="return save();"><i title="Salvar Alterações desta Cardapio" aria-hidden="true" style="font-size: 20 px;">Salvar</i></button></div>
+
+                                    <div class="col-md-8">
+                                        <a class="col-md-12 float-end " href="/cardapios ">Voltar para Listagem de Cardapios</a>
+                                    </div>
+                                    <div>
+                                        <div>
+
+                        </form>
+                        </div>
+                        <br>
+                        </div>
+            </section>
+            </div>
+            <script src="/js/alertas.js"></script>
+            <br> <br>
+</body>

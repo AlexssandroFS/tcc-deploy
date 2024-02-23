@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/tables_view.css" rel="stylesheet">
+    <link href="../js/jquery.js" rel="stylesheet">
+
+    <title>Top Açaí - Page</title>
+    <style>
+        #imghome {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../partials/home'); %>
+        <div class="wrapper w3-container">
+            <section class="container-fluid">
+                <div class="container-fluid">
+                    <div class="responsive container text-left row-col-12">
+                        <center>
+                            <h3>Você está no cadastro do Fornecedor:
+                                <br>
+                                <b><h3 style="color: red;"><%=fornecedores.razaosocial%></h3></b></h4>
+                        </center>
+                        <h4>Dados Cadastrais:</h4>
+                        <br>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="ramoatuacao">Descrição Ramo de Atuação</label>
+                                <input type="text" class="form-control" id="ramoatuacao" placeholder="" name="ramoatuacao" value="<%=fornecedores.ramoatuacao%>" disabled autofocus/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label for="inputrazaosocial">Razão Social</label>
+                                <input type="text" class="form-control" id="razaosocial" placeholder="Razão Social" name="razaosocial" value="<%=fornecedores.razaosocial%>" disabled autofocus/>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="inputnomefantasia">Nome Fantasia</label>
+                                <input type="text" class="form-control" id="nomefantasia" placeholder="" name="nomefantasia" value="<%=fornecedores.nomefantasia%>" disabled autofocus/>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-3">
+                                <label for="inputcnpj">CNPJ</label>
+                                <input type="text" class="form-control" id="cnpj" placeholder="" name="cnpj" value="<%= fornecedores.cnpj%>" disabled autofocus/>
+                            </div>
+                            <div class="form-group col-md-9">
+                                <label for="inputendereco">Endereço</label>
+                                <input type="text" class="form-control" id="endereco" placeholder="" name="endereco" value="<%= fornecedores.Endereco.endereco%>" disabled autofocus />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="inputnro">Número</label>
+                                <input type="text" class="form-control" id="nro" placeholder="" name="nro" value="<%= fornecedores.Endereco.nro%>" disabled autofocus />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputcomplemento">Complemento</label>
+                                <input type="text" class="form-control" id="complemento" placeholder="" name="complemento" value="<%= fornecedores.Endereco.complemento%>" disabled autofocus />
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="inputbairro">Bairro</label>
+                                <input type="text" class="form-control" id="bairro" placeholder="" name="bairro" value="<%= fornecedores.Endereco.bairro%>" disabled autofocus />
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputcidade">Cidade</label>
+                                <input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade" value="<%= fornecedores.Endereco.cidade%>" disabled autofocus />
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="estado">Sigla</label>
+                                <select id="estado" class="form-control" name="sigla" value="<%= fornecedores.Endereco.sigla%>" disabled autofocus>
+                                    <option selected>Colocar pelo BD...</option>
+                                    <!--<option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                    -->
+                                    </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="estado">Estado</label>
+                                <select id="estado" class="form-control" name="estado" value="<%= fornecedores.Endereco.estado%>" disabled autofocus>
+                                    <option selected>Colocar pelo BD...</option>
+                                    <!--<option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                    -->
+                                    </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label for="cep">CEP</label>
+                                <input type="text" class="form-control" id="cep" placeholder="CEP" name="cep" value="<%= fornecedores.Endereco.cep%>" disabled autofocus />
+                            </div>
+                        </div>
+                        <br>
+                        <h4>Dados de Contato:</h4>
+                        <br>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="<%= fornecedores.Contato.email%>" disabled autofocus />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputtelefone">Telefone</label>
+                                <input type="text" class="form-control" id="telefone" placeholder="Telefone" name="telefone" value="<%= fornecedores.Contato.telefone%>" disabled autofocus/>
+                            </div>
+                            <br>
+                        </div>
+
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Qual ação deseja realizar?</h4>
+                        </div>
+
+                        <div class="row mt-8 container-fluid">
+                            <br>
+                            <div class="col-md-1"><a onclick="location = '/fornecedores<%= fornecedores.id%>/edit'" type="button" class="btn btn-success btn-sm-3 profile-button text-white" id="view" onsubmit="return edit();"><i class="fa fa-pencil" title="Editar Este Fornecedor" style="font-size: 25px;" aria-hidden="true"></i></a></div>
+                            <div class="col-md-2">
+                                <div class="col-md-2">
+                                    <form method="POST" action="/fornecedores/<%= fornecedores.id %>?_method=DELETE" id="view" onsubmit="return del();">
+                                        <button action="submit" class="btn btn-danger btn-sm-3 text-white" title="Deletar Este Fornecedor"><i class="fa fa-trash-o" aria-hidden="true" style="font-size: 25px;"></i>
+                                    </button>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                            <a class="col-md-8" href="/fornecedores ">Voltar para Listagem dos Fornecedoress</a>
+                        </div>
+                    </div>
+            </section>
+            </div>
+        </div>
+
+        <br>
+        <script src="/js/alertas.js"></script>
+
+
+
+
+
+        <br>
+        <div class="container border">
+            <div class="row">
+                <div align="left" class="col-6"><br>
+                    <h4><strong><i class="fa fa-cubes"></i> Produtos</strong></h4>
+                </div>
+                <div align="right" class="col-6"><br>
+                    <img class="figure-img img-fluid rounded" src="dist/images/logo7job.png" width="88" height="30">
+                </div>
+            </div>
+            <div align="left" class="form-group">
+                <div><small><strong>Categoria do Produto</strong></small></div>
+                <div>Casa, M&oacute;veis e Decora&ccedil;&atilde;o</div>
+            </div>
+            <div align="left" class="form-group">
+                <div><small><strong>Produto</strong></small></div>
+                <div>Outros</div>
+            </div>
+            <div align="left" class="form-group">
+                <div><small><strong>Nome Fantasia</strong></small></div>
+                <div>GRUPO BETEL MÓVEIS</div>
+            </div>
+            <div align="left" class="form-group">
+                <div><small><strong>Breve Histórico</strong></small></div>
+                <div>MÓVEIS EM MADEIRA MACIÇA PARA TEMPLOS E CASAS. PÚLPITOS, CADEIRAS, MESAS, BANCOS, CERCADOS DE BATERIA, LETREIROS EM RELEVO, PLACAS E OUTROS. DESDE 1997 PRODUZINDO COM EXCELÊNCIA PARA CADA IRMÃO!</div>
+            </div>
+            <div align="left" class="form-group row">
+                <div class="col-8">
+                    <div><small><strong>Endereço</strong></small></div>
+                    <div>AV JOSÉ CLETO</div>
+                </div>
+                <div class="col-2">
+                    <div><small><strong>Número</strong></small></div>
+                    <div>1155</div>
+                </div>
+                <div class="col-2">
+                    <div><small><strong>Compl.</strong></small></div>
+                    <div></div>
+                </div>
+            </div>
+            <div align="left" class="form-group row">
+                <div class="col-5">
+                    <div><small><strong>Bairro</strong></small></div>
+                    <div>SÃO FRANCISCO</div>
+                </div>
+                <div class="col-5">
+                    <div><small><strong>Cidade</strong></small></div>
+                    <div>BELO HORIZONTE</div>
+                </div>
+                <div class="col-2">
+                    <div><small><strong>UF</strong></small></div>
+                    <div>MG </div>
+                    </select>
+                </div>
+            </div>
+            <div align="left" class="form-group">
+                <div><small><strong>Email</strong></small></div>
+                maura.betel@gmail.com </div>
+            <div align="left" class="form-group row">
+                <div class="col-6">
+                    <div><small><strong>Telefone</strong></small></div>
+                </div>
+                <div class="col-6">
+                    <div><small><strong>Celular</strong></small></div>
+                    27997683629 </div>
+            </div>
+            <div align="left" class="form-group row">
+                <div class="col-4">
+                    <div>
+                        <small><strong><li class="fa fa-facebook-square"></li> Facebook</strong></small>
+                    </div>
+                    www.facebook.com.br/grupobetelmoveis </div>
+                <div class="col-4">
+                    <div><small><strong><li class="fa fa-youtube"></li> Youtube</strong></small></div>
+                </div>
+                <div class="col-4">
+                    <div><small><strong><li class="fa fa-instagram"></li> Instagram</strong></small></div>
+                    www.instagram.com/grupobetelmoveis </div>
+            </div>
+            <div class="form-group">
+                <div><small><strong>Fotos</strong></small></div>
+            </div>
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="3" class=""></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="4" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active border">
+                        <img src="images/produto/1607623704_WhatsApp Image 2020-12-10 at 15.05.33.jpeg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item  border">
+                        <img src="images/produto/1607623792_WhatsApp Image 2020-05-13 at 13.33.30.jpeg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item  border">
+                        <img src="images/produto/1607623880_judá bege.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item  border">
+                        <img src="images/produto/1607624000_foto_44265605742158313546.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item  border">
+                        <img src="images/produto/1612310400_IMG-20210131-WA0011.jpg" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <br>
+
+            <br>
+        </div>
+        <!-- END container-lg border -->
+
+</body>
+
+</html>

@@ -1,0 +1,228 @@
+<link href="../../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../css/tables_view.css" rel="stylesheet">
+<link href="../../../js/jquery.js" rel="stylesheet">
+<link href='../../../css/bootstrap.min.css' rel='stylesheet'>
+
+<style>
+    #imghome {
+        display: none;
+    }
+</style>
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+</head>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="w3-container-fluid text-center">
+            <section class="w3-container-fluid responsive col-md-12">
+                <br><br><br> <br>
+                <div class="container-fluid responsive">
+                    <div class="responsive container text-left row col-12" id="pdf2htmldiv">
+                        <center>
+                            <h4>Você está visualisando os dados completos do Fornecedor: <b style="color: red;">
+                                    <br>
+                                    <%=fornecedores.razaosocial%>
+                                </b> </h4>
+                        </center>
+                        <div class="container-fluid border float-center">
+                            <h5>Dados cadastrais do Fornecedor:</h5><br>
+                            <div class="form-row">
+                                <div class="align-items-rigth col-md-3">
+                                    <img class="rounded-circle" src="/img/perfilusuario/Fornecedor.jpg"
+                                        style="width:160px; height:100px">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <div align="left" class="form-group">
+                                        <div><small>ID</small></div>
+                                        <div>
+                                            <%=fornecedores.id%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <div align="left" class="form-group">
+                                        <div><small>Razão Social</small></div>
+                                        <div>
+                                            <%=fornecedores.razaosocial%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <div align="left" class="form-group">
+                                        <div><small>Nome Fantasia</small></div>
+                                        <div>
+                                            <%=fornecedores.nomefantasia%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <div align="left" class="form-group">
+                                        <div><small>Descrição Ramo de Atuação</small></div>
+                                        <div>
+                                            <%=fornecedores.ramoatuacao%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>CNPJ</small></div>
+                                        <div>
+                                            <%=fornecedores.cnpj%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5>Dados de endereço do Fornecedor: </h5>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <div align="left text-dark" class="form-group">
+                                        <div><small>Endereço</small></div>
+                                        <div>
+                                            <%=fornecedores.Endereco.endereco%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>Número</small></div>
+                                        <div>
+                                            <%=fornecedores.Endereco.nro%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>Complemento</small></div>
+                                        <div>
+                                            <%=fornecedores.Endereco.complemento%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>Bairro</small></div>
+                                        <div>
+                                            <%=fornecedores.Endereco.bairro%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>Cidade</small></div>
+                                        <div>
+                                            <%=fornecedores.Endereco.cidade%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group" id="estado" name="estadosid">
+                                        <div><small>Estado</small></div>
+                                        <div>
+                                            <%=estado.estados%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>Cep</small></div>
+                                        <div>
+                                            <%=fornecedores.Endereco.cep%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <!-- END container-lg border -->
+                            </div>
+
+                            <h5>
+                                Dados de contato do Fornecedor:</h5>
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group" id="estado" name="estadosid">
+                                        <div><small>Telefone</small></div>
+                                        <div>
+                                            <%=fornecedores.Contato.telefone%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>E-mail</small></div>
+                                        <div>
+                                            <%=fornecedores.Contato.email%>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <br> <br>
+
+                        <div class="col-8 d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Qual ação deseja realizar?</h4>
+                        </div>
+
+                        <div class="container responsive row col-md-12">
+                            <div class="col-md-1">
+                                <% if(l.Tipousuario.tipousuario=='Administrador' || l.Tipousuario.tipousuario=='Gerente'
+                                    || l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
+                                    <a onclick="location = '/fornecedores/<%= fornecedores.id%>/edit'" type="button"
+                                        class="btn btn-success btn-sm-3 profile-button text-white" id="view"
+                                        onsubmit="return edit();"><i title="Editar  Este Fornecedor"
+                                            style="font-size: 15px;">
+                                            Editar </i>
+                                    </a>
+                                    <% } else{%>
+                                        <% }%>
+                            </div>
+                            <div class="col-md-2">
+                                <% if(l.Tipousuario.tipousuario=='Administrador' ) {%>
+                                    <form method="POST" action="/fornecedores/<%= fornecedores.id %>?_method=DELETE"
+                                        id="view" onsubmit="return del();">
+                                        <button action="submit" class="btn btn-danger btn-sm-3 text-white"
+                                            title="Deletar Este Fornecedo"><i style="font-size: 15px;">Deletar</i>
+                                        </button>
+                                    </form>
+                                    <% } else { %>
+
+                                        <% } %>
+                            </div>
+                            <div class="col-md-5">
+                                <a class="col-md-6" href="/fornecedores ">Voltar para Listagem de Fornecedores</a>
+                            </div>
+                            <div class="col-md-1">
+                                <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                    <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"
+                                        title="Imprimir os Dados Deste Usuário"></i>
+                            </div> 
+                            
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+        <br> <br>
+        <script src="/js/alertas.js"></script>
+
+</body>

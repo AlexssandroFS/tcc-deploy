@@ -1,0 +1,112 @@
+<style>
+    #imghome {
+        display: none;
+    }
+</style>
+</head>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="wrapper w3-container-fluid" style="width:100%; overflow-x:auto;">
+            <br><br><br><br>
+            <section class="w3-container-fluid">
+                <div class="w3-container-fluid">
+                    <div class="responsive w3-container text-left row col-12">
+                        <center>
+                            <h4>Você está editando o cadastro do Tipo de Usuário:</Table>:
+                                <br> <b>
+                                    <h3 style="color: red;">
+                                        <%=tipousuarios.tipousuario%>
+                                    </h3>
+                                </b>
+                            </h4>
+                        </center>
+                        <br>
+                        <form action="/tipousuarios/<%=tipousuarios.id%>?_method=PATCH" method="POST"
+                            onsubmit="return save();">
+                            <br> <br>  <div class="container responsive row col-md-12">
+                                <div class="container row col-md-12">
+                                    <div class="col-md-2">
+                                        <div class="col-md-2">
+                                            <img class="rounded-circle" src="/img/perfilusuario/perfilusuario-3.jpg"
+                                                style="width:100px; height:80px">
+                                        </div>
+                                    </div>
+
+                                    <div class="container border row col-9">
+                                        <div class="col-md-2 text-center">
+                                            <div class="form-group">
+                                                <div><small><strong>ID</strong></small></div>
+                                                <div>
+                                                    <%=tipousuarios.id%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-5 text-left">
+                                            <label for="tipousuario">Nome do Tipo de Usuário</label>
+                                            <input type="text" class="form-control text-left" id="tipousuario"
+                                                placeholder="" name="tipousuario" value="<%=tipousuarios.tipousuario%>"
+                                                autofocus />
+                                        </div>
+                                        <div class="col-md-3"><label for="statusperfil">Status Perfil</label>
+                                            <select id="statusperfil" class="form-control" name="statusperfil" autofocus
+                                             required>
+                                                <option value=""><%=tipousuarios.statusperfil%></option>
+                                                <option value="Ativo">Ativo</option>
+                                                <option value="Inativo">Inativo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                                 
+                                    <div class="container responsive col-md-12">
+                                        <br> <br>   <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h4 class="text-right">Qual ação deseja realizar?</h4>
+                                        </div>
+                                        <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                            l.Tipousuario.tipousuario=='Gerente' ) {%>
+                                            <div class="col-md-1" id="divleft">
+                                                <button type="submit "
+                                                    class="btn btn-success btn-sm-3 profile-button text-white "
+                                                    onsubmit="return save(); "><i 
+                                                        title="Salvar Alterações deste Tipo de Usuário "
+                                                        style="font-size: 15px; ">Salvar</i>
+                                                </button>
+                                            </div>
+                                            <% } else { %>
+
+                                                <% } %>
+                                                    <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                                        l.Tipousuario.tipousuario=='Gerente' ) {%>
+                                                        <div class="col-md-2" id="divleft">
+                                                            <form
+                                                                action="/tipousuarios/<%=tipousuarios.id %>?_method=DELETE"
+                                                                method="POST" id="view" onsubmit="return del();">
+                                                                <button action="submit"
+                                                                    class="btn btn-danger btn-sm-3 text-white"
+                                                                    title="Deletar Este Tipo de Usuário"><i
+                                                                        style="font-size: 15px;">Deletar</i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        <% } else { %>
+
+                                                            <% } %>
+                                                                <div class="col-md-6" id="divright">
+                                                                    <a class="col-md-8" href="/tipousuarios ">Voltar
+                                                                        para Listagem dos Tipos de Usuarios</a>
+                                                                </div>
+                                    </div>
+                        </form>
+                    </div>
+                    <br> <br>
+            </section>
+        </div>
+
+        <script src="/js/alertas.js"></script>
+
+</body>
+
+</html>

@@ -3,10 +3,14 @@ const express = require('express');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const app = express();
+
+require('dotenv').config()
+
+
 const session = require('express-session'); /*utilizado para verificar sessao de usuario logado*/
 const cookieParser = require("cookie-parser");
 //const redditData = require('./data.json');
-const port = 3000;
+const port = 4000;
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -42,6 +46,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload()); // configure fileupload
 app.use(cookieParser());
 
+app.use(session({ secret: 'teste123456' }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 //importanto o Controller roteador ' '
 app.use('/cardapios', controller.cardapios);
 app.use('/categorias', controller.categorias);
@@ -66,8 +73,7 @@ const login = [
 //var usuariologin = "admin";
 //var senha = "12345";
 
-app.use(session({ secret: 'teste123456' }));
-app.use(bodyParser.urlencoded({ extended: true }));
+
 
 app.get('/logout', async(req, res) => {
 
@@ -116,11 +122,11 @@ app.get('/menurelatorios', (req, res) => {
     res.render('menu_relatorios');
 });
 
-app.listen(port, () => {
-    console.log(`Server running on port: ${port}`);
-    console.log('acesse: http://localhost:3000/ ou acesse: http://localhost:3000/login')
-})
 
+  app.listen(port, () => {
+    console.log(`Server running on port: ${port}`);
+    console.log('acesse: http://localhost:4000/ ou acesse: http://localhost:4000/login')
+})
 
 /*https://www.youtube.com/watch?v=gOuJE6d_l-U
 

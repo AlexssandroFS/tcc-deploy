@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <title>Top Açaí - Page</title>
+    <!-- a biblioteca form awesome é usada para adicionar ícones ao nosso formulário -->
+    <!-- incluindo o arquivo de folha de estilo -->
+    <link href="../css/login.css" rel="stylesheet" type="text/css">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+
+<body id="imglogincadastro" style="background: url('../img/walpaperlogin.jpg') ">
+
+    <div class="login-box w3-container-fluid text-center" id="arealogincadastro">
+        <section class="container-fluid">
+            <form class="w3-container-fluid responsive" action="/login/new" method="POST" onsubmit="return save();">
+                <div class="wrapper container-fluid">
+                    <h2>Login - Cadastre sua conta:</h2>
+                    <div class="container-fluid">
+                        <center>
+                            <h5>Preencha os dados abaixo
+                            </h5>
+                        </center>
+                        <div class="row col-md-12">
+                            <div class="col-md-6 border-right border">
+                                <div class="p-1 py-5 text-left">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="text-right">Dados do Perfil do Usuário</h5>
+                                    </div>
+                                    <div class="row mt-12">
+                                        <div class="col-md-3">
+                                            <img class="rounded-circle" src="/img/perfilusuario/perfilusuario-2.jpg" style="width:120px; height:100px">
+                                        </div>
+
+                                        <div class="col-md-5"><label for="tipousuario">Tipo de Usuário</label>
+                                            <select id="tipousuario" class="form-control" name="tipousuarioid" autofocus required>
+                                          <option value="Escolher">Escolher</option> 
+                                          <% for(e of tipousuario) { %>
+                                            <option value="<%=e.id%>">
+                                                <%= e.tipousuario%>
+                                                    </option>
+                                                    <% } %>
+                                                        </select>
+                                        </div>
+                                        <div class="col-md-4"><label for="statuslogin">Status Login</label>
+                                            <select id="statuslogin" class="form-control" name="statuslogin" autofocus required>
+                                          <option value="Escolher">Escolher</option> 
+                                           <option value="Ativo">Ativo</option>
+                                           <option value="Inativo">Inativo</option>                                            
+                                         </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="text-right">Dados de Login do Usuário</h5>
+                                    </div>
+                                    <div class="row mt-12">
+                                        <div class="col-md-7"><label class="labels">Usuário de Login</label><input type="text" class="form-control" placeholder="Usuario de Login" id="usuariologin" name="usuariologin" enabled autofocus required></div>
+                                        <div class="col-md-5"><label class="labels">Senha</label><input type="text" class="form-control" placeholder="Senha" id="senha" name="senha" enabled autofocus required></div>
+                                    </div>
+                                    <br>
+                                    <div class="d-flex justify-content-between align-items-center mb-3 ">
+                                        <h5 class="text-left ">Dados cadastrais do Usuário:</h5>
+                                    </div>
+                                    <div class="col-md-12"><label class="labels ">Nome Completo</label><input type="text " class="form-control " placeholder="Nome Completo " id="nome" name="nome" enabled autofocus required></div>
+                                    <div class="row mt-12">
+                                        <div class="col-md-5"><label class="labels ">CPF</label><input type="text " class="form-control " placeholder="formato 000.000.000-00 " id="cpf " name="cpf" enabled autofocus required></div>
+                                        <div class="col-md-4"><label class="labels">Data de Nascimento</label><input type="date" class="form-control" placeholder="Data de Nascimento" id="datanasc" name="datanasc" enable autofocus required></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 border-right border">
+                                <div class="p-3 py-5 ">
+                                    <div class="row mt-3">
+                                        <h5 class="text-left">Dados cadastrais do Endereço do Usuário:</h5>
+                                        <div class="col-md-12"><label class="labels">Endereço</label><input type="text" class="form-control" placeholder="Endereco" id="endereco" name="endereco" enabled autofocus required></div>
+                                        <div class="col-md-4"><label cclass="labels">Número</label><input type="text" class="form-control" placeholder="Nro" id="nro" name="nro" enabled autofocus required></div>
+                                        <div class="col-md-8"><label class="labels">Complemento</label><input type="text" class="form-control" placeholder="Complemento" id="complemento" name="complemento" enabled autofocus required></div>
+                                        <div class="col-md-12"><label class="labels">Bairro</label><input type="text" class="form-control" placeholder="Bairro" id="bairro" name="bairro" enabled autofocus required></div>
+                                        <div class="col-md-5"><label class="labels">CEP</label><input type="text" class="form-control" placeholder="formato 12.3430-343" id="cep" name="cep" enabled autofocus required></div>
+                                        <div class="form-group col-md-7">
+                                            <label for="estados">Estado</label>
+                                            <select id="estados" class="form-control" name="estadosid" autofocus required>
+                                                    <option value="Escolher "> Escolher </option>
+                                          <% for(e of estados) { %>
+                                            <option value="<%=e.id%>">
+                                                <%= e.estados%>
+                                                    </option>
+                                                    <% } %>
+                                                        </select>
+                                        </div>
+
+                                        <div class="col-md-12 "><label class="labels">Cidade</label><input type="text" class="form-control" placeholder="Cidade" id="cidade" name="cidade" enabled autofocus required></div>
+                                        <br>
+                                        <div class="row mt-12">
+                                            <br>
+                                            <h5 class="text-left">Dados de Contato do Usuário</h5>
+                                            <div class="row mt-12">
+                                                <div class="col-md-7"><label class="labels">E-mail</label><input type="text" class="form-control" placeholder="E-mail" id="email" name="email" enabled autofocus required></div>
+                                                <div class="col-md-5"><label class="labels">Telefone</label><input type="text" class="form-control" placeholder="formato 12 9222-3232" id="telefone" name="telefone" enabled autofocus required></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+                        </div>
+                        <br>
+                        <div>
+                            <div class="row col-md-12">
+                                <div class="col-md-4">
+                                    <input aria-hidden="true" class="form-label" type="submit" class="btn" id="login" value="Cadastrar" style=" width: 82h; height: 7vh; border-radius: 10px; cursor: pointer; color: #fff; border-color:#fff; font-size: 35px;">
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <!-- <h5 id="cadastro "> Ótimo, cadastro realizado? </h5>-->
+                                    <a onclick="location = '/login'" aria-hidden="true" class="form-label" class="btn" id="login" value="Login" style=" width: 82h; height: 7vh; border-radius: 10px; cursor: pointer; color: #fff; border-color:#fff; font-size: 35px;">Acessar Login</a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a onclick="location = '/'" target="_blank" id="titulologin" onclick="return confirm('Você realmente deseja voltar a página principal?');"> Voltar Página Principal</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+            </form>
+            <br>
+
+        </section>
+
+        </div><br>
+        <br>
+</body>
+
+</html>

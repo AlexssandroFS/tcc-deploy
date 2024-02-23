@@ -1,0 +1,76 @@
+<style>
+    #imghome {
+        display: none;
+    }
+</style>
+</head>
+
+<body className='snippet-body'>
+    <%- include('../../partials/home'); %>
+        <div class="wrapper container-fluid">
+            <section class="container-fluid">
+                <br> <br> <br> <br>
+                <div class="container-fluid">
+                    <div class="responsive container text-left row-col-12">
+                        <center>
+                            <h4>Você está no cadastro de <b style="color: red;">Novo Nome de Despesa:</b></h4>
+                             </h4>   <br>
+                        </center>
+                        <br>               
+
+                        <form class="container" action="/despesas/caddespesa" method="POST" onsubmit="return save();">
+                            <div class="container-fluid  float-center row-col-12">
+                                <div class="form-row col-md-12">
+                                    <div class="form col-md-3">
+                                        <img class="rounded" src="/img/perfilusuario/despesas.jpeg"
+                                            style="width:180px; height:150px">
+                                    </div>
+                                    <div class="border col-md-6">
+                                        <div class="col-md-12">
+                                            <label for="nomedespesa" class="text-center "><br><br>Nome da Nova Despesa</label>
+                                            <input type="text " name="nomedespesa" id="nomedespesa"
+                                                class="form-control" placeholder="Ex: Aluguel"
+                                                required autofocus />
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mb-3 col-8">
+
+                                        <h4 class="text-left"> <br>
+                                            <br>Qual ação deseja realizar?
+                                        </h4>
+                                    </div>
+
+                                    <br>
+                                    <div class="row container">
+                                        <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                            l.Tipousuario.tipousuario=='Gerente' ||
+                                            l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
+                                            <div class="col-md-2 float-end "><button type="submit"
+                                                    class="btn btn-success btn-sm-3 profile-button text-white"
+                                                    onsubmit="return save();"><i
+                                                        title="Salvar Alterações Deste Nome da Nova Despesa"
+                                                        style="font-size: 15px;">Salvar</i></button></div>
+                                            <% } else { %>
+
+                                                <% } %>
+
+                                                    <div class="col-md-6">
+                                                        <a class="col-md-12 float-end " href="/despesas/caddespesa">Voltar para
+                                                            Listagem dos
+                                                            Nomes de Despesas</a>
+                            </div>
+                        </form>
+                    </div>
+
+                    <br>
+                </div>
+        </div>
+
+        </section>
+        </div>
+        <script src="/js/alertas.js"></script>
+        <br> <br>
+</body>
+
+</html>

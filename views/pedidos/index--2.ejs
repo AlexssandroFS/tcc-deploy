@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/tables_view.css" rel="stylesheet">
+
+
+    <!-- vendor css -->
+    <link rel="stylesheet" type="text/css" href="https://conapesc.com.br/assets/base/css/app.builder.css">
+    <link rel="stylesheet" type="text/css" href="https://conapesc.com.br/assets/admin/css/area-participante.css?1655838122">
+
+    <title>Top Açaí - Page</title>
+    <style>
+        #imghome {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <%- include('../partials/home'); %>
+        <div class="wrapper w3-container">
+            <section class="container-fluid">
+                <div class="container-fluid">
+                    <div class="responsive container text-center row-col-10">
+
+                        <div class="alert bg-dark">
+                            <h5 class="text-white text-center">
+                                <span class="">Olá</span> ALEXSSANDRO FERREIRA DA SILVA, seja bem-vindo!
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="responsive container-fluid col-sm-12">
+                        <div class="card-block accordion-block col-lg-10 col-md-12 col-sm-12" id="collapsePedidos">
+                            <h4 class="text-center fsize-40 mb-55">
+                                Acompanhe Seu Pedido
+                            </h4>
+                            <form method="GET " action="/pedidos/new ">
+                                <button action="submit " class="btn btn-primary">New Pedido</button>
+                            </form>
+                            <br>
+                            <br>
+                            <div class="fsize-20 text-justify">
+                                <i class="fa fa-user float-left fsize-20" aria-hidden="true"><b> Cliente: Fulano de Talzin</b></i>
+                                <i class="fa fa-mobile float-right fsize-20" aria-hidden="true"><b> Telefone: 11 11111-1111 </b> </i>
+                            </div>
+                            <br>
+                            <div class="table-pedido">
+                                <div class="pedido-header">
+                                    <div class="fsize-25 mb-15">
+                                        <b>PEDIDO Nº
+                            <span class="fbold-800">1</span></b>
+                                    </div>
+                                    <div class="fsize-25 mb-15"><b>TOTAL: <label class='fsize-25 mb-1 badge badge-warning'> R$ 9,00</label> </div></b>
+                                    </div>
+                                </div>
+                                <div class="table-pedido">
+                                    <h4 class="text-center fsize-20 mb-15">
+                                        Itens do Pedidos
+                                    </h4>
+                                    <div class="pedido-header">
+
+                                        <div id="">
+                                            <td colspan="1">Açaí Copo 300ml</td>
+                                            <span class="fbold-400">1</span>
+                                        </div>
+                                        <div>
+                                            <td class="text-rigth">
+                                                R$ 7,00
+                                            </td>
+                                        </div>
+                                    </div>
+
+                                    <div class="pedido-header">
+                                        <div id="">
+                                            <td colspan="1">Açaí Copo 500ml</td>
+                                            <span class="fbold-400">1</span>
+                                        </div>
+                                        <div>
+                                            <td class="text-rigth">
+                                                R$ 9,00
+                                            </td>
+                                        </div>
+                                    </div>
+                                    <div class="pedido-header">
+                                        <div id="">
+                                            <td colspan="1">Açaí Copo 1000ml</td>
+                                            <span class="fbold-400">1</span>
+                                        </div>
+                                        <div>
+                                            <td class="text-rigth">
+                                                R$ 12,00
+                                            </td>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <b>Forma de Pagamento: Dinheiro / Pix / Cartão de Crédito / Cartão de Débito</b>
+                                            <select id="categoria" class="form-control col-md-4" name="categoria" value="Dinheiro" autofocus>
+                                        <option selected>Escolher...</option>
+                                        <option value="Dinheiro">Dinheiro</option>
+                                        <option value="Pix">Pix</option>
+                                        <option value="CartaoCredito">Cartão de Crédito</option>
+                                        <option value="CartaoDebito">Cartão de Débito</option>
+                                      </select>
+                                        </div>
+                                    </div>
+
+                                    <br>
+
+                                    <div class="text-muted fsize-20">
+                                        <h3>Dados da Entrega:</h3>
+                                        <h6 class="">Endereço: Fulano de Talzin</h6>
+                                        <h6 class="">Nro: Fulano de Talzin</h6>
+                                        <h6 class="">Complemento: Fulano de Talzin</h6>
+                                        <h6 class="">Bairro: Fulano de Talzin</h6>
+                                        <h6 class="">Cidade: Fulano de Talzin</h6>
+                                        <h6 class="">Cep: Fulano de Talzin</h6> <br>
+
+                                    </div>
+
+                                    <!--colocar AQUI BOTOES DE EDIT / DELETE -->
+                                    <h3>colocar AQUI BOTOES DE EDIT / DELETE</h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+
+</body>
+
+</html>
+
+</html>

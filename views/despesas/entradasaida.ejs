@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Top Açaí - Page</title>
+    <link href='#' rel='stylesheet'>
+    <link href='../css/bootstrap.min.css' rel='stylesheet'>
+
+    <link href="../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/tables_view.css" rel="stylesheet">
+    <link href="../js/jquery.js" rel="stylesheet">
+    <style>
+         ::-webkit-scrollbar {
+            width: 8px;
+        }
+        /* Track */
+        
+         ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        /* Handle */
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+        /* Handle on hover */
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        #imghome {
+            display: none;
+        }
+    </style>
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+
+    <script type="text/javascript">
+        function calcDays() {
+            d1 = 01 / 01 / 2000;
+            d2 = 04 / 01 / 2000;
+            var date1 = document.getElementById('d1').lastChild.data;
+            var date2 = document.getElementById('d2').lastChild.data;
+            date1 = date1.split("-");
+            date2 = date2.split("-");
+            var sDate = new Date(date1[0] + "/" + date1[1] + "/" + date1[2]);
+            var eDate = new Date(date2[0] + "/" + date2[1] + "/" + date2[2]);
+            var daysApart = Math.abs(Math.round((sDate - eDate) / 86400000));
+            document.getElementById('diffDays').lastChild.data = daysApart;
+        }
+        onload = calcDays;
+    </script>
+
+
+</head>
+
+<body className='snippet-body'>
+    <%- include('./../partials/home'); %>
+        <div class="wrapper w3-container">
+            <section class="container-fluid">
+                <div class=" container-fluid">
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                    <div class="container-fluid responsive " id="pdf2htmldiv">
+                        <div class="responsive container text-left row-col-12">
+                            <center>
+                                <h4 class="col-12 ">Listagem geral <b style="color: rgb(111, 15, 194);">ENTRADA de Despesa</b>, atualmente temos:
+                                    <b style="color: red;">
+                                        "<%=countDespEntrada%>" entrada(s)</b>.
+                                    <br </center>
+                                    <br>O valor total da ENTRADA de Despesas é:
+                                    <b style="color: red;"><%=somaGeralDespesas%>. </b>
+                                    <br>
+
+                        </div>
+                        <table id="example" class="table  border-light table-bordered table-responsive-sm table-hover container-fluid" style="width:100%; overflow-x:auto;">
+                            <div class="container responsive row col-12">
+                                <div class="col-3" id="divleft">
+                                    <form method="GET" action="/despesas/entradas/new">
+                                        <button action="submit" class="btn btn-danger text-left" title="Cadastrar Novo Produto">Cadastrar ENTRADA de Despesa</button>
+                                    </form>
+                                </div>
+                                <div class="col-3" id="divleft">
+                                    <form method="GET" action="/despesas/caddespesa">
+                                        <button action="submit" class="btn btn-primary text-left" title="Gerenciar Nome de Produto Novo">Gerenciar Nome de Despesa Nova</button>
+                                    </form>
+                                </div>
+
+                                <div class="col-3" id="divleft">
+                                    <form method="GET" action="/despesas/saidas">
+                                        <button action="submit" class="btn btn-dark text-white text-left" title="Gerenciar SAÍDA Produto">Gerenciar SAÍDA de Despesa</button>
+                                    </form>
+                                </div>
+                                <div class="col-2" id="divright">
+                                    <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                        <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="w3-container responsive">
+                                <thead class="responsive bg-dark container text-center">
+                                    <tr class="responsive table-active table-dark">
+                                        <!--0-->
+                                        <th scope="col ">ID Entrada</th>
+                                        <th scope="col ">ID Despesa</th>
+                                        <th scope="col ">Nome Despesa</th>
+                                        <th scope="col ">Descrição</th>
+                                        <th scope="col ">Nro Documento</th>
+                                        <th scope="col ">Vencimento</th>
+                                        <th scope="col ">Valor Total</th>
+                                        <th scope="col ">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="responsive text-center">
+                                    <%let contador = 0 %>
+                                        <% for(let c of despesasentradas){%>
+                                            <tr class="text-center">
+                                                <th>
+                                                    <%=c.id%>
+                                                </th>
+                                                <th>
+                                                    <%=c.despesasid%>
+                                                </th>
+                                                <td>
+                                                    <%=c.Despesa.nomedespesa%>
+                                                </td>
+                                                <th>
+                                                    <%=c.descricao%>
+                                                </th>
+                                                <th>
+                                                    <%=c.nrodocto%>
+                                                </th>
+                                                <th>
+                                                    <%=c.datavalidade%>
+                                                </th>
+                                                <th>
+                                                    <%=c.valortotal%>
+                                                </th>
+                                                <th>
+                                                    <div class="w3-container col-12">
+
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <a onclick="location = '/despesas/entradas/<%= c.id%>'" class="btn btn-warning btn-sm-3 text-white"><i class="fa fa-eye" title="Visualisar Dados Despesa" aria-hidden="true"></i>
+                                                 </a>
+                                                            </div>
+
+                                                            <div class="col-4">
+                                                                <a onclick="location = '/despesas/entradas/<%= c.id%>/edit'" class="btn btn-success btn-sm-3 text-white"><i class="fa fa-pencil" title="Editar Esta Despesa" aria-hidden="true"></i>
+                                                 </a>
+                                                            </div>
+
+                                                            <div class="col-4">
+                                                                <form method="POST" action="/despesas/entradas/<%= c.id %>?_method=DELETE" id="view" onsubmit="return del();">
+                                                                    <button action="submit" class="btn btn-danger btn-sm-1 text-white" title="Deletar Esta Despesa"><span class="fa fa-trash-o"></span>
+                                                        </button>
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </th>
+
+                            </div>
+
+                            </td>
+                            <% }%>
+                                </tr>
+                                <tfoot class="responsive text-center border-light container-fluid " style="width:100%; overflow-x:auto; ">
+                                    <tr>
+                                        <th scope="col ">ID Entrada</th>
+                                        <th scope="col ">ID Despesa</th>
+                                        <th scope="col ">Nome Despesa</th>
+                                        <th scope="col ">Descrição</th>
+                                        <th scope="col ">Nro Documento</th>
+                                        <th scope="col ">Vencimento</th>
+                                        <th scope="col ">Valor Total</th>
+                                        <th scope="col ">Ações</th>
+                                    </tr>
+                                </tfoot>
+                                <br>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            });
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        </script>
+        <script type='text/javascript'>
+            $(document).ready(function() {
+                /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                      Passando para o Português
+                      */
+                $('#example').DataTable({
+                    "language": {
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrado de _MAX_ total registros)",
+                        "oPaginate": {
+                            "sFirst": "First",
+                            "sLast": "Last",
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior"
+                        },
+
+                        "sProcessing": "Processando...",
+                        "sSearch": "Pesquisar:",
+                        "sSearchPlaceholder": "",
+                        "sUrl": "",
+
+                    }
+                });
+            });
+        </script>
+        <script src="/js/alertas.js"></script>
+        <br> <br>
+</body>
+<br> <br>
+
+</html>

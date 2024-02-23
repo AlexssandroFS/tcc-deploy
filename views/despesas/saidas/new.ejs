@@ -1,0 +1,191 @@
+<head>
+    <style>
+        #imghome {
+            display: none;
+        }
+    </style>
+    
+    <script>
+          //INICIO atualizar o ID do produto na edição na SAÍDA DE PRODUTOS
+      function updateIDProd() {
+    
+    var select = document.getElementById('atualizarIDProd');
+    var option = select.options[select.selectedIndex];
+    //var select = document.getElementById('atualizarValor');
+    //abaixo para atualizar o ID do produto para EDICAO
+    document.getElementById('valueIDNomeProd').value = option.value;
+    
+    //abaixo pega valor unitario atual atraves do ID do PRODUTO ao fazer a troca valoru unitario produto
+    document.getElementById('valueValor').value = option.value;
+    // document.getElementById('valueCategoria').value = option.value;
+    
+    
+    // var t1 = document.querySelector('input[name="valorunit"]');
+    //// var t2 = document.querySelector('textarea[name="valorunit"]');
+    // t2.value = t1.value;
+    
+    }
+    
+    updateIDProd(); //formulario recebe atraves do "id="update"
+    //FIM atualizar o ID do produto na edição na SAÍDA DE PRODUTO
+    
+    </script>
+    
+    </head>
+    
+
+<body className='snippet-body'>
+    <%- include('../../partials/home'); %>
+        <div class="wrapper container-fluid">
+            <section class="container-fluid" id="pdf2htmldiv">
+                <br><br><br> <br>
+                <div class="container-fluid">
+                    <div class="responsive container text-left row-col-12">
+                        <center>
+                            <h4>Você está no cadastro de <b style="color: red;">Nova Saída de Despesa</b>
+                                <br>
+                                <br>
+                            </h4>
+
+                        </center>
+
+                        <!-- action="/produtos" method="POST" class="jumbotron"   se usar deixa a area da tabela toda CINZA   id="fundoshow"  onsubmit="return save();" -->
+                        <form class="responsive container-fluid" id="validar" action="/despesas/saidas/" method="POST"
+                            onsubmit="return save(); ">
+                            <div class="responsive container-fluid text-left  row-col-12">
+                                <div class="w3-container-fluid float-center">
+                                    <div class="row col-md-12">
+                                        <div class="form col-md-2">
+                                            <img class="rounded" src="/img/perfilusuario/despesas.jpeg"
+                                                style="width:130px; height:190px">
+                                        </div>
+                                        <div class="responsive container form-group row border text-left col-md-10">
+                                            <h5 align="center">Dados de Identificação do Produto:</h5>
+                                            <div class="form-group col-md-2">
+                                                <label for="id">ID Entrada Despesa </label>
+                                                <input type="text" id="valueIDNomeProd" class="form-control"
+                                                    id="despesasid" placeholder="" name="despesasid" disabled
+                                                    autofocus />
+
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="nomedespesa">Nome da Despesa</label>
+                                                <select class="form-control" class="form-group" id="atualizarIDProd"
+                                                    onChange="updateIDProd()" id="nomedespesa" class="form-select"
+                                                    name="nomedespesa" required autofocus>
+                                                    <option value="">Escolha</option>
+                                                    <% for(desp of listarentradas) { %>
+                                                        <option value="<%=desp.Despesa.id%>">
+                                                            <%=desp.Despesa.nomedespesa%>
+                                                        </option>
+                                                        <% } %>
+                                                </select>
+
+                                                <footer align="justify">
+                                                    <b>Obs:</b> Ao TROCAR o Nome da Despesa, será <b>ATUALIZADO ID da
+                                                        Despesa</b>.
+                                                </footer>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="datapagto">Data Pagto Despesa</label>
+                                                <input type="date" class="form-control" id="date-1" id="datapagto"
+                                                    name="datapagto" required autofocus />
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <label for="id">Descrição da Saída de Despesa </label>
+                                                <input type="text" class="form-control" id="descricaosaida"
+                                                    placeholder="Aluguel mês 05-2023" name="descricaosaida" autofocus />
+
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label for="valortotalsaida">Valor Total</label>
+                                                <input type="text" min="0" name="valortotalsaida"
+                                                    onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 46 && event.charCode <= 57"
+                                                    class="form-control" id="valortotalsaida" placeholder="0.00" value=""
+                                                    required autofocus />
+                                                <!--<footer>
+                                            <b>Obs:</b> Valor automático, mas caso altere, declarar com <b>"PONTO". Ex: R$2.5 ou R$1150.50</b>.
+                                        </footer>
+                                    -->
+                                            </div>
+                                            <br>
+                                            <footer align="justify"><b>Obs:</b> Valor deve declarar com <b>"PONTO".
+                                                    <b>Ex: R$2.5 ou R$1150.50</b>.
+                                            </footer>
+                                            <br>
+                                            <div class="form-group col-md-5">
+                                                <label for="formaspagtosid">Forma de Pagto da Saída de Despesa</label>
+                                                <select class="form-control" class="form-group" id="formaspagtosid"
+                                                    class="form-select" name="formapagto" required autofocus>
+                                                    <option value="">Escolha</option>
+                                                    <% for(pg of formapagtos) { %>
+                                                        <option value="<%=pg.formaspagtosid%>">
+                                                            <%=pg.formapagto%>
+                                                        </option>
+                                                        <% } %>
+                                                </select>
+
+                                            </div> <br>
+                                        </div>
+
+                                        <!-- Script -->
+                                        <script src="../../../js/validarDados.js">
+                                        </script>
+                                    </div>
+                                </div>
+
+                                <div class="container-fluid responsive col-10 text-center">
+                                    <br>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4 class="text-center col-md-8">Qual ação deseja realizar?</h4>
+                                    </div>
+                                    <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                        l.Tipousuario.tipousuario=='Gerente' || l.Tipousuario.tipousuario=='Supervisor'
+                                        || l.tipousuarioid==2) {%>
+                                        <div class="row col-12">
+                                            <div class="col-md-4" id="divrigth"><button type="submit"
+                                                    class="btn btn-success btn-sm-3 profile-button text-white"
+                                                    onsubmit="return save();"><i 
+                                                        title="Salvar Alterações desta Despesa" 
+                                                        style="font-size: 15px;">Salvar
+                                                    </i>
+                                                </button>
+                                            </div>
+                                            <% } else { %>
+
+                                                <% } %>
+                                                    <div class="col-md-7" id="divrigth">
+                                                        <a href="/despesas/saidas ">Voltar para Listagem de Saídas de 
+                                                            Despesas</a>
+                                                    </div>
+                                        </div>
+                                </div>
+
+                        </form>
+                        <br><br>
+                    </div>
+                    <br>
+
+            </section>
+
+        </div>
+
+        <script type='text/javascript'
+            src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="../js/alertas.js "></script>
+
+</body>
+
+</html>

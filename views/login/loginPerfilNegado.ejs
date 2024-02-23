@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Top Açaí - Page</title>
+    <link href='#' rel='stylesheet'>
+    <link href="../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #imghome {
+            display: none;
+        }
+        
+        #imgerro {
+            width: 20%;
+            height: 20%;
+            padding-top: 0%;
+            padding-left: 0%;
+            padding: 2%;
+            position: relative;
+            display: relative;
+            /*ajusta tamanho da*/
+            /*true é para aparecer a imagem no body da NAVBAR, mas será NONE (False) na outras paginas*/
+            float: center;
+        }
+        
+        img {
+            border-radius: 10%;
+        }
+        
+        .btn-success:hover {
+            color: #fff;
+            background-color: #030303;
+            border-color: #030303;
+        }
+        
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #030303;
+            border-color: #030303;
+        }
+        
+        .btn-success {
+            color: #fff;
+            background-color: #af05c5;
+            border-color: #5ccc00;
+        }
+        
+        .btn-primary {
+            color: #fff;
+            background-color: #298019;
+            border-color: #298019;
+        }
+        
+        .btn-round {
+            border-radius: 30px !important;
+            text-decoration: none;
+            padding: 50 0 70px;
+        }
+        
+        .btn {
+            font-size: 15px;
+            font-weight: 600;
+            padding: 9px 25px;
+            border-width: 2px;
+            box-shadow: 0 3px 8px 0 rgba(41, 49, 89, .15), inset 0 0 0 1px hsla(0, 0%, 100%, .1);
+        }
+        
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+        
+        .btn:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+        /*[404 error page]
+    --------------------------*/
+        
+        @keyframes bob {
+            0% {
+                top: 0;
+            }
+            50% {
+                top: 0.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <br>
+    <div class="wrapper w3-container-fluid">
+        <section class="w3-container-fluid">
+            <div class="w3-container-fluid col-md-12">
+                <center>
+
+                    <h2>Olá Sr(a). <b style="color:red;"><%= log[0].usuariologin%></b>, login perfil
+                        <b style="color:rgb(7, 18, 7); background-color: rgb(244, 242, 246);"> <%= log[0].Tipousuario.tipousuario%></b>!!!</h2>
+                    <br>
+                    <h3> Perfil de Usuário <b style="color:red;">não tem permissão</b> para acessar o sistema!!!.</h3>
+
+                    <img src="../img/acesso-negado-perfil-usuario.jpg" id="imgerro">
+                    <br>
+                    <h3> Clique abaixo: </h3>
+                    <b><a href="/login" class="btn btn-success btn-round">Voltar ao Login</a></b>
+            </div>
+            </center>
+    </div>
+    </section>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<style>
+    #imghome {
+        display: none;
+    }
+</style>
+</head>
+
+<body className='snippet-body'>
+<%- include('../partials/home'); %>
+    <div class="wrapper w3-container">
+           <br><br><br><br>
+           <section class="container-fluid">
+            <div class=" container-fluid">
+                <div class="responsive container text-left row-col-12">
+                    <center>
+                        <h4>Você está editando o cadastro da Forma de Pagamentos:
+                            <br> <b>
+                                <h3 style="color: red;">
+                                    <%=formapagtos.formapagto%>
+                                </h3>
+                            </b>
+                        </h4>
+                    </center>
+                    <br>
+                <div class="container responsive row col-md-12">
+                   <div class="form-group col-md-3">
+                   <form class="responsive container-fluid" action="/formapagtos/<%=formapagtos.id%>?_method=PATCH" id="view" method="POST" onsubmit="return save();">
+                                <div class="col-md-2">
+                                    <img class="rounded" src="/img/perfilusuario/formadepagto.jpg"
+                                    style="width:160px; height:170px">
+                                </div>
+                            </div>
+
+                            <div class="responsive container border text-left row col-md-9">
+                                <div class="form-group col-md-12">
+                                    <label for="id">ID</label>
+                                    <%= formapagtos.id %>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="formapagto">Nome da Forma de Pagamento</label>
+                                    <input type="text" class="form-control" id="formapagto" placeholder="" name="formapagto" value="<%=formapagtos.formapagto%>" autofocus/>
+                                </div>
+                                
+                   </div>
+
+                        <br> <br>  
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                               <h4 class="text-right">Qual ação deseja realizar?</h4>
+                            </div>
+                            <div class="row col-md-12">
+                                <div class="col-md-1">
+                                   <% if(l.Tipousuario.tipousuario=='Administrador' ||
+                                    l.Tipousuario.tipousuario=='Gerente' ||
+                                    l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>    
+                                <button type="submit" class="btn btn-success btn-sm-3 profile-button text-white" onsubmit="return save();"><i title="Salvar Alterações desta Cardapio" style="font-size: 15px;">Salvar</i>
+                                </button>
+                                <% } else { %>
+                                    <% } %></div>
+                                <div class="col-md-1">
+                                                                     
+                                        <form action="/formapagtos/<%= formapagtos.id %>?_method=DELETE"
+                                            method="POST" id="view" onsubmit="return del();">
+                                            <% if(l.Tipousuario.tipousuario=='Administrador' ) {%>
+                                            <button action="submit"
+                                                class="btn btn-danger btn-sm-3 text-white"
+                                                title="Deletar Esta Forma de Pagamento"><i
+                                                    style="font-size: 15px;">Deletar</i>
+                                            </button>
+                                        </form>
+
+                                        <% } else { %>
+
+                                            <% } %>
+                                </div>
+                                <div class="col-md-8">
+                                    <a class="col-md-8" href="/formapagtos ">Voltar para Listagem das
+                                        Formas de Pagamento</a>
+                                </div>
+                                <div>
+                                    <div>
+
+                    </form>
+                    </div>
+                    
+                    </div>
+        </section>
+        </div>
+        <script src="/js/alertas.js"></script>
+        
+</body>
+

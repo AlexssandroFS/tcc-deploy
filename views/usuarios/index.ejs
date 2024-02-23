@@ -1,0 +1,266 @@
+<style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Track */
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    #imghome {
+        display: none;
+    }
+</style>
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+</head>
+
+<body className='snippet-body'>
+
+    <%- include('../partials/home'); %>
+        <div class="wrapper container-fluid">
+            <br><br><br>
+            <section class="container-fluid">
+                <div class="container-fluid" id="pdf2htmldiv">
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                    <script type="text/javascript"
+                        src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                    <!-- boostrap TABELAS  <link href="../../public/css/DataTables/jquery.dataTables.min.css" rel="stylesheet" />
+                    <script src="../../public/css/DataTables/jquery.dataTables.min.js"></script> boostrap TABELAS -->
+
+                    <div class="w3-container-fluid responsive row col-md-12" id="pdf2htmldiv">
+
+                        <div class="w3-container-fluid responsive row col-md-2">
+                            <% if(l.Tipousuario.tipousuario=='Administrador' || l.Tipousuario.tipousuario=='Gerente' ||
+                                l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
+                                <form method="GET" action="/usuarios/new">
+                                    <button type="submit" class="btn btn-primary text-left"
+                                        title="Criar Novo Usuário">Novo Usuário</button>
+                                </form>
+
+                                <% } else { %>
+                                    <% } %>
+                                        <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
+                        </div>
+
+                        <div class="w3-container-fluid responsive col-md-8">
+                            <h4>Atualmente temos:
+                                <b style="color: red;">
+                                    "<%=countUsuario%>" </b> Usuários <b
+                                    style="color: rgb(111, 15, 194);">"cadastrados"</b>.
+                                <br>
+                        </div>
+                        <div class="w3-container-fluid responsive col-md-1">
+                            <a onclick="printDiv( 'pdf2htmldiv') " type="button ">
+                                <i class="fa fa-print " aria-hidden="true " style="font-size: 35px; "></i>
+                        </div>
+
+                    </div>
+
+                    <table id="example"
+                        class="table border-light table-bordered table-responsive-sm table-hover container-fluid"
+                        style="width:100%; overflow-x:auto;">
+                        <thead class="w3-container-fluid border border-light responsive bg-dark text-center">
+                            <tr class="table-active table-dark">
+                                <!--1-->
+                                <th>ID</th>
+                                <!--2-->
+                                <th>Nome do Usuário Completo</th>
+                                <!--3-->
+                                <th>Data de Nascimento</th>
+                                <!--4-->
+                                <th>Usuário de Login</th>
+                                <!--5-->
+                                <th> Perfil Login</th>
+                                <!--6-->
+                                <th>Estado Usuário</th>
+                                <!--7-->
+                                <th>Status Login Usuário</th>
+                                <!--7-->
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <% let contador=0 %>
+                            <% let cont=0 %>
+                                <tbody
+                                    class=" w3-container-fluid border border-light responsive text-center float-justify">
+                                    <% for(let c of usuarios) {%>
+                                        <tr>
+                                            <td>
+                                                <b>
+                                                    <%=c.id%>
+                                                </b>
+                                            </td>
+                                            <td>
+                                                <%=c.nome%>
+                                            </td>
+                                            <td>
+                                                <%=c.datanasc%>
+                                            </td>
+                                            <td>
+                                                <%=c.Login.usuariologin%>
+                                            </td>
+
+                                            <td>
+                                                <%= vetorTipoUsuario[contador] %>
+                                                    <%contador++ %>
+                                            </td>
+                                            <td>
+                                                <%=vetorEstados[cont]%>
+                                                    <% cont++ %>
+                                            </td>
+                                            <td>
+                                                <%=c.Login.statuslogin%>
+
+                                            </td>
+                                            <!-- 
+                                                    1 - Administrador
+                                                    2- Supervidor
+                                                    3 - Atendente
+                                                    4 - Gerente
+                                                    5 - Cliente
+                                                -->
+
+                                            <td>
+                                                <div class="w3-container responsive float-center">
+                                                    <div class="w3-container responsiver row col-md-12">
+                                                        <div class="col-md-4">
+                                                            <!-- <a href="/usuarios/<%=c .id%>" class="btn btn-warning btn-sm-1">View</a>   class="fa fa-eye"-->
+                                                            <a onclick="location = '/usuarios/<%= c.id%>'"><i
+                                                                    style='font-size:28px;color:rgb(17, 59, 247)'
+                                                                    class="far fa-clipboard fa-xl" aria-hidden="true"
+                                                                    title="Visualisar Dados Deste Usuário"></i> </a>
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <%if (l.tipousuarioid==1 || l.tipousuarioid==4) {%>
+                                                                <a onclick="location = '/usuarios/<%= c.id%>/edit'"><i
+                                                                        style='font-size:28px;color:rgb(6, 218, 52)'
+                                                                        class="fas fa-edit fa-xl" aria-hidden="true"
+                                                                        title="Editar Este Usuário"></i>
+                                                                </a>
+                                                                <% } else { %>
+                                                                    <% } %>
+                                                        </div>
+
+                                                        <% if(l.Tipousuario.tipousuario=='Administrador' ){%>
+                                                            <div class="col-md-4">
+                                                                <form method="POST"
+                                                                    action="/usuarios/<%= c.id %>?_method=DELETE"
+                                                                    onsubmit="return del();">
+                                                                    <button action="submit"><i
+                                                                            style='font-size:20px;color:rgb(218, 6, 6);'
+                                                                            class="fas fa-trash-alt"
+                                                                            title="Deletar Este Usuário"
+                                                                            title="Deletar Este Usuário"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                            <% } else { %>
+
+                                                                <% } %>
+                                                    </div>
+
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        <% }%>
+                                <tfoot class="text-center border border-light responsive container-fluid "
+                                    style="width:100%; overflow-x:auto; ">
+
+                                    <tr>
+                                        <!--1-->
+                                        <th>ID</th>
+                                        <!--2-->
+                                        <th>Nome do Usuário Completo</th>
+                                        <!--3-->
+                                        <th>Data de Nascimento</th>
+                                        <!--4-->
+                                        <th>Usuário de Login</th>
+                                        <!--5-->
+                                        <th>Perfil Login </th>
+                                        <!--6-->
+                                        <th>Estado Usuário</th>
+                                        <th>Status Login Usuário</th>
+
+                                        <th>Ações</th>
+
+                                    </tr>
+                                </tfoot>
+                                <br>
+                    </table>
+                </div>
+        </div>
+        </section>
+        </div>
+
+        <script type='text/javascript'
+            src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Passando para o Português
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                */
+            $(document).ready(function () {
+                $('#example').DataTable({
+                    "language": {
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrado de _MAX_ total registros)",
+                        "oPaginate": {
+                            "sFirst": "First",
+                            "sLast": "Last",
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior"
+                        },
+
+                        "sProcessing": "Processando...",
+                        "sSearch": "Pesquisar:",
+                        "sSearchPlaceholder": "",
+                        "sUrl": "",
+
+                    }
+                });
+            });
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        </script>
+        <script src="/js/alertas.js"></script>
+
+        <br> <br>

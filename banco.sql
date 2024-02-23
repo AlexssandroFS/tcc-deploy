@@ -12,19 +12,18 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- Banco de dados: `banco`
 --
+CREATE DATABASE IF NOT EXISTS `banco` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `banco`;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cardapios`
+-- Estrutura para tabela `cardapios`
+--
+-- Criação: 07/08/2023 às 05:01
 --
 
 CREATE TABLE `cardapios` (
@@ -38,7 +37,11 @@ CREATE TABLE `cardapios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `cardapios`
+-- RELACIONAMENTOS PARA TABELAS `cardapios`:
+--
+
+--
+-- Despejando dados para a tabela `cardapios`
 --
 
 INSERT INTO `cardapios` (`id`, `itemcardapio`, `descricao`, `valor`, `createdAt`, `updatedAt`, `categoriasid`) VALUES
@@ -57,7 +60,9 @@ INSERT INTO `cardapios` (`id`, `itemcardapio`, `descricao`, `valor`, `createdAt`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categorias`
+-- Estrutura para tabela `categorias`
+--
+-- Criação: 07/08/2023 às 05:01
 --
 
 CREATE TABLE `categorias` (
@@ -69,7 +74,11 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `categorias`
+-- RELACIONAMENTOS PARA TABELAS `categorias`:
+--
+
+--
+-- Despejando dados para a tabela `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `nomecategoria`, `descricao`, `createdAt`, `updatedAt`) VALUES
@@ -107,7 +116,9 @@ INSERT INTO `categorias` (`id`, `nomecategoria`, `descricao`, `createdAt`, `upda
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `contatos`
+-- Estrutura para tabela `contatos`
+--
+-- Criação: 07/08/2023 às 05:01
 --
 
 CREATE TABLE `contatos` (
@@ -119,7 +130,11 @@ CREATE TABLE `contatos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `contatos`
+-- RELACIONAMENTOS PARA TABELAS `contatos`:
+--
+
+--
+-- Despejando dados para a tabela `contatos`
 --
 
 INSERT INTO `contatos` (`id`, `email`, `telefone`, `createdAt`, `updatedAt`) VALUES
@@ -144,7 +159,9 @@ INSERT INTO `contatos` (`id`, `email`, `telefone`, `createdAt`, `updatedAt`) VAL
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `despesas`
+-- Estrutura para tabela `despesas`
+--
+-- Criação: 07/08/2023 às 05:01
 --
 
 CREATE TABLE `despesas` (
@@ -153,7 +170,11 @@ CREATE TABLE `despesas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `despesas`
+-- RELACIONAMENTOS PARA TABELAS `despesas`:
+--
+
+--
+-- Despejando dados para a tabela `despesas`
 --
 
 INSERT INTO `despesas` (`id`, `nomedespesa`) VALUES
@@ -218,7 +239,9 @@ INSERT INTO `despesas` (`id`, `nomedespesa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `despesasentradas`
+-- Estrutura para tabela `despesasentradas`
+--
+-- Criação: 07/08/2023 às 05:02
 --
 
 CREATE TABLE `despesasentradas` (
@@ -231,7 +254,11 @@ CREATE TABLE `despesasentradas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `despesasentradas`
+-- RELACIONAMENTOS PARA TABELAS `despesasentradas`:
+--
+
+--
+-- Despejando dados para a tabela `despesasentradas`
 --
 
 INSERT INTO `despesasentradas` (`id`, `descricao`, `nrodocto`, `datavalidade`, `valortotal`, `despesasid`) VALUES
@@ -248,7 +275,9 @@ INSERT INTO `despesasentradas` (`id`, `descricao`, `nrodocto`, `datavalidade`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `despesassaidas`
+-- Estrutura para tabela `despesassaidas`
+--
+-- Criação: 07/08/2023 às 05:02
 --
 
 CREATE TABLE `despesassaidas` (
@@ -261,7 +290,11 @@ CREATE TABLE `despesassaidas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `despesassaidas`
+-- RELACIONAMENTOS PARA TABELAS `despesassaidas`:
+--
+
+--
+-- Despejando dados para a tabela `despesassaidas`
 --
 
 INSERT INTO `despesassaidas` (`id`, `datapagto`, `descricaosaida`, `valortotalsaida`, `despesasidentradas`, `formaspagtosid`) VALUES
@@ -276,7 +309,9 @@ INSERT INTO `despesassaidas` (`id`, `datapagto`, `descricaosaida`, `valortotalsa
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `enderecos`
+-- Estrutura para tabela `enderecos`
+--
+-- Criação: 07/08/2023 às 05:02
 --
 
 CREATE TABLE `enderecos` (
@@ -293,7 +328,11 @@ CREATE TABLE `enderecos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `enderecos`
+-- RELACIONAMENTOS PARA TABELAS `enderecos`:
+--
+
+--
+-- Despejando dados para a tabela `enderecos`
 --
 
 INSERT INTO `enderecos` (`id`, `endereco`, `nro`, `complemento`, `bairro`, `cidade`, `cep`, `createdAt`, `updatedAt`, `estadosid`) VALUES
@@ -316,7 +355,9 @@ INSERT INTO `enderecos` (`id`, `endereco`, `nro`, `complemento`, `bairro`, `cida
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `entregas`
+-- Estrutura para tabela `entregas`
+--
+-- Criação: 07/08/2023 às 05:01
 --
 
 CREATE TABLE `entregas` (
@@ -330,7 +371,11 @@ CREATE TABLE `entregas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `entregas`
+-- RELACIONAMENTOS PARA TABELAS `entregas`:
+--
+
+--
+-- Despejando dados para a tabela `entregas`
 --
 
 INSERT INTO `entregas` (`id`, `dataentrega`, `valorentrega`, `tempoentrega`, `formaentrega`, `createdAt`, `updatedAt`) VALUES
@@ -341,7 +386,9 @@ INSERT INTO `entregas` (`id`, `dataentrega`, `valorentrega`, `tempoentrega`, `fo
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `estados`
+-- Estrutura para tabela `estados`
+--
+-- Criação: 07/08/2023 às 05:01
 --
 
 CREATE TABLE `estados` (
@@ -352,7 +399,11 @@ CREATE TABLE `estados` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `estados`
+-- RELACIONAMENTOS PARA TABELAS `estados`:
+--
+
+--
+-- Despejando dados para a tabela `estados`
 --
 
 INSERT INTO `estados` (`id`, `estados`, `createdAt`, `updatedAt`) VALUES
@@ -387,7 +438,9 @@ INSERT INTO `estados` (`id`, `estados`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `formapagtos`
+-- Estrutura para tabela `formapagtos`
+--
+-- Criação: 07/08/2023 às 05:01
 --
 
 CREATE TABLE `formapagtos` (
@@ -398,7 +451,11 @@ CREATE TABLE `formapagtos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `formapagtos`
+-- RELACIONAMENTOS PARA TABELAS `formapagtos`:
+--
+
+--
+-- Despejando dados para a tabela `formapagtos`
 --
 
 INSERT INTO `formapagtos` (`id`, `formapagto`, `createdAt`, `updatedAt`) VALUES
@@ -420,7 +477,9 @@ INSERT INTO `formapagtos` (`id`, `formapagto`, `createdAt`, `updatedAt`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `fornecedores`
+-- Estrutura para tabela `fornecedores`
+--
+-- Criação: 07/08/2023 às 05:02
 --
 
 CREATE TABLE `fornecedores` (
@@ -436,7 +495,11 @@ CREATE TABLE `fornecedores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `fornecedores`
+-- RELACIONAMENTOS PARA TABELAS `fornecedores`:
+--
+
+--
+-- Despejando dados para a tabela `fornecedores`
 --
 
 INSERT INTO `fornecedores` (`id`, `razaosocial`, `nomefantasia`, `cnpj`, `ramoatuacao`, `createdAt`, `updatedAt`, `enderecosid`, `contatosid`) VALUES
@@ -450,7 +513,9 @@ INSERT INTO `fornecedores` (`id`, `razaosocial`, `nomefantasia`, `cnpj`, `ramoat
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `login`
+-- Estrutura para tabela `login`
+--
+-- Criação: 07/08/2023 às 05:02
 --
 
 CREATE TABLE `login` (
@@ -464,12 +529,16 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `login`
+-- RELACIONAMENTOS PARA TABELAS `login`:
+--
+
+--
+-- Despejando dados para a tabela `login`
 --
 
 INSERT INTO `login` (`id`, `usuariologin`, `senha`, `statuslogin`, `createdAt`, `updatedAt`, `tipousuarioid`) VALUES
 (1, 'alexssandro', 'alex12345', 'Ativo', '2022-10-29 21:36:42', '2022-10-29 21:36:42', 1),
-(2, 'tadeu', '1234', '2', '2022-12-01 00:20:53', '2022-12-01 00:20:53', 2),
+(2, 'tadeu', '1234', 'Ativo', '2022-12-01 00:20:53', '2022-12-01 00:20:53', 2),
 (3, 'paula', '1234', 'Ativo', '2022-12-06 16:23:44', '2022-12-06 16:23:44', 3),
 (4, 'alexssandrofs', 'alex123', 'Ativo', '2022-12-06 16:32:07', '2022-12-06 16:32:07', 5),
 (5, 'peterson', '12345', 'Inativo', '2023-06-13 17:38:01', '2023-06-13 17:38:01', 1),
@@ -479,7 +548,9 @@ INSERT INTO `login` (`id`, `usuariologin`, `senha`, `statuslogin`, `createdAt`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pedidos`
+-- Estrutura para tabela `pedidos`
+--
+-- Criação: 07/08/2023 às 05:01
 --
 
 CREATE TABLE `pedidos` (
@@ -491,15 +562,21 @@ CREATE TABLE `pedidos` (
   `valorfinal` decimal(10,0) NOT NULL,
   `datapedido` datetime DEFAULT NULL,
   `usuariosid` int(11) NOT NULL,
-  `formaagtosid` int(11) NOT NULL,
-  `produtosidentradas` int(11) NOT NULL,
+  `formapagtosid` int(11) NOT NULL,
+  `cardapiosid` int(11) NOT NULL,
   `entregasid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `pedidos`:
+--
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtos`
+-- Estrutura para tabela `produtos`
+--
+-- Criação: 07/08/2023 às 05:02
 --
 
 CREATE TABLE `produtos` (
@@ -512,7 +589,11 @@ CREATE TABLE `produtos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `produtos`
+-- RELACIONAMENTOS PARA TABELAS `produtos`:
+--
+
+--
+-- Despejando dados para a tabela `produtos`
 --
 
 INSERT INTO `produtos` (`id`, `nomeprod`, `qtdeminima`, `createdAt`, `updatedAt`, `categoriasid`) VALUES
@@ -530,7 +611,9 @@ INSERT INTO `produtos` (`id`, `nomeprod`, `qtdeminima`, `createdAt`, `updatedAt`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtosentradas`
+-- Estrutura para tabela `produtosentradas`
+--
+-- Criação: 06/11/2023 às 22:51
 --
 
 CREATE TABLE `produtosentradas` (
@@ -545,31 +628,38 @@ CREATE TABLE `produtosentradas` (
   `valorunit` double(10,2) NOT NULL,
   `valortotal` double(10,2) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
-  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `dataatual` date NOT NULL DEFAULT current_timestamp(),
   `produtosid` int(11) NOT NULL,
   `fornecedoresid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `produtosentradas`
+-- RELACIONAMENTOS PARA TABELAS `produtosentradas`:
 --
 
-INSERT INTO `produtosentradas` (`id`, `marca`, `doctofiscal`, `datacompra`, `datafabricacao`, `datavalidade`, `statusvalidade`, `qtdecompra`, `valorunit`, `valortotal`, `createdAt`, `updatedAt`, `produtosid`, `fornecedoresid`) VALUES
-(1, 'Nestle', 'NF 001', '2022-12-15', '2022-12-14', '2022-12-29', 'Produto com validade em dia! Vencerá em 15 dia(s).', 10, 5.00, 50.00, '2022-09-20 21:37:27', '2022-09-20 21:37:27', 1, 1),
-(2, 'Coca-Cola', 'NF 002', '2022-12-15', '2022-12-05', '2022-11-28', 'Urgente: Produto validade VENCIDA a 7 dia(s).', 60, 2.00, 120.00, '2022-09-20 21:37:27', '2022-09-20 21:37:27', 2, 6),
-(3, 'Copoplastil', 'NF 001', '2022-12-05', '2022-12-01', '2023-03-31', 'Produto com validade em dia! Vencerá em 120 dia(s).', 8, 2.50, 20.00, '2022-12-06 13:05:47', '2022-12-06 13:05:47', 3, 2),
-(4, 'Top Açaí', 'NF 007', '2022-12-05', '2022-12-05', '2023-01-06', 'Produto com validade em dia! Vencerá em 32 dia(s).', 3, 100.55, 301.65, '2022-12-06 00:39:55', '2022-12-06 00:39:55', 4, 5),
-(5, 'Plastic', 'NF 001', '2022-12-05', '2022-12-05', '2023-04-05', 'Produto com validade em dia! Vencerá em 121 dia(s).', 4, 3.00, 12.00, '2022-12-06 00:41:36', '2022-12-06 00:41:36', 5, 2),
-(6, 'Nestle', 'NF 008', '2022-12-05', '2022-12-05', '2022-12-29', 'Produto com validade em dia! Vencerá em 24 dia(s).', 10, 1.50, 15.00, '2022-12-06 00:42:45', '2022-12-06 00:42:45', 6, 3),
-(7, 'Nestle', 'NF 008', '2022-12-05', '2022-12-05', '2022-12-06', 'Atenção: Produto com validade comprometida! Vencerá em 1 dia(s)!', 10, 1.50, 15.00, '2022-12-06 00:43:36', '2022-12-06 00:43:36', 7, 3),
-(8, 'Nestle', 'NF 001', '2022-12-06', '2022-12-15', '2022-12-15', 'Cuidado! Produto vence hoje!', 10, 4.50, 45.00, '2022-12-06 17:45:42', '2022-12-06 17:45:42', 8, 1),
-(9, 'Nestle', 'NF 001', '2022-12-15', '2022-12-15', '2023-05-31', 'Produto com validade em dia! Vencerá em 167 dia(s).', 5, 3.50, 17.50, '2022-12-15 03:38:22', '2022-12-15 03:38:22', 9, 1),
-(10, 'Nestle', 'NF 002', '2023-03-28', '2023-03-27', '2023-05-06', 'Produto com validade em dia! Vencerá em 40 dia(s).', 2, 3.50, 7.00, '2023-04-01 22:08:02', '2023-04-01 22:08:02', 9, 1);
+--
+-- Despejando dados para a tabela `produtosentradas`
+--
+
+INSERT INTO `produtosentradas` (`id`, `marca`, `doctofiscal`, `datacompra`, `datafabricacao`, `datavalidade`, `statusvalidade`, `qtdecompra`, `valorunit`, `valortotal`, `createdAt`, `updatedAt`, `dataatual`, `produtosid`, `fornecedoresid`) VALUES
+(1, 'Nestle', 'NF 001', '2022-12-15', '2023-10-30', '2023-11-30', 'Produto com validade em dia! Vencerá em 24 dia(s).', 10, 5.00, 50.00, '2022-09-20 21:37:27', '2023-11-06 18:35:37', '2023-11-06', 1, 1),
+(2, 'Coca-Cola', 'NF 002', '2022-12-15', '2022-12-15', '2023-11-27', 'Produto com validade em dia! Vencerá em 21 dia(s).', 60, 2.00, 120.00, '2022-09-20 21:37:27', '2023-11-06 22:45:01', '2023-11-06', 2, 6),
+(3, 'Copoplastil', 'NF 001', '2022-12-05', '2023-02-27', '2023-03-31', 'Urgente: Produto validade VENCIDA a 220 dia(s).', 8, 2.50, 20.00, '2022-12-06 13:05:47', '2023-11-06 22:45:39', '2023-11-06', 3, 2),
+(4, 'Top Açaí', 'NF 007', '2022-12-05', '0000-00-00', '2023-01-06', 'Produto com validade em dia! Vencerá em 32 dia(s).', 3, 100.55, 301.65, '2022-12-06 00:39:55', '2022-12-06 00:39:55', '2023-11-03', 4, 5),
+(5, 'Plastic', 'NF 001', '2022-12-05', '0000-00-00', '2023-04-05', 'Produto com validade em dia! Vencerá em 121 dia(s).', 4, 3.00, 12.00, '2022-12-06 00:41:36', '2022-12-06 00:41:36', '2023-11-03', 5, 2),
+(6, 'Nestle', 'NF 008', '2022-12-05', '0000-00-00', '2022-12-29', 'Produto com validade em dia! Vencerá em 24 dia(s).', 10, 1.50, 15.00, '2022-12-06 00:42:45', '2022-12-06 00:42:45', '2023-11-03', 6, 3),
+(7, 'Nestle', 'NF 008', '2022-12-05', '0000-00-00', '2022-12-06', 'Atenção: Produto com validade comprometida! Vencerá em 1 dia(s)!', 10, 1.50, 15.00, '2022-12-06 00:43:36', '2022-12-06 00:43:36', '2023-11-03', 7, 3),
+(8, 'Nestle', 'NF 001', '2022-12-06', '0000-00-00', '2022-12-15', 'Cuidado! Produto vence hoje!', 10, 4.50, 45.00, '2022-12-06 17:45:42', '2022-12-06 17:45:42', '2023-11-03', 8, 1),
+(9, 'Nestle', 'NF 001', '2022-12-15', '0000-00-00', '2023-05-31', 'Produto com validade em dia! Vencerá em 167 dia(s).', 5, 3.50, 17.50, '2022-12-15 03:38:22', '2022-12-15 03:38:22', '2023-11-03', 9, 1),
+(10, 'Nestle', 'NF 002', '2023-03-28', '0000-00-00', '2023-05-06', 'Produto com validade em dia! Vencerá em 40 dia(s).', 2, 3.50, 7.00, '2023-04-01 22:08:02', '2023-04-01 22:08:02', '2023-11-03', 9, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `produtossaidas`
+-- Estrutura para tabela `produtossaidas`
+--
+-- Criação: 07/08/2023 às 05:02
 --
 
 CREATE TABLE `produtossaidas` (
@@ -584,7 +674,11 @@ CREATE TABLE `produtossaidas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `produtossaidas`
+-- RELACIONAMENTOS PARA TABELAS `produtossaidas`:
+--
+
+--
+-- Despejando dados para a tabela `produtossaidas`
 --
 
 INSERT INTO `produtossaidas` (`id`, `qtdsaida`, `valorunitariosaida`, `valortotalsaida`, `datasaida`, `createdAt`, `updatedAt`, `produtosidentradas`) VALUES
@@ -598,7 +692,9 @@ INSERT INTO `produtossaidas` (`id`, `qtdsaida`, `valorunitariosaida`, `valortota
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `tipousuarios`
+-- Estrutura para tabela `tipousuarios`
+--
+-- Criação: 07/08/2023 às 05:02
 --
 
 CREATE TABLE `tipousuarios` (
@@ -610,7 +706,11 @@ CREATE TABLE `tipousuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `tipousuarios`
+-- RELACIONAMENTOS PARA TABELAS `tipousuarios`:
+--
+
+--
+-- Despejando dados para a tabela `tipousuarios`
 --
 
 INSERT INTO `tipousuarios` (`id`, `tipousuario`, `statusperfil`, `createdAt`, `updatedAt`) VALUES
@@ -618,12 +718,14 @@ INSERT INTO `tipousuarios` (`id`, `tipousuario`, `statusperfil`, `createdAt`, `u
 (2, 'Supervisor	', 'Ativo', '2023-06-22 21:43:35', '2023-06-22 21:43:35'),
 (3, 'Atendente', 'Ativo', '2023-06-22 21:47:59', '2023-06-22 21:47:59'),
 (4, 'Gerente', 'Ativo', '2023-06-22 21:48:11', '2023-06-22 21:48:11'),
-(5, 'Cliente', 'Ativo', '2023-06-22 21:48:19', '2023-06-22 21:48:19');
+(5, 'Cliente', 'Inativo', '2023-06-22 21:48:19', '2023-06-22 21:48:19');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura para tabela `usuarios`
+--
+-- Criação: 07/08/2023 às 05:02
 --
 
 CREATE TABLE `usuarios` (
@@ -639,7 +741,11 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- RELACIONAMENTOS PARA TABELAS `usuarios`:
+--
+
+--
+-- Despejando dados para a tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `cpf`, `datanasc`, `createdAt`, `updatedAt`, `enderecosid`, `contatosid`, `loginid`) VALUES
@@ -656,39 +762,39 @@ INSERT INTO `usuarios` (`id`, `nome`, `cpf`, `datanasc`, `createdAt`, `updatedAt
 --
 
 --
--- Índices para tabela `cardapios`
+-- Índices de tabela `cardapios`
 --
 ALTER TABLE `cardapios`
   ADD PRIMARY KEY (`id`),
   ADD KEY `categoriasid` (`categoriasid`) USING BTREE;
 
 --
--- Índices para tabela `categorias`
+-- Índices de tabela `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `contatos`
+-- Índices de tabela `contatos`
 --
 ALTER TABLE `contatos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `despesas`
+-- Índices de tabela `despesas`
 --
 ALTER TABLE `despesas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `despesasentradas`
+-- Índices de tabela `despesasentradas`
 --
 ALTER TABLE `despesasentradas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `despesa` (`despesasid`) USING BTREE;
 
 --
--- Índices para tabela `despesassaidas`
+-- Índices de tabela `despesassaidas`
 --
 ALTER TABLE `despesassaidas`
   ADD PRIMARY KEY (`id`),
@@ -696,32 +802,32 @@ ALTER TABLE `despesassaidas`
   ADD KEY `formaspagto` (`formaspagtosid`);
 
 --
--- Índices para tabela `enderecos`
+-- Índices de tabela `enderecos`
 --
 ALTER TABLE `enderecos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `estados` (`estadosid`);
 
 --
--- Índices para tabela `entregas`
+-- Índices de tabela `entregas`
 --
 ALTER TABLE `entregas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `estados`
+-- Índices de tabela `estados`
 --
 ALTER TABLE `estados`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `formapagtos`
+-- Índices de tabela `formapagtos`
 --
 ALTER TABLE `formapagtos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `fornecedores`
+-- Índices de tabela `fornecedores`
 --
 ALTER TABLE `fornecedores`
   ADD PRIMARY KEY (`id`),
@@ -729,30 +835,30 @@ ALTER TABLE `fornecedores`
   ADD KEY `contatos` (`contatosid`);
 
 --
--- Índices para tabela `login`
+-- Índices de tabela `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id`),
   ADD KEY `tipousuario` (`tipousuarioid`);
 
 --
--- Índices para tabela `pedidos`
+-- Índices de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `formapgto` (`formaagtosid`),
+  ADD KEY `formapgto` (`formapagtosid`),
   ADD KEY `entrega` (`entregasid`),
-  ADD KEY `produtosentradas` (`produtosidentradas`) USING BTREE;
+  ADD KEY `cardapiosid` (`cardapiosid`) USING BTREE;
 
 --
--- Índices para tabela `produtos`
+-- Índices de tabela `produtos`
 --
 ALTER TABLE `produtos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `categorias` (`categoriasid`);
 
 --
--- Índices para tabela `produtosentradas`
+-- Índices de tabela `produtosentradas`
 --
 ALTER TABLE `produtosentradas`
   ADD PRIMARY KEY (`id`),
@@ -760,20 +866,20 @@ ALTER TABLE `produtosentradas`
   ADD KEY `produtos` (`produtosid`);
 
 --
--- Índices para tabela `produtossaidas`
+-- Índices de tabela `produtossaidas`
 --
 ALTER TABLE `produtossaidas`
   ADD PRIMARY KEY (`id`),
   ADD KEY `produtosentradas` (`produtosidentradas`);
 
 --
--- Índices para tabela `tipousuarios`
+-- Índices de tabela `tipousuarios`
 --
 ALTER TABLE `tipousuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
@@ -782,7 +888,7 @@ ALTER TABLE `usuarios`
   ADD KEY `login` (`loginid`) USING BTREE;
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -894,6 +1000,3 @@ ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

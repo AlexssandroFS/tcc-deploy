@@ -8,6 +8,7 @@ const roteador = Router();
 const { findSourceMap } = require('module');
 const { format } = require('path');
 
+const  {Login, Usuario, Tipousuario} = require('../models');
 // **********************************
 // NEW - renders a form
 // **********************************

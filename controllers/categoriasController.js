@@ -41,7 +41,7 @@ let categorias = [{
 //importanto o modulo uuid para BD ficticio
 //const { v4: uuid } = require('uuid'); //For generating ID's
 const methodOverride = require('method-override');
-const { Categoria } = require('../models');
+const { Categoria, Login, Tipousuario, Usuario } = require('../models');
 const { Produto, ProdutoEntrada, Fornecedore } = require('../models');
 const path = require('path');
 const { Router } = require('express');
@@ -183,10 +183,25 @@ WHERE attr1 = 42 AND attr2 = 'cake'
 // **********************************
 // NEW - renders a form categorias
 // **********************************
-roteador.get('/new', (req, res) => {
+roteador.get('/new',  async(req, res) => {
         //  console.log(categorias);
-        res.render('categorias/new');
-    })
+        log = await Login.findAll({
+            include: [
+                { model: Tipousuario },
+                { model: Usuario }
+            ],
+        });
+        if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+            res.render('categorias/new', { log });
+        } else {
+            res.render('categorias/erroAcessoPerfilUsuarios');
+        }
+        // 1 - Administrador
+    // 2-  Supervidor
+    // 3 - Atendente
+    // 4 - Gerente
+    // 5 - Cliente
+     })
     // **********************************
     // CREATE - creates a new categorias
     // **********************************

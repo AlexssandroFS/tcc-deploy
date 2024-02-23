@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../css/tables_view.css" rel="stylesheet">
+    <link href="../../../js/jquery.js" rel="stylesheet">
+    <link href='../../../css/bootstrap.min.css' rel='stylesheet'>
+
+    <title>Top Açaí - Page</title>
+    <style>
+        #imghome {
+            display: none;
+        }
+    </style>
+
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+</head>
+
+<body className='snippet-body'>
+    <%- include('./../partials/home'); %>
+        <div class="wrapper container-fluid">
+            <section class="container-fluid">
+                <div class="container-fluid">
+                    <div class="w3-container-fluid responsive text-left row col-12" id="pdf2htmldiv">
+                        <center>
+                            <div class="w3-container col-md-12">
+
+                                <h4>Visualize abaixo os seus dados completos:<br> *Login: <b style="color: red;">
+                                   <%=l.usuariologin%></b> e *Nome do Usuário: <b style="color: red;">
+                                <%=l.Usuario.nome%></b></h4>
+                            </div>
+                        </center> <br>
+
+                        <div class="container-fluid border float-center">
+
+
+                            <h5>Dados cadastrais do Tipo de Perfil e Login do Usuário:</h5>
+                            <div class="container-fluid form-row col-md-12">
+                                <div class="form-group col-md-2">
+                                    <img class="rounded-circle" src="/img/perfilusuario/perfilusuario-2.jpg" style="width:100px; height:80px">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>ID Login</small></div>
+                                        <div>
+                                            <%=l.id%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>Tipo de Perfil do Usuário</small></div>
+                                        <div>
+                                            <%=l.Tipousuario.tipousuario%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>Usuário de Login</small></div>
+                                        <div>
+                                            <%=l.usuariologin%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>Senha</small></div>
+                                        <div>
+                                            <%=l.senha%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <div align="left" class="form-group">
+                                        <div><small>Status Login</small></div>
+                                        <div>
+                                            <%=l.statuslogin%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <h5>Dados cadastrais do Usuário:</h5><br>
+                            <div class="container-fluid  float-center">
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-2">
+                                        <div align="left" class="form-group">
+                                            <div><small>ID de Usuário</small></div>
+                                            <div>
+                                                <%=l.Usuario.id%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <div align="left" class="form-group">
+                                            <div><small>Nome Completo</small></div>
+                                            <div>
+                                                <%=l.Usuario.nome%>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-8 d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-right">Qual ação deseja realizar?</h4>
+                                </div>
+                                <div class="container responsive col-12">
+                                    <div class="col-1" id="divleft">
+                                        <a onclick="location = '/usuarios/<%=l.Usuario.id%>/edit'" type="button" class="btn btn-success btn-sm-3 profile-button text-white" id="view" onsubmit="return edit();"><i class="fa fa-pencil" title="Editar Este Usuário" style="font-size: 25px;" aria-hidden="true"></i></a>
+                                    </div>
+                                    <div class="col-4" id="divright">
+                                        <a href="/usuarios ">Voltar para Listagem dos Usuarios</a>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <br>
+            </section>
+            </div>
+
+            <script src="/js/alertas.js"></script>
+            <br>
+            <br>
+</body>
+
+</html>

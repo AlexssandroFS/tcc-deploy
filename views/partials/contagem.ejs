@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Contagem BD</title>
+    <link href='../css/bootstrap.min.css' rel='stylesheet'>
+    <link href='../css/font-awesome.css' rel='stylesheet'>
+    <script type='text/javascript' src='../js/jquery.js'></script>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        .container {
+            margin-top: 0px;
+        }
+        
+        .counter-box {
+            display: block;
+            background: #f8f8f8;
+            padding: 20px 20px 20px;
+            text-align: center
+        }
+        
+        .counter-box p {
+            margin: 5px 0 0;
+            padding: 0;
+            color: #f8f8f8;
+            font-size: 16px;
+            font-weight: 200
+        }
+        
+        .counter-box i {
+            font-size: 30px;
+            margin: 0 0 10px;
+            color: #d2d2d2;
+        }
+        
+        .counter {
+            display: block;
+            font-size: 25px;
+            font-weight: 300;
+            color: rgb(241, 234, 234);
+            line-height: 28px
+        }
+        
+        .counter-box.colored {
+            background: #7300bb;
+            ;
+        }
+        
+        .counter-box.colored2 {
+            background: #01927a;
+            ;
+        }
+        
+        .counter-box.colored p,
+        .counter-box.colored i,
+        .counter-box.colored .counter {
+            color: #fff
+        }
+    </style>
+</head>
+
+<body className='snippet-body'>
+
+    <div class="wrapper w3-container">
+        <section class="container-fluid">
+            <div class="wrapper container-fluid">
+                <h5 class="text-center text-dark">Seja Bem-Vindo!!! <b class="text-dark">Fulano de Tal</b></h5>
+                <p class="text-center">(aqui precisa vincular o nome do usuário logado depois...)</p>
+                <br>
+
+                <!-- <h5 style="text-align: center">Quantitativo registrado no Sistema de Dados - <b class="text-dark">TOP AÇAÍ</b>-->
+                </h5>
+
+                <div class="row">
+                    <div class="four col-md-3">
+                        <div class="counter-box bg-dark">
+                            <i class="fa  fa-user"></i>
+                            <span class="counter">1</span>
+                            <p>Perfil Admin</p>
+                        </div>
+                    </div>
+                    <div class="four col-md-3">
+                        <div class="counter-box bg-success">
+                            <i class="fa  fa-user"></i>
+                            <span class="counter">2</span>
+                            <p>Perfil Supervisor</p>
+                        </div>
+                    </div>
+                    <div class="four col-md-3">
+                        <div class="counter-box bg-primary">
+                            <i class="fa  fa-user"></i>
+                            <span class="counter">2</span>
+                            <p>Perfil Atendente</p>
+                        </div>
+                    </div>
+                    <div class="four col-md-3">
+                        <div class="counter-box bg-danger">
+                            <i class="fa  fa-user"></i>
+                            <span class="counter">50</span>
+                            <p>Perfil Cliente</p>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row">
+                    <div class="four col-md-3">
+                        <div class="counter-box bg-info">
+                            <i class="fa fa-group"></i>
+                            <span class="counter">
+                        0
+                      </span>
+                            <p>Fornecedores</p>
+                        </div>
+                    </div>
+                    <div class="four col-md-3">
+                        <div class="counter-box bg-secondary">
+                            <i class="fa fa-tasks"></i>
+                            <span class="counter">
+                                0
+                            </span>
+                            <p>Produtos</p>
+                        </div>
+                    </div>
+
+                    <div class="four col-md-3">
+                        <div class="counter-box colored2">
+                            <i class="fa fa-list"></i>
+                            <span class="counter">
+                    </span>
+                            <p>Categorias de Produtos</p>
+                        </div>
+                    </div>
+                    <div class="four col-md-3">
+                        <div class="counter-box colored">
+                            <i class="fa  fa-shopping-cart"></i>
+                            <span class="counter">15</span>
+                            <p>Pedidos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- somente server para fazer a ANIMAÇÃO das contagens na tela 'HOME'-->
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+
+            $('.counter').each(function() {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 500,
+                    easing: 'swing',
+                    step: function(now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
+
+        });
+    </script>
+    <script type='text/javascript'>
+        var myLink = document.querySelector('a[href="#"]');
+        myLink.addEventListener('click', function(e) {
+            e.preventDefault();
+        });
+    </script>
+
+</body>
+
+</html>

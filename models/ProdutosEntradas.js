@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         qtdecompra: DataTypes.INTEGER,
         valorunit: DataTypes.DOUBLE(10, 2),
         valortotal: DataTypes.DOUBLE(10, 2),
-
+        dataatual:DataTypes.DATE,
         //importando chaves estrangeiras
         produtosid: DataTypes.INTEGER,
         fornecedoresid: DataTypes.INTEGER,

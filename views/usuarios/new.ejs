@@ -1,0 +1,180 @@
+    <style>
+    #imghome {
+            display: none;
+        }
+        label {
+            float: left;
+        }
+    </style>
+
+    <script>
+        const inputName = document.querySelector("#nome");
+        inputName.addEventListener("keypress", function(e) {
+            const keyCode = (e.keyCode ? e.keyCode : e.wich);
+
+            //47 a 58 são números
+            if (keyCode > 47 && keyCode < 58) {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="w3-container-fluid text-center">
+            <section class="w3-container-fluid responsive col-md-12">
+                <br><br><br>  
+                <form class="w3-container-fluid responsive" action="/usuarios" method="POST" onsubmit="return save(); ">
+                    <center>
+                        <h5>Você está no cadastro de <b style='font-size:20px;color:red;'>Novo Usuário:</b>
+                        </h5>
+                    </center>
+                    <div class="row col-md-12">
+                        <div class="row col-md-12">
+                            <div class="col-md-6 border-right border">
+                                <div class="p-1 py-5 text-left">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="text-right">Dados do Perfil do Usuário</h5>
+                                    </div>
+                                    <div class="row mt-12">
+                                        <div class="col-md-3">
+                                            <img class="rounded-circle" src="/img/perfilusuario/perfilusuario-2.jpg" style="width:120px; height:100px">
+                                        </div>
+
+                                        <div class="col-md-5"><label for="tipousuario">Tipo de Usuário</label>
+                                            <select type="select" id="tipousuario" id="validarPerfilLogin" class="form-control" name="tipousuarioid" enabled autofocus required>
+                                                <option value="Escolher">Escolher</option> 
+                                <%if(l.id == l.Usuario.loginid && l.Tipousuario.tipousuario == 'Administrador' || l.tipousuarioid == 1){%>
+                                        <option value="1">Administrador</option>  
+                                        <option value="3">Atendente</option>  
+                                        <option value="5">Cliente</option>  
+                                        <option value="4">Gerente</option>  
+                                        <option value="2">Supervisor</option>  
+                                                  <% } else { %>  <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
+                                                    <% } %>  
+                                <%if(l.id == l.Usuario.loginid && l.Tipousuario.tipousuario == 'Gerente' || l.tipousuarioid == 4){%>
+                                        <option value="3">Atendente</option>  
+                                        <option value="5">Cliente</option>  
+                                        <option value="4">Gerente</option>  
+                                        <option value="2">Supervisor</option>  
+                                                  <% } else { %>  <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
+                                                    <% } %>   
+                                <%if(l.id == l.Usuario.loginid && l.Tipousuario.tipousuario == "Supervisor" || l.tipousuarioid == 2){%>
+                                        <option value="3">Atendente</option>  
+                                        <option value="5">Cliente</option>  
+                                        <option value="2">Supervisor</option>  
+                                                  <% } else { %>  <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
+                                                    <% } %>                          
+                                               </select>
+                                        </div>
+                                        <div class="col-md-4"><label for="statuslogin">Status Login</label>
+                                            <select type="select" id="statuslogin" class="form-control" name="statuslogin" autofocus required>
+                                          <option value="Escolher" enabled autofocus required>Escolher</option> 
+                                           <option value="Ativo">Ativo</option>
+                                           <option value="Inativo">Inativo</option>                                            
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h5 class="text-right">Dados de Login do Usuário</h5>
+                                    </div>
+                                    <div class="row mt-12">
+                                        <div class="col-md-7"><label class="labels">Usuário de Login</label><input type="text" class="form-control" placeholder="Usuario de Login" id="usuariologin" name="usuariologin" enabled autofocus required></div>
+                                        <div class="col-md-5"><label class="labels">Senha</label><input type="text" class="form-control" placeholder="Senha" id="senha" name="senha" enabled autofocus required></div>
+                                    </div>
+                                    <br>
+                                    <div class="d-flex justify-content-between align-items-center mb-3 ">
+                                        <h5 class="text-left ">Dados cadastrais do Usuário:</h5>
+                                    </div>
+                                    <div class="col-md-12"><label class="labels ">Nome Completo</label><input type="text " class="form-control " placeholder="Nome Completo " id="nome" name="nome" enabled autofocus required></div>
+                                    <div class="row mt-12">
+                                        <div class="col-md-5"><label class="labels ">CPF</label><input type="text " class="form-control " placeholder="000.000.000-00 " id="cpf " name="cpf" enabled autofocus required></div>
+                                        <div class="col-md-5"><label class="labels">Data de Nascimento</label><input type="date" class="form-control" placeholder="Data de Nascimento" id="datanasc" name="datanasc" enable autofocus required></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 border-right border">
+                                <div class="p-3 py-5 ">
+                                  <div class="row mt-3">
+                                      <h5 class="text-left">Dados cadastrais do Endereço do Usuário:</h5>
+                                        <div class="col-md-12"><label class="labels">Endereço</label><input type="text" class="form-control" placeholder="Endereco" id="endereco" name="endereco" enabled autofocus required></div>
+                                        <div class="col-md-4"><label cclass="labels">Número</label><input type="text" class="form-control" placeholder="Nro" id="nro" name="nro" enabled autofocus required></div>
+                                        <div class="col-md-8"><label class="labels">Complemento</label><input type="text" class="form-control" placeholder="Complemento" id="complemento" name="complemento" enabled autofocus></div>
+                                        <div class="col-md-12"><label class="labels">Bairro</label><input type="text" class="form-control" placeholder="Bairro" id="bairro" name="bairro" enabled autofocus required></div>
+                                        <div class="col-md-5"><label class="labels">CEP</label><input type="text" class="form-control" placeholder="formato 12.3430-343" id="cep" name="cep" enabled autofocus required></div>
+                                        <div class="form-group col-md-7">
+                                            <label for="estados">Estado</label>
+                                            <select id="estados" class="form-control" name="estados" autofocus required>
+                                                    <option value="Escolher "> Escolher </option>
+                                          <% for(e of estados) { %>
+                                            <option value="<%=e.id%>">
+                                                <%= e.estados%>
+                                                    </option>
+                                                    <% } %>
+                                                        </select>
+                                        </div>
+
+                                        <div class="col-md-12 "><label class="labels">Cidade</label><input type="text" class="form-control" placeholder="Cidade" id="cidade" name="cidade" enabled autofocus required></div>
+                                        <br>
+                                         <br> <div class="row mt-12">
+                                          
+                                            <h5 class="text-left">Dados de Contato do Usuário</h5>
+                                            <div class="row mt-12">
+                                                <div class="col-md-7"><label class="labels">E-mail</label><input type="text" class="form-control" placeholder="E-mail" id="email" name="email" enabled autofocus required></div>
+                                                <div class="col-md-5"><label class="labels">Telefone</label><input type="text" class="form-control" placeholder="129222-3232" id="telefone" name="telefone" enabled autofocus required></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+                        </div>
+                        <br>
+
+
+                        <div class="container-fluid responsive col-12 text-center">
+                            <br>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right col-md-6">Qual ação deseja realizar?</h4>
+                            </div>
+                            <div class="row col-12">
+                                <% if(l.Tipousuario.tipousuario == 'Administrador' || l.Tipousuario.tipousuario == 'Gerente' || l.Tipousuario.tipousuario == 'Supervisor' || l.tipousuarioid == 2) {%>
+                                    <div class="col-md-6" id="divrigth"><button type="submit" class="btn btn-success btn-sm-3 profile-button text-white" onsubmit="return save();"><i class="fa fa-floppy-o" title="Salvar Alterações deste Tipo de Usuário" aria-hidden="true" style="font-size: 25px;">
+                                    </i>Salvar
+                                </button>
+                                    </div>
+                                    <% } else { %>
+
+                                        <% } %>
+                                            <div class="col-md-4" id="divrigth">
+                                                <a href="/usuarios ">Voltar para Listagem dos Usuarios</a>
+                                            </div>
+                            </div>
+                        </div>
+                </form>
+                </div>
+            
+            </section>
+        </div>
+
+        <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="/js/alertas.js "></script>
+ 
+        <!-- Script -->
+        <script src="/js/validarDados.js">
+        </script>

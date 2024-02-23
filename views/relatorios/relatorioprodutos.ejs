@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Top Açaí - Page</title>
+    <link href='#' rel='stylesheet'>
+    <link href='../css/bootstrap.min.css' rel='stylesheet'>
+
+    <link href="../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/tables_view.css" rel="stylesheet">
+    <link href="../js/jquery.js" rel="stylesheet">
+    <style>
+         ::-webkit-scrollbar {
+            width: 8px;
+        }
+        /* Track */
+        
+         ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        /* Handle */
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+        /* Handle on hover */
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        #imghome {
+            display: none;
+        }
+    </style>
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+
+</head>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="wrapper w3-container">
+            <section class="container-fluid">
+                <div class="container-fluid responsive">
+                    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                    <div class="w3-container-fluid responsive " id="pdf2htmldiv">
+                        <div class="responsive container text-left row-col-12">
+                            <center>
+                                <h4 class="col-12 ">Listagem geral, atualmente temos:
+                                    <b style="color: red;">
+                                        "" </b> Produtos <b style="color: rgb(111, 15, 194);">"cadastrados"</b>.
+                                    <br>
+                            </center>
+                            <br>
+
+                        </div>
+                        <table id="example" class="table border-light table-bordered table-responsive-sm table-hover container-fluid" style="width:100%; overflow-x:auto;">
+                            <div class="container responsive row col-12">
+
+                                <div class="col-3" id="divleft">
+                                    <form method="GET" action="/produtos/new">
+                                        <button action="submit" class="btn btn-primary text-left" title="Criar Novo Produto">Novo Produto</button>
+                                    </form>
+                                </div>
+                                <div class="col-6" id="divright">
+                                    <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                        <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="w3-container responsive">
+                                <thead class="responsive bg-dark container text-center">
+                                    <tr class="responsive table-active table-dark">
+                                        <!--0-->
+                                        <th scope="col ">ID</th>
+                                        <th scope="col">Nota/Cupom Fiscal</th>
+                                        <th scope="col ">Razao Social</th>
+                                        <th scope="col ">CNPJ</th>
+                                        <!--3-->
+                                        <th scope="col ">Nome Produto</th>
+                                        <th scope="col ">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="responsive text-center">
+                                    <% for(let c of produtos){%>
+                                        <tr class="text-center">
+                                            <th>
+                                                <%=c.id%>
+
+                                            </th>
+                                            <th>
+                                                <%=c.doctofiscal%>
+                                            </th>
+                                            <th>
+                                                <%=vetorFornecedorRSocial.razaosocial%>
+                                            </th>
+                                            <th>
+                                                <%=vetorFornecedorCnpj.cnpj%>
+                                            </th>
+                                            <td>
+                                                <%=c.nomeprod%>
+                                            </td>
+
+                                            <td>
+                                                <div class="w3-container col-12">
+
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <!-- <a href="/admin/<%= c.id%>" class="btn btn-warning btn-sm-1">View</a>-->
+                                                            <a onclick="location = '/produtos/<%= c.id%>'" class="btn btn-warning btn-sm-3 text-white"><i class="fa fa-eye" title="Visualisar Dados Perfil" aria-hidden="true"></i>
+                                                 </a>
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <a onclick="location = '/produtos/<%= c.id%>/edit'" class="btn btn-success btn-sm-3 text-white"><i class="fa fa-pencil" title="Editar Este Perfil" aria-hidden="true"></i>
+                                                 </a>
+                                                        </div>
+
+                                                        <div class="col-4">
+                                                            <form method="POST" action="/produtos/<%= c.id %>?_method=DELETE" id="view" onsubmit="return del();">
+                                                                <button action="submit" class="btn btn-danger btn-sm-1 text-white" title="Deletar Este Perfil"><span class="fa fa-trash-o"></span>
+                                                        </button>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                            </div>
+
+                            </td>
+                            <% }%>
+                                </tr>
+                                <tfoot class="responsive text-center border-light container-fluid " style="width:100%; overflow-x:auto; ">
+                                    <tr>
+                                        <th scope="col ">ID</th>
+                                        <th scope="col">Nota/Cupom Fiscal</th>
+                                        <th scope="col ">Razao Social</th>
+                                        <th scope="col ">CNPJ</th>
+                                        <!--3-->
+                                        <th scope="col ">Nome Produto</th>
+                                        <th scope="col ">Ações</th>
+                                    </tr>
+                                </tfoot>
+                                <br>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            });
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="/js/alertas.js"></script>
+        <br> <br>
+</body>
+
+</html>

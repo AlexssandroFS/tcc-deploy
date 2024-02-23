@@ -71,6 +71,7 @@ roteador.post('/', async(req, res) => {
 
             req.session.usuariologin = log[0].usuariologin;
             req.session.tipousuarioid = log[0].tipousuarioid;
+            req.session.statuslogin = log[0].statuslogin;
             // req.session.Tipousuario.tipousuario = log[0].Tipousuario.tipousuario;
 
             // session == true;
@@ -79,9 +80,10 @@ roteador.post('/', async(req, res) => {
             console.log("ID do perfil logado é: " + req.session.tipousuarioid);
             console.log("Login utilizado é: " + req.session.usuariologin);
             console.log("Tipo de perfil logado é: " + l.Tipousuario.tipousuario);
-
+            console.log("Status Login: " + l.statuslogin);
             console.log("ID do Usuário logado é: " + l.Usuario.id);
             console.log("Nome do Usuário logado é: " + l.Usuario.nome);
+          
         } else if (log[0].statuslogin == 'Ativo' && log[0].tipousuarioid == '5') {
             l = log[0];
             req.session.usuariologin = log[0].usuariologin;

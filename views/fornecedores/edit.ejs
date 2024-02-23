@@ -1,0 +1,167 @@
+
+    <style>
+        #imghome {
+            display: none;
+        }
+        
+        body {
+            background: white;
+        }
+
+        label {
+            float: left;
+        }
+    </style>
+</head>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="w3-container-fluid text-center">
+            <section class="w3-container-fluid responsive col-md-12">
+                <br><br><br> <br> 
+                <div class="container-fluid responsive">
+                    <div class="responsive container text-left row col-12" id="pdf2htmldiv">
+                        <center>
+                            <h4>Você está editando os dados completos do Fornecedor: <b style="color: red;">
+                                <br>   <%=fornecedores.razaosocial%></b> </h4>
+                        </center>
+                        <form class="text-right container-fluid" method="POST" action="/fornecedores/<%=fornecedores.id%>?_method=PATCH" id="view" onsubmit="return edit();">
+                            <div class="container-fluid border text-center float-center">
+                                <h5 class="text-left">Dados cadastrais do Fornecedor:</h5><br>
+                                <div class="form-row">
+                                    <div class="align-items-rigth col-md-3">
+                                        <img class="rounded-circle" src="/img/perfilusuario/Fornecedor.jpg" style="width:160px; height:100px">
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <div class="form-group">
+                                            <div><small>ID</small></div>
+                                            <div>
+                                                <%=fornecedores.id%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="razaosocial">Razão Social</label>
+                                        <input type="text" class="form-control" id="razaosocial" placeholder="" name="razaosocial" value="<%=fornecedores.razaosocial%>" autofocus/>
+                                    </div>
+                                    <br>
+                                    <div class="form-group col-md-4">
+                                        <label for="nomefantasia">Nome Fantasia</label>
+                                        <input type="text" class="form-control" id="nomefantasia" placeholder="" name="nomefantasia" value="<%=fornecedores.nomefantasia%>" autofocus>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="cnpj">Descrição Ramo de Atuação</label>
+                                        <input type="ramoatuacao" class="form-control" id="ramoatuacao" placeholder="" name="ramoatuacao" value="<%=fornecedores.ramoatuacao%>" autofocus>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="cnpj">CNPJ</label>
+                                        <input type="text" class="form-control" id="cnjp" placeholder="" name="cnpj" value="<%=fornecedores.cnpj%>" autofocus>
+                                    </div>
+                                </div>
+                                <br>
+                                <h5 class="text-left">Dados de endereço do Fornecedor: </h5>
+                                <div class="form-row">
+                                    <div class="form-group col-md-7">
+                                        <label for="endereco">Endereco</label>
+                                        <input type="text" class="form-control" id="endereco" name="endereco" value="<%=fornecedores.Endereco.endereco%>" autofocus>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="nro">Número</label>
+                                        <input type="text" class="form-control" id="nro" name="nro" value="<%=fornecedores.Endereco.nro%>" autofocus>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="complemento">Complemento</label>
+                                        <input type="text" class="form-control" id="complemento" name="complemento" value="<%=fornecedores.Endereco.complemento%>" autofocus>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="bairro">Bairro</label>
+                                        <input type="text" class="form-control" id="bairro" name="bairro" value="<%=fornecedores.Endereco.bairro%>" autofocus>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="cidade">Cidade</label>
+                                        <input type="text" class="form-control" id="cidade" name="cidade" value="<%=fornecedores.Endereco.cidade%>" autofocus>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="estados">Estado</label>
+                                        <select id="estados" class="form-control" name="estados" autofocus>
+                                            <option value="<%=estadosvalue.id%>"> <%=estadosvalue.estados%> </option>
+                                        <% for(estado of estados) { %>
+                                  <option value="<%=estado.id%>">
+                                    <%= estado.estados%>
+                                        </option>
+                                        <% } %>
+                                            </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="cep">CEP</label>
+                                        <input type="text" class="form-control" id="cep" name="cep" value="<%=fornecedores.Endereco.cep%>" autofocus>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <h5 class="text-left">Dados de contato do Fornecedor: </h5>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="" name="email" value="<%=fornecedores.Contato.email%>" autofocus>
+                                    </div>
+
+                                    <div class="form-group col-md-2">
+                                        <label for="telefone">Telefone</label>
+                                        <input type="text" class="form-control" id="telefone" placeholder="" name="telefone" value="<%=fornecedores.Contato.telefone%>" autofocus>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br> <br>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Qual ação deseja realizar?</h4>
+                             </div>
+                             <div class="row col-md-12">
+                                 <div class="col-md-1">
+                                    <% if(l.Tipousuario.tipousuario=='Administrador' ||l.Tipousuario.tipousuario=='Atendente' ||
+                                     l.Tipousuario.tipousuario=='Gerente' ||
+                                     l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>    
+                                 <button type="submit" class="btn btn-success btn-sm-3 profile-button text-white" onsubmit="return save();"><i title="Salvar Alterações deste Fornecedor" style="font-size: 15px;">Salvar</i>
+                                 </button>
+                                 <% } else { %>
+                                     <% } %></div>
+                                 <div class="col-md-1">
+                                                                      
+                                         <form action="/fornecedores/<%= fornecedores.id %>?_method=DELETE"
+                                             method="POST" id="view" onsubmit="return del();">
+                                             <% if(l.Tipousuario.tipousuario=='Administrador' ) {%>
+                                             <button action="submit"
+                                                 class="btn btn-danger btn-sm-3 text-white"
+                                                 title="Deletar Esta Categoria"><i
+                                                     style="font-size: 15px;">Deletar</i>
+                                             </button>
+                                         </form>
+ 
+                                         <% } else { %>
+ 
+                                             <% } %>
+                                 </div>
+                                 <div class="col-md-8">
+                                     <a class="col-md-8" href="/fornecedores ">Voltar para Listagem das
+                                        Fornecedores</a>
+                                 </div>
+                                 <div>
+                                     <div>
+                        </form>
+                    </div>
+                </div> <br> <br>
+                </select>
+
+        </div>
+        <br> <br>
+
+        <script src="/js/alertas.js"></script>
+
+</body>
+
+</html>

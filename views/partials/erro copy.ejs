@@ -1,0 +1,137 @@
+<div class="error-content">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="error-text">
+                <h1 class="error">Oops! Algo deu errado!</h1>
+
+                <div class="col-md-8">
+                    <img src="../img/erro.jpg" id="imgerro">
+                </div>
+                <div class="col-md-4">
+                    <h2> Usuário ou senha não confere com o Banco de Dados! Ou Você não possui cadastro.</h2>
+                    <p>Escolha uma opção: </p>
+
+                    <br>
+                    <a href="/login" class="btn btn-primary btn-round">Voltar ao Login</a>
+                    <a href="/" class="btn btn-success btn-round">Voltar ao Site Inicial</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    #imgerro {
+        width: 30%;
+        height: 30%;
+        padding-top: 0%;
+        padding-left: 0%;
+        padding: 2%;
+        position: relative;
+        display: relative;
+        /*ajusta tamanho da*/
+        /*true é para aparecer a imagem no body da NAVBAR, mas será NONE (False) na outras paginas*/
+        float: center;
+    }
+    
+    body {
+        overflow: hidden;
+    }
+    
+    p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        color: rgb(113, 120, 126);
+        font-family: 'Lato', sans-serif;
+    }
+    
+    .btn-success:hover {
+        color: #fff;
+        background-color: #030303;
+        border-color: #030303;
+    }
+    
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #030303;
+        border-color: #030303;
+    }
+    
+    .btn-success {
+        color: #fff;
+        background-color: #af05c5;
+        border-color: #5ccc00;
+    }
+    
+    .btn-primary {
+        color: #fff;
+        background-color: #298019;
+        border-color: #298019;
+    }
+    
+    .btn-round {
+        border-radius: 30px !important;
+        text-decoration: none;
+        padding: 50 0 70px;
+    }
+    
+    .btn {
+        font-size: 15px;
+        font-weight: 600;
+        padding: 9px 25px;
+        border-width: 2px;
+        box-shadow: 0 3px 8px 0 rgba(41, 49, 89, .15), inset 0 0 0 1px hsla(0, 0%, 100%, .1);
+    }
+    
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+    
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+    /*[404 error page]
+--------------------------*/
+    
+    .error-content {
+        padding: 10 0 70px;
+    }
+    
+    .error-text {
+        text-align: center;
+    }
+    
+    .error {
+        font-size: 70px;
+        font-weight: 100;
+    }
+    
+    @keyframes bob {
+        0% {
+            top: 0;
+        }
+        50% {
+            top: 0.2em;
+        }
+    }
+</style>

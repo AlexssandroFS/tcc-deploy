@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="pedidos.css">
+    <link href="https://fonts.googleapis.com/css?family=Baloo|Reenie+Beanie|Roboto:400,500,500i" rel="stylesheet">
+    <title>Top Açaí - Page</title>
+    <style>
+        #imghome {
+            display: none;
+        }
+        
+        body {
+            /* background: linear-gradient(90deg, #014f0d, #b3038f);*/
+        }
+        
+        #wrap {
+            width: 400px;
+            height: 98%;
+            margin: 0 auto;
+            text-align: left;
+            margin-top: 8px;
+            padding: 5px;
+            background: rgb(245, 242, 245);
+            font-family: AvenirLTStd, Georgia, 'Times New Roman', Times, serif, Helvetica, sans-serif;
+            font-size: 13px;
+            line-height: 16px;
+            border-radius: 5%;
+            border-color: black;
+            border-style: ridge;
+        }
+        
+        #wrap .cont_details fieldset,
+        .cont_order fieldset {
+            margin: 10px;
+            padding: 20px;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            -khtml-border-radius: 10px;
+            border-radius: 10px;
+        }
+        
+        #wrap legend {
+            font-size: 16px;
+            font-family: Georgia, "Times New Roman", Times, serif;
+            color: rgb(11, 1, 1);
+            font-weight: bold;
+            font-style: italic;
+            padding-bottom: 10px;
+        }
+        
+        #wrap .cont_details input {
+            margin-bottom: 10px;
+            color: black;
+        }
+        
+        #wrap label {
+            display: block;
+            font-size: 12px;
+            color: rgb(10, 1, 1);
+            font-weight: bold;
+        }
+        
+        #wrap label.inlinelabel {
+            display: inline;
+        }
+        
+        #wrap .cont_order input {
+            margin-bottom: 5px;
+        }
+        
+        #wrap .cont_order p {
+            padding-top: 5px;
+        }
+        
+        #wrap input[type="radio"] {
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        
+        #wrap input[type="text"]:hover,
+        #wrap input[type="text"]:active {
+            /*background-color: rgb(4, 163, 41);*/
+        }
+        
+        #wrap input#submit {
+            margin: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 50%;
+            margin-left: 25%;
+            margin-right: 25%;
+            border-radius: 3%;
+            border: none;
+            box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+            cursor: pointer;
+            outline: none;
+            transition: 0.2s all;
+        }
+        
+        #wrap input#submit:active {
+            transform: scale(0.98);
+            /* Scaling button to 0.98 to its original size */
+            box-shadow: 3px 2px 22px 1px rgb(3, 3, 3);
+            /* Lowering the shadow */
+        }
+        
+        #wrap div#totalPrice {
+            padding: 8px;
+            font-weight: bold;
+            /*background-color: rgb(4, 163, 41);*/
+            height: 2px;
+            text-align: center;
+            line-height: 10px;
+        }
+        
+        #wrap label.radiolabel {
+            font-weight: normal;
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../partials/home'); %>
+
+        <div class="container responsive row col-12">
+            <div class="container responsive col-5">
+
+                <div class="wrapper w3-container" id="divleft">
+                    <section class="container-fluid">
+                        <h2>Pedido</h2>
+                        <form name="pedido" action="http://arquivo.devmedia.com.br/projeto/requisicao.php" method="POST">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sabor</th>
+                                        <th>Quantidade</th>
+                                        <th>Preço Unitário</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="item">
+                                        <td>Calabresa</td>
+                                        <td>
+                                            <a class="btn-decrementa">-</a>
+                                            <input max="9" class="quantidade" value="0" type="number" name="calabresa">
+                                            <a class="btn-incrementa">+</a>
+                                        </td>
+                                        <td class="preco-item">12.50</td>
+                                    </tr>
+                                    <tr class="item">
+                                        <td>Mozzarella</td>
+                                        <td>
+                                            <a class="btn-decrementa">-</a>
+                                            <input max="9" class="quantidade" value="0" type="number" name="mozzarella">
+                                            <a class="btn-incrementa">+</a>
+                                        </td>
+                                        <td class="preco-item">11.50</td>
+                                    </tr>
+                                    <tr class="item">
+                                        <td>Pepperoni</td>
+                                        <td>
+                                            <a class="btn-decrementa">-</a>
+                                            <input max="9" class="quantidade" value="0" type="number" name="pepperoni">
+                                            <a class="btn-incrementa">+</a>
+                                        </td>
+                                        <td class="preco-item">14.00</td>
+                                    </tr>
+                                    <tr class="item">
+                                        <td>Marguerita</td>
+                                        <td>
+                                            <a class="btn-decrementa">-</a>
+                                            <input max="9" class="quantidade" value="0" type="number" name="marguerita">
+                                            <a class="btn-incrementa">+</a>
+                                        </td>
+                                        <td class="preco-item">13.00</td>
+                                    </tr>
+                                    <tr class="item">
+                                        <td>Portuguesa</td>
+                                        <td>
+                                            <a class="btn-decrementa">-</a>
+                                            <input max="9" class="quantidade" value="0" type="number" name="portuguesa">
+                                            <a class="btn-incrementa">+</a>
+                                        </td>
+                                        <td class="preco-item">14.50</td>
+                                    </tr>
+                                    <tr class="item">
+                                        <td>Alho</td>
+                                        <td>
+                                            <a class="btn-decrementa">-</a>
+                                            <input max="9" class="quantidade" value="0" type="number" name="alho">
+                                            <a class="btn-incrementa">+</a>
+                                        </td>
+                                        <td class="preco-item">13.50</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2">Total</td>
+                                        <td id="total">0</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <input class="btn-success" type="submit" value="enviar" />
+                        </form>
+                    </section>
+
+                    <script src="app.js"></script>
+                    <script>
+                        //incrementa
+                        var botoesIncrementa = document.querySelectorAll(".btn-incrementa");
+
+                        for (let botao of botoesIncrementa) {
+                            botao.addEventListener('click', incrementa);
+
+                            function incrementa() {
+                                var item = botao.closest('.item');
+
+                                var input = item.querySelector('.quantidade');
+                                input.value++;
+
+                                var preco = pegaPrecoItem(item);
+                                adicionaAoTotal(preco);
+
+                            }
+                        }
+
+
+
+                        //decrementa
+                        var botoesDecrementa = document.querySelectorAll(".btn-decrementa");
+
+                        for (let botao of botoesDecrementa) {
+                            botao.addEventListener('click', decrementa);
+
+                            function decrementa() {
+                                var item = botao.closest('.item');
+
+                                var input = item.querySelector('.quantidade');
+
+                                if (input.value > 0) {
+                                    input.value--;
+                                    var preco = pegaPrecoItem(item);
+                                    adicionaAoTotal(-preco);
+                                } else {
+                                    console.log(input.value);
+                                }
+
+
+                            }
+                        }
+
+                        var formPedido = document.forms.pedido;
+
+                        formPedido.addEventListener('submit', function(event) {
+
+                            var contador = 0;
+
+                            var inputs = formPedido.querySelectorAll("input.quantidade");
+
+                            for (let input of inputs) {
+                                if (input.value > 0) {
+                                    contador++;
+                                }
+                            }
+
+                            if (contador == 0) {
+                                alert("Deve ter pelo menos 1 pizza no pedido");
+                                event.preventDefault();
+                            }
+                        });
+
+                        //funções auxiliares
+                        function pegaPrecoItem(item) {
+                            var precoItem = item.querySelector('.preco-item');
+                            return Number(precoItem.textContent);
+                        }
+
+                        function adicionaAoTotal(valor) {
+                            var elementoTotal = document.querySelector("#total");
+                            elementoTotal.textContent = valor + Number(elementoTotal.textContent);
+                        }
+                    </script>
+                </div>
+            </div>
+
+
+
+            <div class="container responsive col-5">
+
+
+                <div class="wrapper w3-container" id="divright">
+                    <section class="container-fluid">
+                        <div class="container-fluid">
+                            <div class="responsive container text-center row-col-10">
+                                <div id="wrap">
+                                    <form action="" id="acaiform" onsubmit="return false;">
+                                        <div>
+                                            <div class="cont_order">
+                                                <fieldset>
+                                                    <legend>Monte o seu Delicioso Açaí!</legend>
+                                                    <label>Tamanho do Copo</label><br>
+                                                    <label class='radiolabel'><input type="radio"  name="selectedacai" value="um" onclick="calculateTotal()" />Tamanho pequeno -  serve 1 pessoa (R$20)</label><br/>
+                                                    <label class='radiolabel'><input type="radio"  name="selectedacai" value="dois" onclick="calculateTotal()" />Tamanho médio - serve 2 pessoas(R$25)</label><br/>
+                                                    <label class='radiolabel'><input type="radio"  name="selectedacai" value="tres" onclick="calculateTotal()" />Tamanho grande - serve 3 pessoas(R$35)</label><br/>
+                                                    <label class='radiolabel'><input type="radio"  name="selectedacai" value="quatro" onclick="calculateTotal()" />Tamanho extra grande - serve 5 pessoas(R$75)</label><br/>
+                                                    <br/>
+                                                    <label>Recheio</label>
+
+                                                    <select id="Recheio" name="Recheio" onchange="calculateTotal()">
+                <option value="None">Selecione o Recheio</option>
+                <option value="Amendoin">Amendoin(R$3)</option>
+                <option value="Nutella">Nutella(R$5)</option>
+                <option value="Brigadeiro">Brigadeiro(R$7)</option>
+                <option value="Banana">Banana(R$8)</option>
+                <option value="Morango">Morango(R$10)</option>
+                <option value="Granola">Granola(R$5)</option>
+
+               </select>
+                                                    <br/>
+                                                    <p>
+                                                        <label for='condensado' class="inlinelabel">Incluir Leite Condensado(R$5)</label>
+                                                        <input type="checkbox" id="condensado" name='condensado' onclick="calculateTotal()" />
+                                                    </p>
+
+
+                                                    <p>
+                                                        <label for='ninho' class="inlinelabel">Incluir Leite Ninho(R$1)</label>
+                                                        <input type="checkbox" id="ninho" name='includeCherry' onclick="calculateTotal()" />
+                                                    </p>
+
+                                                    <div id="totalPrice" style="border-color: black; border-radius:10%; font-size: 20px;"></div>
+
+                                                </fieldset>
+
+                                                <button class="col-4 btn-success text-center" type='submit' id='submit' onSubmit={clicarAlerta} value='Enviar' onclick="calculateTotal(), clicarAlerta()" />Salvar Pedido</button>
+                                            </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                    </section>
+                    </div>
+
+
+                    <script>
+                        const valores = new Array();
+                        valores["um"] = 20;
+                        valores["dois"] = 25;
+                        valores["tres"] = 35;
+                        valores["quatro"] = 75;
+
+                        const valores_recheios = new Array();
+                        valores_recheios["Amendoin"] = 3;
+                        valores_recheios["Nutella"] = 5;
+                        valores_recheios["Brigadeiro"] = 7;
+                        valores_recheios["Banana"] = 8;
+                        valores_recheios["Morango"] = 10;
+                        valores_recheios["Granola"] = 5;
+
+                        function getpreco() {
+                            let acaipreco = 0;
+                            let theForm = document.forms["acaiform"];
+
+                            let selectedacai = theForm.elements["selectedacai"];
+
+                            for (var i = 0; i < selectedacai.length; i++) {
+                                if (selectedacai[i].checked) {
+                                    acaipreco = valores[selectedacai[i].value];
+
+                                    break;
+                                }
+                            }
+
+                            return acaipreco;
+                        }
+
+                        function getFillingPrice() {
+                            let cakeFillingPrice = 0;
+
+                            let theForm = document.forms["acaiform"];
+
+                            let selectedFilling = theForm.elements["Recheio"];
+
+                            cakeFillingPrice = valores_recheios[selectedFilling.value];
+
+                            return cakeFillingPrice;
+                        }
+
+                        function leite() {
+                            let condensadoPreco = 0;
+
+                            let theForm = document.forms["acaiform"];
+
+                            let condensado = theForm.elements["condensado"];
+
+                            if (condensado.checked == true) {
+                                condensadoPreco = 5;
+                            }
+
+                            return condensadoPreco;
+                        }
+
+                        function ninho() {
+                            let ninhoPreco = 0;
+
+                            let theForm = document.forms["acaiform"];
+
+                            let ninho = theForm.elements["ninho"];
+
+                            if (ninho.checked == true) {
+                                ninhoPreco = 1;
+                            }
+
+                            return ninhoPreco;
+                        }
+
+                        function calculateTotal() {
+                            let precoFinal = getpreco() + getFillingPrice() + leite() + ninho();
+
+                            let divobj = document.getElementById("totalPrice");
+
+                            divobj.style.display = "block";
+                            divobj.innerHTML = `Preço Total R$${precoFinal}`;
+                        }
+
+                        function hideTotal() {
+                            let divobj = document.getElementById("totalPrice");
+                            divobj.style.display = "none";
+                        }
+
+                        function clicarAlerta() {
+                            let alerta = document.getElementById("submit");
+                            let nome = document.getElementById("nome").value;
+                            let lista = document.querySelectorAll("#nome, #endereço, #telefone");
+                            lista.forEach(function(listas) {
+                                if (listas.value == 0) {
+                                    alert("Preencha os campos de seu contato.");
+
+                                    evt.preventDefault();
+                                } else {
+                                    alert(`Pedido de ${nome} foi criado com sucesso!`);
+                                    window.location.href = "index.html";
+                                }
+                            })
+                        }
+                    </script>
+                </div>
+
+            </div>
+            <br> <br>
+
+</body>
+
+</html>

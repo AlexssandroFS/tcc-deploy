@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/tables_view.css" rel="stylesheet">
+    <title>Home Cardápio</title>
+    <style>
+        #imghome {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('../partials/home'); %>
+
+        <div class="wrapper w3-container">
+            <section class="container-fluid">
+                <div class="container-fluid">
+                    <div class="col-8 container-fluid text-left ">
+                        <br>
+                        <h1>View Cadastro Completo Cardápio</h1><br>
+                        <br>
+                        <div class="row" id="view">
+                            <div class="form-group col-md-9">
+                                <li><b>ID:</b>
+                                    <%=comment.id%>
+                                </li>
+                            </div><br>
+                            <div class="form-group col-md-9">
+                                <li><b>Descrição do Item:</b>
+                                    <%=comment.itemcardapio%>
+                                </li>
+                            </div><br>
+                            <div class="form-group col-md-9">
+                                <li><b>Valor do Item:</b>
+                                    <%=comment.valor%>
+                                </li>
+                            </div><br>
+                            <div class="form-group col-md-9">
+                                <li><b>Categoria do Item:</b>
+                                    <%=comment.categoria%>
+                                </li>
+                            </div><br>
+                            <br><br>
+                        </div>
+                        <a class="text-left" href="/manut-site-cardapio ">Voltar para Listagem Home Cardápio</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <br><br>
+</body>
+
+</html>

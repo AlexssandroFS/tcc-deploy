@@ -1,0 +1,122 @@
+<link href="../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    #img {
+        width: auto;
+        height: auto;
+        padding-top: 0%;
+        padding-left: 0%;
+        padding: 2%;
+        position: relative;
+        display: relative;
+        /*ajusta tamanho da*/
+        /*true é para aparecer a imagem no body da NAVBAR, mas será NONE (False) na outras paginas*/
+        float: center;
+    }
+    
+    img {
+        border-radius: 20%;
+    }
+    
+    .btn-success:hover {
+        color: #fff;
+        background-color: #030303;
+        border-color: #030303;
+    }
+    
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #030303;
+        border-color: #030303;
+    }
+    
+    .btn-success {
+        color: #fff;
+        background-color: #af05c5;
+        border-color: #5ccc00;
+    }
+    
+    .btn-primary {
+        color: #fff;
+        background-color: #298019;
+        border-color: #298019;
+    }
+    
+    .btn-round {
+        border-radius: 30px !important;
+        text-decoration: none;
+        padding: 50 0 70px;
+    }
+    
+    .btn {
+        font-size: 15px;
+        font-weight: 600;
+        padding: 9px 25px;
+        border-width: 2px;
+        box-shadow: 0 3px 8px 0 rgba(41, 49, 89, .15), inset 0 0 0 1px hsla(0, 0%, 100%, .1);
+    }
+    
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+    
+    .btn:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+    /*[404 error page]
+    --------------------------*/
+    
+    @keyframes bob {
+        0% {
+            top: 0;
+        }
+        50% {
+            top: 0.2em;
+        }
+    }
+</style>
+
+<body>
+    <br>
+    <h3 style="text-align: center;">Parabéns, Você está logado como
+        <b style="color:red;"> <%=l.usuariologin%> </b> e perfil <b style="color:red;"><%=l.Tipousuario.tipousuario%></b>!!!
+        </b>
+    </h3>
+
+
+    <center>
+        <div class="w3-container col-md-12" id="imghome">
+            <div class="w3-container col-md-12">
+                <!--  <div class="container col-md-3">
+                    <img src="../img/slide/home.jpg" id="imgpaperhome" alt=" ">
+                </div>
+                -->
+            </div>
+
+            <div class="container-fluid col-md-12">
+                <h1> Bem-Vindo ao:
+                    <b style="color: rgb(62, 196, 5);">P</b><b style="color: rgb(31, 12, 201);">G</b><b style="color: rgb(3, 2, 18);">D</b><b style="color:rgb(238, 12, 8);">E</b>
+                </h1>
+                <img src="../img/logoPGDE.png" id="img" alt=" ">
+
+                <h1> Clique abaixo: </h1>
+                <h2><b>  <a class="btn btn-success btn-round" href="/home">Acessar o sistema</a></b></h2>
+            </div>
+        </div>
+
+    </center>
+</body>

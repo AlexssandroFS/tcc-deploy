@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Top Açaí - Page</title>
+    <link href='#' rel='stylesheet'>
+
+    <link href="../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/tables_view.css" rel="stylesheet">
+    <link href="../../js/jquery.js" rel="stylesheet">
+    <style>
+         ::-webkit-scrollbar {
+            width: 8px;
+        }
+        /* Track */
+        
+         ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        /* Handle */
+        
+         ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+        /* Handle on hover */
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        #imghome {
+            display: none;
+        }
+    </style>
+</head>
+
+<body className='snippet-body'>
+    <div class="wrapper w3-container">
+        <section class="container-fluid">
+            <div class=" container-fluid">
+                <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
+
+                <table id="example" class="table border-light table-bordered table-responsive-sm table-hover container-fluid" style="width:100%; overflow-x:auto;">
+
+                    <br>
+                    <thead class="responsive bg-dark container text-center">
+                        <tr class="table-active table-dark">
+                            <!--1-->
+                            <th scope="col">Item do Cardápio</th>
+                            <!--1-->
+                            <th scope="col">Descrição dos Ingredientes do Cardápio</th>
+                            <!--3-->
+                            <th scope="col">Categoria do Cardápio</th>
+                            <!--4-->
+                            <th scope="col">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <% for(let c of cardapios) {%>
+                            <tr id="myUL" class="text-center">
+
+                                <td>
+                                    <%=c.itemcardapio%>
+                                </td>
+                                <td>
+                                    <%=c.descricao%>
+                                </td>
+                                <td>
+                                    <%=c.Categorium.nomecategoria%>
+
+                                </td>
+                                <td>
+                                    R$
+                                    <%=c.valor%>
+                                </td>
+
+                                <% }%>
+                            </tr>
+                            <tfoot class="text-center border-light container-fluid " style="width:100%; overflow-x:auto; ">
+                                <tr>
+                                    <!--1-->
+                                    <th scope="col">Item do Cardápio</th>
+                                    <!--1-->
+                                    <th scope="col">Descrição dos Ingredientes do Cardápio</th>
+                                    <!--3-->
+                                    <th scope="col">Categoria do Cardápio</th>
+                                    <!--4-->
+                                    <th scope="col">Valor</th>
+                                </tr>
+                            </tfoot>
+                            <br>
+                </table>
+            </div>
+    </div>
+    </section>
+    </div>
+    <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+    <script type='text/javascript'>
+        var myLink = document.querySelector('a[href="# "]');
+        myLink.addEventListener('click', function(e) {
+            e.preventDefault();
+        });
+    </script>
+    <br>
+
+    <br>
+    <center>
+        <div class="col-md-8">
+            <a class="col-md-6" href="/cardapios ">Voltar para Listagem de Cardapios</a>
+        </div>
+    </center> <br>
+
+    <br>
+</body>
+
+</html>

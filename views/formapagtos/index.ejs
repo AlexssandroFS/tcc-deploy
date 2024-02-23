@@ -1,0 +1,209 @@
+<link href="../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/tables_view.css" rel="stylesheet">
+<link href="../../js/jquery.js" rel="stylesheet">
+<link href='../../css/bootstrap.min.css' rel='stylesheet'>
+<style>
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Track */
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    #imghome {
+        display: none;
+    }
+</style>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+<body className='snippet-body'>
+    <%- include('../partials/home'); %>
+        <div class="wrapper w3-container">
+            <br><br><br><br>
+            <section class="container-fluid">
+                <div class=" container-fluid">
+                    <div class="responsive container text-left row-col-12">
+                        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+                        <script type="text/javascript"
+                            src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+                        <div class="container-fluid responsive col-md-12" id="pdf2htmldiv">
+                            <div class="container responsive row col-md-12">
+                                <table id="example"
+                                    class="w3-container-fluid col-md-12 table  border-light table-bordered table-responsive-sm table-hover"
+                                    style="width:100%; overflow-x:auto;">
+                                    <div class="responsive container text-left row col-md-12">
+                                        <div class="col-md-3">
+                                            <form method="GET" action="/formapagtos/new">
+                                                <button action="submit" class="btn btn-danger text-left"
+                                                    title="Cadastrar Nova Forma de Pagamento">Cadastrar Nome da Forma de
+                                                    Pagamento</button>
+                                            </form>
+                                        </div>
+                                        <div class="container responsive row col-md-8">
+                                            <h4>Atualmente temos:
+                                                <b style="color: red;">
+                                                    "<%=countFormapagto%>"</b> Forma(s) de Pagamento
+                                                <b style="color: rgb(111, 15, 194);">"cadastradas"</b>.
+
+                                        </div>
+                                        <div class="col-md-1">
+                                            <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                                <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="w3-container responsive">
+                                        <thead class="responsive bg-dark container text-center">
+                                            <tr class="responsive table-active table-dark">
+                                                <!--0-->
+                                                <th scope="col ">ID</th>
+                                                <!--3-->
+                                                <th scope="col ">Nome da Forma de Pagamento</th>
+                                                <th scope="col ">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="w3-container-fluid responsive text-center">
+
+                                            <% for(let c of formapagtos){%>
+                                                <tr class="text-center">
+                                                    <th>
+                                                        <%=c.id%>
+                                                    </th>
+                                                    <td>
+                                                        <%=c.formapagto%>
+                                                    </td>
+                                                    <td>
+                                                        <div class="w3-container responsive float-center">
+                                                            <div class="w3-container responsiver row col-md-12">
+                                                                <div class="col-md-4">
+                                                                    <a
+                                                                        onclick="location = '/formapagtos/<%= c.id%>'"><i
+                                                                        style='font-size:28px;color:rgb(17, 59, 247)'
+                                                                            class="far fa-clipboard fa-xl" aria-hidden="true"
+                                                                            title="visualisar Este Nome da Forma de Pagto"></i>
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <a
+                                                                        onclick="location = '/formapagtos/<%= c.id%>/edit'"><i
+                                                                            style='font-size:28px;color:rgb(6, 218, 52)'
+                                                                            class="far fa-edit fa-xl" aria-hidden="true"
+                                                                            title="Editar Este Nome da Forma de Pagto"></i>
+                                                                    </a>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <% if(l.Tipousuario.tipousuario=='Administrador' )
+                                                                        {%>
+                                                                        <form method="POST"
+                                                                            action="/formapagtos/<%= c.id %>?_method=DELETE"
+                                                                            onsubmit="return del();">
+                                                                            <button action="submit"><i
+                                                                                    style='font-size:20px;color:rgb(218, 6, 6);'
+                                                                                    class="fas fa-trash-alt"
+                                                                                    title="Deletar Este Nome da Forma de Pagto"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                        <% } else { %>
+
+                                                                            <% } %>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                    </div>
+
+                                    </td>
+                                    <% }%>
+                                        </tr>
+                                        <tfoot class="responsive text-center border-light container-fluid "
+                                            style="width:100%; overflow-x:auto; ">
+                                            <tr>
+                                                <!--0-->
+                                                <th scope="col ">ID</th>
+                                                <!--3-->
+                                                <th scope="col ">Nome da Forma de Pagamento</th>
+                                                <th scope="col ">Ações</th>
+                                            </tr>
+                                        </tfoot>
+                                        <br>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+        <script type='text/javascript'
+            src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript' src='#'></script>
+        <script type='text/javascript'>
+            $(document).ready(function () {
+                /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                      Passando para o Português
+                      */
+                $('#example').DataTable({
+                    "language": {
+                        "sLengthMenu": "Mostrar _MENU_ entradas",
+                        "lengthMenu": "Mostrar _MENU_ registros por página",
+                        "zeroRecords": "Nada encontrado - desculpe",
+                        "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
+                        "infoEmpty": "No records available",
+                        "infoFiltered": "(filtrado de _MAX_ total registros)",
+                        "oPaginate": {
+                            "sFirst": "First",
+                            "sLast": "Last",
+                            "sNext": "Próximo",
+                            "sPrevious": "Anterior"
+                        },
+
+                        "sProcessing": "Processando...",
+                        "sSearch": "Pesquisar:",
+                        "sSearchPlaceholder": "",
+                        "sUrl": "",
+
+                    }
+                });
+            });
+        </script>
+        <script type='text/javascript'>
+            var myLink = document.querySelector('a[href="# "]');
+            myLink.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        </script>
+
+        <script src="/js/alertas.js"></script>
+        <br> <br>
+</body>

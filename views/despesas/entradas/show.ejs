@@ -1,0 +1,171 @@
+<link href="../../../css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../css/tables_view.css" rel="stylesheet">
+<link href="../../../js/jquery.js" rel="stylesheet">
+<link href='../../../css/bootstrap.min.css' rel='stylesheet'>
+<style>
+    #imghome {
+        display: none;
+    }
+</style>
+
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+
+
+    function formataData() {
+        let data = new Date(),
+            dia = data.getDate().toString().padStart(2, '0'),
+            mes = (data.getMonth() + 1).toString().padStart(2, '0'),
+            ano = data.getFullYear();
+        return `${dia}/${mes}/${ano}`;
+    }
+
+    console.log(formataData());
+</script>
+</head>
+
+<body className='snippet-body'>
+    <%- include('../../partials/home'); %>
+        <div class="wrapper container-fluid">
+            <section class="container-fluid" id="pdf2htmldiv">
+                <br><br><br> <br>
+                <div class="container-fluid">
+                    <div class="responsive container text-left row-col-12">
+                        <center>
+                            <h4>Você está visualisando os dados completos da Entrade de Despesa: <b style="color: red;">
+                                    <br>
+                                    <%=despesasentradas.Despesa.nomedespesa%>
+                            </h4>
+                            </b>
+                        </center> <br>
+                        <div class="container-fluid float-center">
+                            <div class="row col-md-12">
+                                <div class="form col-md-3">
+                                    <img class="rounded" src="/img/perfilusuario/despesas.jpeg"
+                                        style="width:160px; height:160px">
+                                </div>
+                                <div class="responsive container form-group row border text-center col-md-9">
+                                    <h5>Dados de Identificação do Produto:</h5>
+                                    <div class="form-group col-md-2">
+                                        <div align="left" class="form-group">
+                                            <div><small>ID da Entrada</small></div>
+                                            <div>
+                                                <%=despesasentradas.id%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <div align="left" class="form-group">
+                                            <div><small>ID da Despesa</small></div>
+                                            <div>
+                                                <%=despesasentradas.despesasid%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <div align="left" class="form-group">
+                                            <div><small>Nome da Despesa</small></div>
+                                            <div>
+                                                <%=despesasentradas.Despesa.nomedespesa%>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <div align="left" class="form-group">
+                                            <div><small>Nro Documento</small></div>
+                                            <div>
+                                                <%=despesasentradas.nrodocto%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-7">
+                                        <div align="left" class="form-group">
+                                            <div><small>Descrição</small></div>
+                                            <div>
+                                                <%=despesasentradas.descricao%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <img class="figure-img img-fluid rounded" src="/images/img.png" width="288" height="30">-->
+
+                                    <div class="form-group col-md-3">
+                                        <div align="left" class="form-group">
+                                            <div><small>Data de Vencimento</small></div>
+                                            <div>
+                                                <%=despesasentradas.datavalidade%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <div align="left" class="form-group">
+                                            <div><small>Valor Compra</small></div>
+                                            <div>
+                                                <%=despesasentradas.valortotal%>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br>
+
+                                <!-- END container-lg border -->
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="col-4 d-flex justify-content-between align-items-rigth mb-3">
+                            <h4 class=" text-right">Qual ação deseja realizar?</h4>
+                        </div>
+                        <div class="container responsive row col-md-12">
+                            <div class="col-md-1">
+                                <% if(l.Tipousuario.tipousuario=='Administrador' || l.Tipousuario.tipousuario=='Gerente'
+                                    || l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
+                                    <a onclick="location = '/despesas/entradas/<%=despesasentradas.id%>/edit'"
+                                        type="button" class="btn btn-success btn-sm-3 profile-button text-white"
+                                        onsubmit="return edit();"><i title="Editar Esta Despesa"
+                                            style="font-size: 15px;">Editar</i></a>
+                                    <% } else { %>
+
+                                        <% } %>
+                            </div>
+                            <div class="col-md-2">
+                                <% if(l.Tipousuario.tipousuario=='Administrador' ) {%>
+                                    <form method="POST"
+                                        action="/despesas/entradas/<%=despesasentradas.id %>?_method=DELETE" id="view"
+                                        onsubmit="return del();">
+                                        <button action="submit" class="btn btn-danger btn-sm-3 text-white"
+                                            title="Deletar Esta Despesa"><i style="font-size: 15px;">Deletar</i>
+                                        </button>
+                                    </form>
+                                    <% } else { %>
+
+                                        <% } %>
+                            </div>
+                            <div class="col-md-5">
+                                <a href="/despesas/entradas ">Voltar para Listagem de Entradas das Despesas</a>
+                            </div>
+                            <div class="col-md-1">
+                                <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                    <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"
+                                        title="Imprimir os Dados Desta Despesa"></i>
+                            </div>
+
+
+                        </div>
+            </section>
+            <br>
+        </div>
+
+        <script src="../../js/alertas.js"></script>
+
+</body>
