@@ -17,6 +17,16 @@ const connection = mysql.createConnection({
     /*password: '',  indica que o BD está sem senha*/
     database: 'banco',
     /*Nome do BANCO DE DADOS no MySql phpmyadmin*/
+
+
+    Hostname: dpg-cncdq96v3ddc73c65cq0-a
+Port: 5432
+Database: banco_7j3p
+Username: root
+Password: gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv
+DATABASE_Internal_URL:"postgres://root:gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv@dpg-cncdq96v3ddc73c65cq0-a/banco_7j3p"
+DATABASE_External_URL: "postgres://root:gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv@dpg-cncdq96v3ddc73c65cq0-a.oregon-postgres.render.com/banco_7j3p"
+
 });
 //recebendo o controler pelo index.js dentro do diretorio controllers
 const controller = require('./controllers');
