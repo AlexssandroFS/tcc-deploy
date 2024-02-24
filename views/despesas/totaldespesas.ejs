@@ -14,25 +14,28 @@
     <link href="../css/tables_view.css" rel="stylesheet">
     <link href="../js/jquery.js" rel="stylesheet">
     <style>
-         ::-webkit-scrollbar {
+        ::-webkit-scrollbar {
             width: 8px;
         }
+
         /* Track */
-        
-         ::-webkit-scrollbar-track {
+
+        ::-webkit-scrollbar-track {
             background: #f1f1f1;
         }
+
         /* Handle */
-        
-         ::-webkit-scrollbar-thumb {
+
+        ::-webkit-scrollbar-thumb {
             background: #888;
         }
+
         /* Handle on hover */
-        
-         ::-webkit-scrollbar-thumb:hover {
+
+        ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
-        
+
         #imghome {
             display: none;
         }
@@ -79,36 +82,51 @@
 
 </head>
 
-<body className='snippet-body'>
+body className='snippet-body'>
     <%- include('../partials/home'); %>
-        <section class="container-fluid">
+        <div class="wrapper container-fluid">
+            <br><br><br>
+            <section class="container-fluid" id="pdf2htmldiv">
             <div class=" container-fluid">
                 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-                <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-                <div class="responsive container text-left col-12">
-                    <center>
-                        <div class="col-12">
-                            <h4>Relatório das Despesas: <b style="color: rgb(111, 15, 194);">: ENTRADAS - SAÍDAS </b>.
-                                <br>Saldo Atual e Pendências:
-                                <b style="color: red;"><%=somaGeralDespesasEntradas%> -  <%=somaGeralDespesasSaidas%> = <%=saldopendencia%> </b>
-                            </h4>
-                            <footer>
-                                <b>OBS:</b> Saldo em aberto por pagamento a menor ou valor foi feita a Entrada da Despesa e ainda não foi feita a Saída.
-                            </footer>
-                        </div>
-                    </center>
+                <script type="text/javascript"
+                    src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+               <center>
+                <div class="responsive container col-md-12">
+                    <h4><b>Relatório das Despesas: <b style="color: rgb(4, 0, 255);">: ENTRADAS </b>- <b
+                                style="color: rgb(255, 8, 8);"> SAÍDAS </b>.
+                            <br>Saldo Atual e Pendências:
+                            <b style="color: rgb(4, 0, 255);">
+                                <%=somaGeralDespesasEntradas%>
+                            </b> - <b style="color: rgb(255, 8, 8);">
+                                <%=somaGeralDespesasSaidas%>
+                            </b> = <b style="color: rgb(18, 18, 19);">
+                                <%=saldopendencia%>
+                            </b>
+                    </h4>
+                    <div class="responsive container row-col-md-12">
+                        <div class="responsive container col-md-9">
+                    <footer>Obs: Saldo é referente a valor de Entrada que ainda não foi dada a Saída.</footer></div>
                 </div>
+                 <div class="col-md-1">
+
+                    <a onclick="printDiv('pdf2htmldiv')" type="button">
+                        <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                </div>
+            </div>
+
+            </center>
                 <br>
 
-                <table id="example" class="table border-light table-bordered table-responsive-sm table-hover container-fluid" style="width:98%; max-height: 70%; overflow-x:auto; "><br>
-                    <div class="col-3" id="divright">
-                        <a onclick="printDiv('pdf2htmldiv')" type="button">
-                            <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
-                    </div>
+                <table id="example"
+                    class="table border-light table-bordered table-responsive-sm table-hover container-fluid"
+                    style="width:98%; max-height: 70%; overflow-x:auto; "><br>
+                    
                     <div class="w3-container responsive">
                         <thead class="responsive bg-dark container text-center">
                             <tr class="responsive table-active table-dark">
-                                <th scope="col " style="color:rgb(255, 255, 251); background: rgb(134, 1, 19);">ID Despesa Entrada na Saida Agrupado</th>
+                                <th scope="col " style="color:rgb(255, 255, 251); background: rgb(134, 1, 19);">ID
+                                    Despesa Entrada na Saida Agrupado</th>
                                 <th scope="col ">ID Despesa Entrada</th>
                                 <th scope="col ">Qtde Laçto Entrada</th>
                                 <th scope="col ">Qtde Laçto Saída</th>
@@ -117,7 +135,8 @@
                                 <th scope="col ">Descrição Pagto Despesa na Saída</th>
                                 <th scope="col ">Soma Valor Total Entrada Despesa</th>
                                 <th scope="col ">Soma Valor Total Saída Despesa</th>
-                                <th scope="col " style="color:rgb(255, 255, 251); background: rgb(1, 134, 8);">Saldo Pendente</th>
+                                <th scope="col " style="color:rgb(255, 255, 251); background: rgb(1, 134, 8);">Saldo
+                                    Pendente</th>
 
                                 <!--  <th scope="col ">Ações</th>-->
                             </tr>
@@ -125,7 +144,7 @@
                         <tbody class="responsive text-center">
                             <% for(let s of valorAtualQtdeSaidas){%>
                                 <% for(let e of valorAtualQtdeEntradas){%>
-                                    <% if(s.Id_Entrada_na_Saida == e.Id_Entrada){%>
+                                    <% if(s.Id_Entrada_na_Saida==e.Id_Entrada){%>
 
                                         <tr class="text-center">
                                             <th style="color:rgb(255, 255, 251); background: rgb(134, 1, 19);">
@@ -174,7 +193,8 @@
 
                     <% }%>
                         </tr>
-                        <tfoot class="responsive text-center border-light container-fluid " style="width:100%; overflow-x:auto; ">
+                        <tfoot class="responsive text-center border-light container-fluid "
+                            style="width:100%; overflow-x:auto; ">
                             <tr>
                                 <th scope="col ">ID Despesa Entrada na Saida Agrupado</th>
                                 <th scope="col ">ID Despesa Entrada Agrupado</th>
@@ -196,12 +216,13 @@
                         </div>
 
                         </div>
-                        <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+                        <script type='text/javascript'
+                            src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
                         <script type='text/javascript' src='#'></script>
                         <script type='text/javascript' src='#'></script>
                         <script type='text/javascript' src='#'></script>
                         <script type='text/javascript'>
-                            $(document).ready(function() {
+                            $(document).ready(function () {
                                 /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
                                       Passando para o Português
                                       */
@@ -231,7 +252,7 @@
                         </script>
                         <script type='text/javascript'>
                             var myLink = document.querySelector('a[href="# "]');
-                            myLink.addEventListener('click', function(e) {
+                            myLink.addEventListener('click', function (e) {
                                 e.preventDefault();
                             });
                         </script>
