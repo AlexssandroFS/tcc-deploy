@@ -1,3 +1,10 @@
+const { Pool, Client } = require('pg');
+const connectionString = 'postgres://root:gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv@dpg-cncdq96v3ddc73c65cq0-a.oregon-postgres.render.com/banco_7j3p';
+ 
+const pool = new Pool({
+  connectionString,
+})
+    
 const mysql = require('mysql'); /*utilizado para acessar o BD/ */
 const express = require('express');
 const pg = require('pg');
