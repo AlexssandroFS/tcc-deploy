@@ -21,8 +21,7 @@ const connection = createConnection({
 
     type: 'postgres',
          
-CONNECTION_STRING=postgresql,
-Hostname: dpg-cncdq96v3ddc73c65cq0-a,
+ostname: dpg-cncdq96v3ddc73c65cq0-a,
 Port: 5432,
 Database: banco_7j3p,
 Username: root,
