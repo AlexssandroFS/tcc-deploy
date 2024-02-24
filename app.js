@@ -15,15 +15,24 @@ const session = require('express-session'); /*utilizado para verificar sessao de
 const cookieParser = require("cookie-parser");
 //const redditData = require('./data.json');
 const connection = mysql.createConnection({
-    type: 'mysql',
+    CONNECTION_STRING:'postgresql',
+    Hostname:'dpg-cncdq96v3ddc73c65cq0-a',
+    Port:'5432',
+    type: 'postgresql',
+    Database:'banco_7j3p',
+    Username:'root',
+    Password:'gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv',
+    DATABASE_Internal_URL:'postgres://root:gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv@dpg-cncdq96v3ddc73c65cq0-a/banco_7j3p',
+    DATABASE_External_URL:'postgres://root:gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv@dpg-cncdq96v3ddc73c65cq0-a.oregon-postgres.render.com/banco_7j3p',
+      synchronize: true,
+/*
+      type: 'mysql',
     host: 'localhost',
     user: 'root',
-    password: '',
-    /*password: '',  indica que o BD está sem senha*/
-    database: 'banco',
+    password: '',/*password: '',  indica que o BD está sem senha*/
+    
+   // database: 'banco',
     /*Nome do BANCO DE DADOS no MySql phpmyadmin*/
-
-      synchronize: true,
  });
 
 //recebendo o controler pelo index.js dentro do diretorio controllers
