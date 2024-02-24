@@ -1,6 +1,3 @@
-//inicio acrescentado
-import express from 'express';
-import pg from 'pg';
 // Conectar a base de datos
 const pool = new pg.Pool({connectionString: process.env.DATABASE_External_URL});
 //fim acrescentado
