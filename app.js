@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 require('dotenv').config()
-
+const port = process.env.PORT;
 
 const session = require('express-session'); /*utilizado para verificar sessao de usuario logado*/
 const cookieParser = require("cookie-parser");
@@ -18,8 +18,9 @@ const connection = mysql.createConnection({
     database: 'banco',
     /*Nome do BANCO DE DADOS no MySql phpmyadmin*/
 
+CONNECTION_STRING=postgresql://localhost
 
-    Hostname: dpg-cncdq96v3ddc73c65cq0-a
+Hostname: dpg-cncdq96v3ddc73c65cq0-a
 Port: 5432
 Database: banco_7j3p
 Username: root
