@@ -1,11 +1,21 @@
+//inicio acrescentado
+import express from 'express';
+import pg from 'pg';
+// Conectar a base de datos
+const pool = new pg.Pool({connectionString: process.env.DATABASE_External_URL});
+//fim acrescentado
+
 const mysql = require('mysql'); /*utilizado para acessar o BD/ */
 const express = require('express');
+const pg = require('pg');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const app = express();
 
 require('dotenv').config()
-const port = process.env.PORT;
+
+// Definir a porta para o servidor
+const port = 4000 || process.env.PORT;
 
 const session = require('express-session'); /*utilizado para verificar sessao de usuario logado*/
 const cookieParser = require("cookie-parser");
@@ -126,7 +136,7 @@ app.get('/menurelatorios', (req, res) => {
 });
 
 
-  app.listen(process.env.PORT || 4000, () => {
+  app.listen(port, () => {
    
     console.log('acesse: http://localhost:4000/ ou acesse: http://localhost:4000/login')
 })
