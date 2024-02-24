@@ -10,16 +10,15 @@ const port = process.env.PORT;
 const session = require('express-session'); /*utilizado para verificar sessao de usuario logado*/
 const cookieParser = require("cookie-parser");
 //const redditData = require('./data.json');
-const connection = mysql.createConnection({
+const connection = createConnection({
+    type: 'mysql',
     host: 'localhost',
     user: 'root',
     password: '',
     /*password: '',  indica que o BD está sem senha*/
     database: 'banco',
     /*Nome do BANCO DE DADOS no MySql phpmyadmin*/
-});
 
- const conexao = await createConnection({
     type: 'postgres',
          
 CONNECTION_STRING=postgresql,
