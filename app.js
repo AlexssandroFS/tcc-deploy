@@ -19,7 +19,7 @@ const connection = mysql.createConnection({
     /*Nome do BANCO DE DADOS no MySql phpmyadmin*/
 });
 
- const connection = await createConnection({
+ const conexao = await createConnection({
     type: 'postgres',
          
 CONNECTION_STRING=postgresql,
