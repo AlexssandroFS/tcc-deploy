@@ -1,7 +1,3 @@
-// Conectar a base de datos
-const pool = new pg.Pool({connectionString: process.env.DATABASE_External_URL});
-//fim acrescentado
-
 const mysql = require('mysql'); /*utilizado para acessar o BD/ */
 const express = require('express');
 const pg = require('pg');
