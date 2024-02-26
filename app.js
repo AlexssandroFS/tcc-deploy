@@ -14,6 +14,28 @@ const port = 4000 || process.env.PORT;
 const session = require('express-session'); /*utilizado para verificar sessao de usuario logado*/
 const cookieParser = require("cookie-parser");
 //const redditData = require('./data.json');
+
+const sequelize = new Sequelize(process.env.Database_External_URL, {
+  dialect: "postgres",
+  logging: false,
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
+});
+
+sequelize
+  .sync()
+  .then(() => {
+    console.log("Database connected");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
 const connection = mysql.createConnection({
     CONNECTION_STRING:'postgresql',
     Hostname:'dpg-cncdq96v3ddc73c65cq0-a',
