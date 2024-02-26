@@ -5,37 +5,44 @@ const pg = require('pg');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const app = express();
-
+const { Sequelize, DataTypes } = require("sequelize");
 require('dotenv').config()
 
 // Definir a porta para o servidor
-const port = 4000 || process.env.PORT;
-
+const port = process.env.PORT;
+const porta = 4000;
 const session = require('express-session'); /*utilizado para verificar sessao de usuario logado*/
 const cookieParser = require("cookie-parser");
 //const redditData = require('./data.json');
 
-/*
-const sequelize = new Sequelize(process.env.Database_External_URL, {
-  dialect: "postgres",
-  logging: false,
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
+const sequelize = new Sequelize(
+    /*process.env.Hostname,
+    process.env.Port,
+    process.env.Database,
+    process.env.Username,
+    process.env.Password,*/
+    process.env.DATABASE_External_URL,
+   // process.env.DATABASE_Internal_URL,
+    {
+    dialect: "postgres",
+    logging: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
     },
-  },
-});
-
-sequelize
-  .sync()
-  .then(() => {
-    console.log("Database connected");
-  })
-  .catch((err) => {
-    console.log(err);
   });
-*/
+
+  sequelize
+    .sync()
+    .then(() => {
+      console.log("Database connected");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  
 
 const connection = mysql.createConnection({
     CONNECTION_STRING:'postgresql',
@@ -49,6 +56,14 @@ const connection = mysql.createConnection({
     DATABASE_External_URL:'postgres://root:gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv@dpg-cncdq96v3ddc73c65cq0-a.oregon-postgres.render.com/banco_7j3p',
       synchronize: true,
 
+/*/
+ type: 'mysql',
+host: 'localhost',
+user: 'root',
+password: '',/*password: '',  indica que o BD está sem senha*/
+
+// database: 'banco',
+/*Nome do BANCO DE DADOS no MySql phpmyadmin*/
    
  });
  console.log('Servidor Postgres carregado com sucesso!!!', {connection});
@@ -157,12 +172,9 @@ app.get('/menurelatorios', (req, res) => {
 });
 
 
-  app.listen(port, () => {
-   
-    console.log('acesse: http://localhost:4000/ ou acesse: http://localhost:4000/login')
-})
-
-/*https://www.youtube.com/watch?v=gOuJE6d_l-U
-
-app.use((req, res,))
-*/
+app.listen(porta, () => {
+    console.log(`Server running on port server postgreSQL: ${port}`);
+    console.log(`Acessar a página Homesite http://localhost:${porta}`);
+    console.log(`Acessar a página Login para área Restrita at http://localhost:${porta}/login`);
+    console.log(`Acessar Render: https://tcc-deploy-3wjv.onrender.com`);
+});
