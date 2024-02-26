@@ -15,6 +15,7 @@ const session = require('express-session'); /*utilizado para verificar sessao de
 const cookieParser = require("cookie-parser");
 //const redditData = require('./data.json');
 
+/*
 const sequelize = new Sequelize(process.env.Database_External_URL, {
   dialect: "postgres",
   logging: false,
@@ -34,7 +35,7 @@ sequelize
   .catch((err) => {
     console.log(err);
   });
-
+*/
 
 const connection = mysql.createConnection({
     CONNECTION_STRING:'postgresql',
