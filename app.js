@@ -15,59 +15,6 @@ const session = require('express-session'); /*utilizado para verificar sessao de
 const cookieParser = require("cookie-parser");
 //const redditData = require('./data.json');
 
-const sequelize = new Sequelize(
-    /*process.env.Hostname,
-    process.env.Port,
-    process.env.Database,
-    process.env.Username,
-    process.env.Password,*/
-    process.env.DATABASE_External_URL,
-   // process.env.DATABASE_Internal_URL,
-    {
-    dialect: "postgres",
-    logging: false,
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
-  });
-
-  sequelize
-    .sync()
-    .then(() => {
-      console.log("Database connected");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  
-
-const connection = mysql.createConnection({
-    CONNECTION_STRING:'postgresql',
-    Hostname:'dpg-cncdq96v3ddc73c65cq0-a',
-    Port:'5432',
-    type: 'postgresql',
-    Database:'banco_7j3p',
-    Username:'root',
-    Password:'gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv',
-    DATABASE_Internal_URL:'postgres://root:gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv@dpg-cncdq96v3ddc73c65cq0-a/banco_7j3p',
-    DATABASE_External_URL:'postgres://root:gG2ilkLhcLRvepD5nsMNN8e8bv2SC3Bv@dpg-cncdq96v3ddc73c65cq0-a.oregon-postgres.render.com/banco_7j3p',
-      synchronize: true,
-
-/*/
- type: 'mysql',
-host: 'localhost',
-user: 'root',
-password: '',/*password: '',  indica que o BD está sem senha*/
-
-// database: 'banco',
-/*Nome do BANCO DE DADOS no MySql phpmyadmin*/
-   
- });
- console.log('Servidor Postgres carregado com sucesso!!!', {connection});
-
 //recebendo o controler pelo index.js dentro do diretorio controllers
 const controller = require('./controllers');
 const methodOverride = require('method-override');
