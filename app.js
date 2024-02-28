@@ -9,11 +9,11 @@ const { Sequelize, DataTypes } = require("sequelize");
 require('dotenv').config()
 
 // Definir a porta para o servidor
-const port = process.env.PORT;
-const porta = 4000;
+const port = process.env.PORT || 4000;
 const session = require('express-session'); /*utilizado para verificar sessao de usuario logado*/
 const cookieParser = require("cookie-parser");
 //const redditData = require('./data.json');
+
 
 //recebendo o controler pelo index.js dentro do diretorio controllers
 const controller = require('./controllers');
@@ -119,9 +119,9 @@ app.get('/menurelatorios', (req, res) => {
 });
 
 
-app.listen(porta, () => {
+app.listen(port, () => {
     console.log(`Server running on port server postgreSQL: ${port}`);
-    console.log(`Acessar a página Homesite http://localhost:${porta}`);
-    console.log(`Acessar a página Login para área Restrita at http://localhost:${porta}/login`);
+    console.log(`Acessar a página Homesite http://localhost:4000`);
+    console.log(`Acessar a página Login para área Restrita at http://localhost:4000/login`);
     console.log(`Acessar Render: https://tcc-deploy-3wjv.onrender.com`);
 });
