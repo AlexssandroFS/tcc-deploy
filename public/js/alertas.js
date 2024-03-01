@@ -1,6 +1,6 @@
 function save() {
     if (confirm("Você realmente deseja SALVAR os dados?") == true) {
-        alert('Ok, dados serão SALVOS com sucesso no Banco de Dados!');
+        alert('Ok, retornando para a listagem!');
     } else {
         alert('Salvar Dados Cancelado!');
         return false;
@@ -10,7 +10,7 @@ function save() {
 
 function edit() {
     if (confirm("Você realmente deseja EDITAR os dados?") == true) {
-        alert('Ok, dados serão SALVOS com sucesso no Banco de Dados!');
+        alert('Ok, retornando para a listagem!');
     } else {
         alert('Edição Cancelada!');
         return false;
@@ -19,7 +19,7 @@ function edit() {
 
 function del() {
     if (confirm("Você realmente deseja EXCLUIR os dados?") == true) {
-        alert('Ok, dados serão EXCLUÍDOS com sucesso no Banco de Dados!');
+        alert('Ok, retornando para a listagem!');
     } else {
         alert('Exclusão Cancelada!');
         return false;
