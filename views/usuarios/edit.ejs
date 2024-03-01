@@ -59,17 +59,16 @@
                                                 <label for="statuslogin">Status Login</label>
                                                 <select id="statuslogin" class="form-control" name="statuslogin">
                                                     autofocus>
-                                                    <option value="<%=usuarios.Login.id%>">
+                                                    <option value="<%=usuarios.Login.statuslogin%>">
                                                         <%=usuarios.Login.statuslogin%>
                                                     </option>
-                                                    <% if(l.tipousuarioid==1 || l.tipousuarioid==4 ||
-                                                        l.id==usuarios.Login.id) {%>
+                                                    <% if(l.tipousuarioid==1 || l.tipousuarioid==4) {%>
                                                         <option value="Ativo">Ativo</option>
                                                         <option value="Inativo">Inativo</option>
                                                         <% } else { %>
 
                                                             <% } %>
-                                                </select>
+                                                </select>                                              
                                             </div>
                                         </div>
                                         <br>
