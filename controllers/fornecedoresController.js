@@ -150,17 +150,66 @@ roteador.get('/relatoriofornecedores', async(req, res) => {
             vetorEstados.push(estado.estados);
         }
 
-        /*    let vetorProd = []
-        for (let entradas of dadosentradas) {
-            let dadosProd = await Produto.findByPk(entradas.produtosid);
-            vetorProd.push(dadosProd.nomeprod);
-        }
-*/
-
         //const dadosProd = await Produto.findByPk(produtos.fornecedoresid);
 
-        const countRelForn = await Fornecedore.count();
-        const countProdEnt = await ProdutoEntrada.count();
+        const countRelForn = await Fornecedore.count({
+            include: [
+                    {model: Endereco },
+                    { model: Contato },
+            ],
+            include: [{
+                    model: ProdutoEntrada,
+                    include: [{
+                        model: Produto,
+            },],
+            order: [
+                [
+                    'fornecedoresid', 'ASC',
+                ],
+            ],
+            group: [
+                [
+                    'Produto.nomeprod',
+                ],
+            ],
+        },],
+       
+        }
+        );
+    
+       
+        let vetorNomeProd = []
+        for (let entprodnomes of dadosentradas) {
+            let dadosProd = await ProdutoEntrada.findByPk(entprodnomes.produtosid);
+            vetorNomeProd.push(dadosProd.nomeprod);
+        }
+
+
+        const countProdEnt = await ProdutoEntrada.count({
+            include: [{
+                model: Fornecedore,
+                include: [
+                    { model: Endereco },
+                    { model: Contato }
+                ],
+          
+            order: [
+                [
+                    'fornecedoresid', 'ASC',
+                ],
+            ],
+            group: [
+                [
+                    'Produto.nomeprod',
+                ],
+            ],
+            },
+            {
+                model: Produto,
+            },
+         ],
+        }
+        );
 
         console.log(countRelForn);
         // res.status(201).send(fornecedores);
