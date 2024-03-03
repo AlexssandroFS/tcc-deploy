@@ -130,7 +130,7 @@ roteador.get('/relatoriofornecedores', async(req, res) => {
                     'fornecedoresid', 'ASC',
                 ],
             ],
-            group: [
+            GROUP BY: [
                 [
                     'Produto.nomeprod',
                 ],
@@ -167,7 +167,7 @@ roteador.get('/relatoriofornecedores', async(req, res) => {
                     'fornecedoresid', 'ASC',
                 ],
             ],
-            group: [
+            GROUP BY: [
                 [
                     'Produto.nomeprod',
                 ],
@@ -198,7 +198,7 @@ roteador.get('/relatoriofornecedores', async(req, res) => {
                     'fornecedoresid', 'ASC',
                 ],
             ],
-            group: [
+            GROUP BY: [
                 [
                     'Produto.nomeprod',
                 ],
@@ -226,6 +226,7 @@ roteador.get('/relatoriofornecedores', async(req, res) => {
 
 //retirando o fornecedores após a BARRA - antes  '/fornecedores' ...  depois '/'
 roteador.get('/', async(req, res) => {
+            
     try {
         const { id } = req.params;
         const produtos = await Produto.findAll();
