@@ -1138,7 +1138,7 @@ roteador.get('/estoquetotal', async(req, res) => {
 
             ],
             order: ['id'],
-            groupBy: ['produtosidentradas'],
+            //groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
