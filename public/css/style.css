@@ -227,6 +227,8 @@ h1,
 .dashboard-nav header .menu-toggle {
   display: none;
   margin-right: auto;
+  margin-left: auto;
+
 }
 
 .dashboard-nav a {
@@ -264,7 +266,7 @@ h1,
 .brand-logo:focus,
 .brand-logo:active,
 .brand-logo:hover {
-  color: #dbdbdb;
+  color: #fffbfb;
   text-decoration: none;
 }
 
@@ -309,11 +311,13 @@ h1,
 
 .dashboard-nav-item:hover {
   background: rgba(1, 105, 3);
+  color: white;
   /*cor fundo ao passar o mouse*/
 }
 
 .active {
   background: rgb(122, 1, 149);
+  color: white;
 }
 
 .dashboard-nav-dropdown {
@@ -392,6 +396,7 @@ h1,
 
 .dashboard-nav-dropdown-item:hover {
   background: rgb(1, 105, 3);
+color:white;
   /**cor *sub-menu ao passar o mouse*/
 }
 
@@ -420,7 +425,7 @@ h1,
 .menu-toggle:active,
 .menu-toggle:focus {
   text-decoration: none;
-  color: #610271;
+  color: white;
   /**cor botao esconder menu*/
 }
 
