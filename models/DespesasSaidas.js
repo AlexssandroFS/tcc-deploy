@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 
         //importando chaves estrangeiras
         despesasidentradas: DataTypes.INTEGER,
+        formaspagtosid: DataTypes.INTEGER,
 
     }, {
         timestamps: false,

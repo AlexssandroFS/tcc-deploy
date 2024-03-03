@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Formapagto = sequelize.define('Formapagto', {
-            formapagto: DataTypes.STRING(255),
+        formapagto: DataTypes.STRING(255),
         },
         //recebendo os foreignKey tabela externa
 
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Formapagto.associate = (models) => {
         Formapagto.hasOne(models.Pedido, {
-            foreignKey: 'formaagtosid',
+            foreignKey: 'formaspagtosid',
         });
         Formapagto.hasOne(models.DespesaSaida, {
             foreignKey: 'formaspagtosid',
