@@ -94,19 +94,19 @@ roteador.get('/relatoriocategorias', async(req, res) => {
             ],
 
         });
-        /* const entradas = await ProdutoEntrada.findByPk(id, {
+       let vetorCategorias = []
+        for (let produto of produtosentradas) {
+            let forn = await Categoria.findByPk(produto.Produto.categoriasid);
+            vetorCategorias.push(forn.nomecategoria);
+        }
+  
+/*
+        const entradas = await ProdutoEntrada.findByPk(id, {
             include: [
                 { model: Produto },
                 { model: Fornecedore }
             ]
         });
-*/
-        let vetorCategorias = []
-        for (let produto of produtosentradas) {
-            let forn = await Categoria.findByPk(produto.Produto.categoriasid);
-            vetorCategorias.push(forn.nomecategoria);
-        }
-
 
         var produto = [{ nomeprod: 'Chocolate Bis Branco', categoria: 'Chocolate' },
             { nomeprod: 'Sorvete Uva', categoria: 'Sorvete' },
@@ -129,7 +129,7 @@ roteador.get('/relatoriocategorias', async(req, res) => {
         var agrupadosteste = groupBy(produto, 'categoria');
         console.log(agrupadosteste);
 
-        const countRelCat = await ProdutoEntrada.count(produtosentradas.categoriasid);
+     */   const countRelCat = await ProdutoEntrada.count(produtosentradas.categoriasid);
         //  const countProdEnt = await ProdutoEntrada.count();
 
         console.log(countRelCat);
@@ -137,7 +137,7 @@ roteador.get('/relatoriocategorias', async(req, res) => {
 
 
         // res.status(201).send(fornecedores);
-        res.render('categorias/relatoriocategorias', { categorias, produtosentradas, vetorCategorias, agrupadosteste, countRelCat });
+        res.render('categorias/relatoriocategorias', { categorias, produtosentradas, vetorCategorias, countRelCat });
     } catch (err) {
         //return res.status(500).send({ err });
         res.status(401).send('Algo deu errado!!! Não foi possível visualizar o relatório de categorias!!!' + err);
