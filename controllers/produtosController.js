@@ -1137,8 +1137,8 @@ roteador.get('/estoquetotal', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançtos_Id_Saidas'],
 
             ],
-            order: ['id'],
-            //groupBy: ['produtosidentradas'],
+            orderBy: ['id'],
+            groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -1186,8 +1186,8 @@ roteador.get('/estoquetotal', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
 
             ],
-            order: ['id'],
-           // groupBy: ['produtosid'],
+            orderBy: ['id'],
+            groupBy: ['produtosid'],
             distinct: true,
             raw: true,
         });
