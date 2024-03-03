@@ -50,7 +50,7 @@ roteador.get('/', async(req, res) => {
                 { model: Login }
             ],
             distinct: true,
-            group: ["id"],
+           // group: ["id"],
         }); // usuarios aqui é o NOME da TABELA - "findAll" é  LISTAR os dados na page
         const countTipoUsuario = await Tipousuario.count();
         console.log(countTipoUsuario); {
