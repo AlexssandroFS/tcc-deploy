@@ -117,7 +117,7 @@ roteador.get('/relatorioprodutos', async(req, res) => {
                 { model: Categoria }
             ],
 
-             order: [
+             orderBy: [
                 [
                     'nomeprod', 'ASC',
                 ],
@@ -1137,10 +1137,14 @@ roteador.get('/estoquetotal', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançtos_Id_Saidas'],
 
             ],
+            include: [
+                {
+            model: ProdutoSaida,
             orderBy: ['id'],
             groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
+        },],
         });
 
         console.log(produtossaidas);
@@ -1186,11 +1190,15 @@ roteador.get('/estoquetotal', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
 
             ],
+            include: [
+                {
+            model: ProdutoEntrada,
             orderBy: ['id'],
             groupBy: ['produtosid'],
             distinct: true,
             raw: true,
-        });
+        },]
+    });
 
         console.log(produtosentradas);
 
@@ -1216,7 +1224,7 @@ roteador.get('/estoquetotal', async(req, res) => {
                 // ValorEstoqueAtual: (elemento2.Valor_Geral_entradas - elemento2.Valor_Geral_saidas),
 
             }
-        }
+          }
 
         valorAtualQtdeEntradas.forEach(estoqueentrada => {
             console.log(estoqueentrada);
@@ -1269,10 +1277,15 @@ roteador.get('/estoqueminimo', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançtos_Id_Saidas'],
 
             ],
+            include: [
+                {
+                  model: ProdutoEntrada,
             order: ['id'],
             groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
+        },],
+        
         });
 
         console.log(produtossaidas);
@@ -1318,11 +1331,14 @@ roteador.get('/estoqueminimo', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
 
             ],
-
+            include: [
+                {
+                  model: ProdutoEntrada,
             order: ['nomeprod'],
             groupBy: ['produtosid'],
             distinct: true,
             raw: true,
+                },],
         });
 
         console.log(produtosentradas);
