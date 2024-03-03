@@ -68,7 +68,11 @@ roteador.get('/', async(req, res) => {
 // NEW - renders a form
 // **********************************
 roteador.get('/new', (req, res) => {
-        res.render('tipousuarios/new');
+    if (l.tipousuarioid == '1' ) {
+        res.render('tipousuarios/new', {log});
+    } else {
+        res.render('../erroAcessoPerfilUsuarios');
+     }
     })
     // **********************************
     // CREATE - creates a new tipousuario
@@ -105,9 +109,12 @@ roteador.get('/:id/edit', async(req, res) => {
         //console.log(tipousuarios);
         const { id } = req.params;
         const tipousuarios = await Tipousuario.findByPk(id);
-
-        res.render('tipousuarios/edit', { tipousuarios })
-    })
+        if (l.tipousuarioid == '1' ) {
+            res.render('tipousuarios/edit', {log, tipousuarios});
+        } else {
+            res.render('../erroAcessoPerfilUsuarios');
+         }
+   })
     // *******************************************
     // UPDATE - updates a particular tipousuarios
     // *******************************************

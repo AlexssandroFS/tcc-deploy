@@ -194,8 +194,8 @@ roteador.get('/new',  async(req, res) => {
         if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
             res.render('categorias/new', { log });
         } else {
-            res.render('categorias/erroAcessoPerfilUsuarios');
-        }
+            res.render('../erroAcessoPerfilUsuarios');
+         }
         // 1 - Administrador
     // 2-  Supervidor
     // 3 - Atendente
@@ -258,8 +258,11 @@ roteador.get('/:id/edit', async(req, res) => {
         //console.log(categorias);
         const { id } = req.params;
         const categorias = await Categoria.findByPk(id);
-
-        res.render('categorias/edit', { categorias })
+        if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+            res.render('categorias/edit', { log, categorias});
+        } else {
+            res.render('../erroAcessoPerfilUsuarios');
+         }
     })
     // *******************************************
     // UPDATE - updates a particular categorias

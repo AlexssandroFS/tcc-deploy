@@ -221,7 +221,11 @@ roteador.get('/', async(req, res) => {
 roteador.get('/new', async(req, res) => {
     const estados = await Estado.findAll();
     //console.log(fornecedores);
+    if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '3'|| l.tipousuarioid == '4') {
     res.render('fornecedores/new', { estados });
+} else {
+    res.render('../erroAcessoPerfilUsuarios');
+ }
 });
 // **********************************
 // CREATE - creates a new fornecedores

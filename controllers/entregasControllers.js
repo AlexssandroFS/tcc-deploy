@@ -67,7 +67,11 @@ roteador.get('/', async(req, res) => {
 // NEW - renders a form
 // **********************************
 roteador.get('/new', (req, res) => {
-        res.render('entregas/new');
+    if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+        res.render('entregas/new', { log });
+    } else {
+        res.render('../erroAcessoPerfilUsuarios');
+     }    
     })
     // **********************************
     // CREATE - creates a new entregas

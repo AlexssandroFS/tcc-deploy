@@ -157,51 +157,6 @@ roteador.get('/relatorioprodutos', async(req, res) => {
 
 
         });
-
-
-        var produto = [{ nomeprod: 'Chocolate Bis Branco', categoria: 'Chocolate' },
-            { nomeprod: 'Sorvete Uva', categoria: 'Sorvete' },
-            { nomeprod: 'Barra Chocolate', categoria: 'Chocolate' },
-            { nomeprod: 'Picole Fruta Uva', categoria: 'Picole' },
-            { nomeprod: 'Pacote Copo 300ml descartável', categoria: 'Copo Descartável' }
-        ];
-
-        function groupBy(array, prop) {
-            var value = array.reduce(function(total, item) {
-                var key = item[prop];
-                total[key] = (total[key] || []).concat(item);
-
-                return total;
-            }, {});
-
-            return value;
-        };
-
-        var agrupadosteste = groupBy(produto, 'categoria');
-        console.log(agrupadosteste);
-
-
-
-
-        /////////////////////////////////////////
-        var carros = [{ marca: 'Audi', cor: 'preto' },
-            { marca: 'Audi', cor: 'branco' },
-            { marca: 'Ferarri', cor: 'vermelho' },
-            { marca: 'Ford', cor: 'branco' },
-            { marca: 'Peugot', cor: 'branco' }
-        ];
-
-        function groupBy(array, prop) {
-            var value = array.reduce(function(total, item) {
-                var key = item[prop];
-                total[key] = (total[key] || []).concat(item);
-
-                return total;
-            }, {});
-
-            return value;
-        };
-
            //codigo abaixo é para pegar a CATEGORIA do produto
         let vetorCategorias = []
         for (let produto of produtos) {
@@ -214,7 +169,7 @@ roteador.get('/relatorioprodutos', async(req, res) => {
         const countRelProd = await ProdutoEntrada.count();
         console.log(countRelProd);
         // res.status(201).send(fornecedores);
-        res.render('produtos/relatorioprodutos', { agrupados, produtos, produtosentradas, fornecedor, vetorCategorias, countRelProd });
+        res.render('produtos/relatorioprodutos', { produtosent, produtos, produtosentradas, fornecedor, vetorCategorias, countRelProd });
     } catch (err) {
         //return res.status(500).send({ err });
         res.status(401).send('Algo deu errado!!! Não foi possível visualizar o relatório de produtos!!!' + err);
@@ -262,7 +217,11 @@ roteador.get('/cadprod/new', async(req, res) => {
 
     // console.log(categoriasproduto);
     //  const countProduto = await Produto.count(qtdeestoque);
-    res.render('produtos/cadprod/new', { produtos, categoriasprodutos });
+    if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '3' || l.tipousuarioid == '4') {
+    res.render('produtos/cadprod/new', {log, produtos, categoriasprodutos });
+} else {
+    res.render('../erroAcessoPerfilUsuarios');
+ }
 })
 
 // **********************************
@@ -310,8 +269,11 @@ roteador.get('/cadprod/:id/edit', async(req, res) => {
     });
     const categoriasvalue = await Categoria.findByPk(produtos.categoriasid);
 
-
-    res.render('produtos/cadprod/edit', { produtos, categoriasproduto, categoriasvalue })
+    if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '3' || l.tipousuarioid == '4') {
+        res.render('produtos/cadprod/edit', { log, produtos, categoriasproduto, categoriasvalue});
+    } else {
+        res.render('../erroAcessoPerfilUsuarios');
+     }
 })
 
 
@@ -441,8 +403,11 @@ roteador.get('/entradas/new', async(req, res) => {
             ],
             //  attributes: ['nomecategoria']
         });
-
-        res.render('produtos/entradas/new', { produtos, produto, categoria, produtosentradas, listarprodnome, dadosfornecedor });
+        if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+            res.render('produtos/entradas/new', { log, produtos, produto, categoria, produtosentradas, listarprodnome, dadosfornecedor });
+        } else {
+            res.render('../erroAcessoPerfilUsuarios', {log});
+         }
     })
     // **********************************
     // CREATE - creates a new produtos
@@ -726,9 +691,11 @@ roteador.get('/entradas/:id/edit', async(req, res) => {
             //    "O Valor Total Atual de Entrada menos a Saída é: R$" + elemento2.ValorEstoqueAtual + ". A Quantidade Total de Produtos Atual, Entadas menos a Saídas é: " + elemento2.QtdeEstoqueAtual);
 
         })
-    
-    res.render('produtos/entradas/edit', {valorAtualQtdeEntradas, valorAtualQtdeSaidas, produtos, prodentradas, listarprodnome, produtosentradas, categorias, categoriasNome, nomeproduto, categoriasvalue, dadosfornecedor, fornecedor })
-/*catch (err) {}*/
+        if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+            res.render('produtos/entradas/edit', {log, valorAtualQtdeEntradas, valorAtualQtdeSaidas, produtos, prodentradas, listarprodnome, produtosentradas, categorias, categoriasNome, nomeproduto, categoriasvalue, dadosfornecedor, fornecedor })
+        } else {
+            res.render('../erroAcessoPerfilUsuarios');
+         }
 });
 
 // *******************************************
@@ -875,7 +842,11 @@ roteador.get('/saidas/new', async(req, res) => {
                 ],
 
             });
-        res.render('produtos/saidas/new', { prodsaidas, produtos, produtossaidas, listarentradas });
+            if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+                res.render('produtos/saidas/new', { log, prodsaidas, produtos, produtossaidas, listarentradas});
+            } else {
+                res.render('../erroAcessoPerfilUsuarios');
+             }
     })
     // SHOW - details about one particular produtos
     // *******************************************
@@ -957,9 +928,12 @@ roteador.get('/saidas/:id/edit', async(req, res) => {
             ],
         });
     const fornecedores = await Fornecedore.findByPk(produtossaidas.ProdutoEntrada.fornecedoresid);
-
-    res.render('produtos/saidas/edit', { produtossaidas, produtos, listarentradas, nomeproduto, fornecedores })
-})
+    if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+        res.render('produtos/saidas/edit', { log, produtossaidas, produtos, listarentradas, nomeproduto, fornecedores});
+    } else {
+        res.render('../erroAcessoPerfilUsuarios');
+     }
+    })
 
 // *******************************************
 // UPDATE - updates a particular produtos
@@ -1040,48 +1014,6 @@ roteador.get('/estoque', async(req, res) => {
         var products = await ProdutoEntrada.findAll({
             include: { model: Produto }
         });
-
-        /*
-                //const products = await ProdutoEntrada.findByPk(id);
-                //.filter(products => products.Produto.id == 'Balde de Açaí')
-                //.filter(products => products.Produto.id == '1')
-                const totalentradas = products
-                    .filter(products => products.Produto.nomeprod == 'Balde de Açaí')
-                    .map(products => products.qtdecompra)
-                    .reduce((acc, pontuação) => acc + pontuação, 0);
-                console.log(`O TOTAL de produtos cadastrados no sistema de Entradas de Estoque por nome é de: ${totalentradas.toFixed(0)}` + ' itens.')
-
-
-                  //const products = await ProdutoEntrada.findByPk(id);
-        const totalAverage = products
-            .filter(products => products.Produto.nomeprod == 'Balde de Açaí')
-            .map(products => products.qtdecompra)
-            .reduce((acc, pontuação) => acc + pontuação, 0);
-        console.log('Qtde SAÍDA produto por nome do produto: ' + totalAverage)
-
-
-        // calcular o total da compra/venda
-        var produtos = [
-            { name: 'caneta', value: 2.00, quantity: 1 },
-            { name: 'caderno', value: 10.00, quantity: 1 },
-            { name: 'borracha', value: 2.00, quantity: 1 }
-        ]
-        var totalvendas = produtos.reduce(getTotal, 0);
-
-        function getTotal(totalvendas, item) {
-            return totalvendas + (item.value * item.quantity);
-        }
-        console.log(`O valor total da compra é de ${totalvendas.toFixed(2)}`)
-
-
-        var items = products
-        const i = items
-            .map(x => x.qtdecompra)
-            .reduce((a, b) => a + b, 0);
-        console.log('terceiro exemplo: ' + i);
-
-
-        */
 
         var array = products;
         var somaGeralProdutosEntradas = array.reduce((a, b) => a + b.qtdecompra, 0)
@@ -1448,183 +1380,3 @@ roteador.get('/estoqueminimo', async(req, res) => {
     }
 });
 module.exports = roteador;
-
-
-/*
-
- const produtossaidas = await ProdutoSaida.findAll({
-            include: [{
-                    model: ProdutoEntrada,
-                    include: [{ model: Produto }, ],
-                },
-
-            ],
-            attributes: [
-                [sequelize.col('ProdutoEntrada.produtosid'), 'id_entradas'],
-                [sequelize.col('ProdutoEntrada.Produto.nomeprod'), 'nomeprod'],
-                [sequelize.col('ProdutoEntrada.valorunit'), 'vl_unitario'],
-                [sequelize.fn('sum', sequelize.col('ProdutoEntrada.qtdecompra')), 'total_entradas'],
-                [sequelize.fn('sum', sequelize.col('qtdsaida')), 'total_saidas'],
-                [sequelize.fn('sum', sequelize.col('ProdutoEntrada.valortotal')), 'Valor_Geral_entradas'],
-                [sequelize.fn('sum', sequelize.col('valortotalsaida')), 'Valor_Geral_saidas'],
-
-                [sequelize.fn('COUNT', sequelize.col('ProdutoEntrada.id')), 'Qtde_Lançamentos_Id_Entradas'],
-
-                [sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
-
-            ],
-            order: ['produtosidentradas'],
-            group: ['produtosidentradas', 'ProdutoEntrada.id'],
-            distinct: true,
-            raw: true,
-        });
-
-        console.log(produtossaidas);
-
-
-        
-
-
-let vetorNomeProd = []
-        for (let produto of TotalEstoqueSaidaID) {
-            let nomeproduto = await Produto.findByPk(produto.produtosidentradas);
-            vetorNomeProd.push(nomeproduto.nomeprod);
-        }
-
-
-        
-*/
-
-/*
-
-////ESTE É PARA O RELATORIO DE ESTOQUE ATUAL E ALERTA DE ESTOQUE ABAIXO DO MINIMO
-roteador.get('/estoqueminimo', async(req, res) => {
-    const { id } = req.params;
-
-    try {
-
-        ////inicio somatório quantidade de produtos cadastrados SAÍDA PROD. ESTOQUE
-        const produtossaidas = await ProdutoSaida.findAll({
-           
-              attributes: [
-                [sequelize.col('id'), 'id_saidas'],
-                [sequelize.col('produtosidentradas'), 'id_Entradas'],
-                //[sequelize.col('ProdutoEntrada.valorunit'), 'vl_unitario'],
-                //[sequelize.fn('sum', sequelize.col('ProdutoEntrada.qtdecompra')), 'total_entradas'],
-                [sequelize.fn('sum', sequelize.col('qtdsaida')), 'total_saidas'],
-                //[sequelize.fn('sum', sequelize.col('ProdutoEntrada.valortotal')), 'Valor_Geral_entradas'],
-                [sequelize.fn('sum', sequelize.col('valortotalsaida')), 'Valor_Geral_saidas'],
-
-                [sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
-
-                //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançtos_Id_Saidas'],
-
-            ],
-            order: ['id'],
-            group: ['produtosidentradas'],
-            distinct: true,
-            raw: true,
-        });
-
-        console.log(produtossaidas);
-
-        var valorAtualQtdeSaidas = produtossaidas.map(estoquesaida);
-
-        function estoquesaida(elemento2) {
-
-            return {
-                Id_Saida: elemento2.id_saidas,
-                Id_Entrada_na_Saida: elemento2.id_Entradas,
-                Qtde_Lançtos_Entradas_na_Saida: elemento2.Qtde_Lançamentos_Id_Entradas_Saidas,
-                Soma_Qtde_Saidas: elemento2.total_saidas,
-                Valor_Total_Saidas: elemento2.Valor_Geral_saidas,
-            }
-
-        }
-
-        valorAtualQtdeSaidas.forEach(estoquesaida => {
-            console.log(estoquesaida);
-            //  console.log("A SAÍDA foi de " + elemento2.Soma_Qtde_Saidas + " unidade(s) de " + elemento2.Nome_Prod + " no BD do estoque. " +
-            //    "O Valor Total Atual de Entrada menos a Saída é: R$" + elemento2.ValorEstoqueAtual + ". A Quantidade Total de Produtos Atual, Entadas menos a Saídas é: " + elemento2.QtdeEstoqueAtual);
-
-        })
-
-        const produtosentradas = await ProdutoEntrada.findAll({
-            include: [
-                //  { model: ProdutoSaida },
-                { model: Produto }
-            ],
-            attributes: [
-                [sequelize.col('produtosid'), 'id_produtos'],
-                // [sequelize.col('id'), 'id_entradas'],
-                [sequelize.col('nomeprod'), 'nomeprod'],
-                [sequelize.col('valorunit'), 'vl_unitario'],
-                [sequelize.fn('sum', sequelize.col('qtdecompra')), 'total_entradas'],
-                [sequelize.col('qtdeminima'), 'estoque_minimo'],
-                [sequelize.fn('sum', sequelize.col('valortotal')), 'Valor_Geral_entradas'],
-                //[sequelize.fn('sum', sequelize.col('valortotalsaida')), 'Valor_Geral_saidas'],
-
-                [sequelize.fn('COUNT', sequelize.col('produtosid')), 'Qtde_Lançtos_Id_Entradas'],
-
-                //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
-
-            ],
-
-            order: ['nomeprod'],
-            group: ['produtosid'],
-            distinct: true,
-            raw: true,
-        });
-
-        console.log(produtosentradas);
-
-
-        var valorAtualQtdeEntradas = produtosentradas.map(estoqueentrada);
-
-        function estoqueentrada(elemento2) {
-            return {
-                Id_Produto: elemento2.id_produtos,
-                Nome_Prod: elemento2.nomeprod,
-                // Id_Entrada_Saida: elemento2.id_Entrada,
-                Estoque_Minimo: elemento2.estoque_minimo,
-
-                Qtde_Lançtos_na_Entrada: elemento2.Qtde_Lançtos_Id_Entradas,
-
-                Valor_Unitario: elemento2.vl_unitario.toFixed(2),
-                Soma_Qtde_Entradas: elemento2.total_entradas,
-                // Soma_Qtde_Saidas: elemento2.total_saidas,
-                Valor_Total_Entradas: elemento2.Valor_Geral_entradas.toFixed(2),
-                //  Valor_Total_Saidas: elemento2.Valor_Geral_saidas.toFixed(2),
-
-                // QtdeEstoqueAtual: elemento2.total_entradas - elemento2.total_saidas,
-                // ValorEstoqueAtual: (elemento2.Valor_Geral_entradas - elemento2.Valor_Geral_saidas),
-
-            }
-        }
-
-        valorAtualQtdeEntradas.forEach(estoqueentrada => {
-            console.log(estoqueentrada);
-            //  console.log("A SAÍDA foi de " + elemento2.Soma_Qtde_Saidas + " unidade(s) de " + elemento2.Nome_Prod + " no BD do estoque. " +
-            //    "O Valor Total Atual de Entrada menos a Saída é: R$" + elemento2.ValorEstoqueAtual + ". A Quantidade Total de Produtos Atual, Entadas menos a Saídas é: " + elemento2.QtdeEstoqueAtual);
-
-        })
-
-
-
-
-        //  console.log("A SAÍDA foi de " + elemento2.Soma_Qtde_Saidas + " unidade(s) de " + elemento2.Nome_Prod + " no BD do estoque. " +
-        //    "O Valor Total Atual de Entrada menos a Saída é: R$" + elemento2.ValorEstoqueAtual + ". A Quantidade Total de Produtos Atual, Entadas menos a Saídas é: " + elemento2.QtdeEstoqueAtual);
-
-
-        //SELECT nomeprod, qtdecompra, (valorunit * qtdecompra) as total FROM produtosentradas as pe, produtos as p WHERE pe.produtosid = p.id and p.nomeprod = 'Bebida Refrigerante Lata Coca Cola';
-        //SELECT DISTINCT pe.id, ps.produtosidentradas, sum(pe.qtdecompra), sum(ps.qtdsaida) FROM produtossaidas as ps, produtosentradas as pe where ps.produtosidentradas = pe.id GROUP by ps.produtosidentradas ORDER BY pe.id;
-
-        res.render('produtos/estoqueminimo', { produtossaidas, produtosentradas, valorAtualQtdeSaidas, valorAtualQtdeEntradas });
-        //res.status(201).send(produtos);
-    } catch (err) {
-        //return res.status(500).send({ err });
-        res.status(401).send('Algo deu errado!!! Não foi possível listar o relatório do Estoque ATUAL!!!' + err);
-    }
-});
-
-*/

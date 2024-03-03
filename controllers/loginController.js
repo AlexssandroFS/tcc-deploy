@@ -25,6 +25,7 @@ roteador.get('/', async(req, res) => {
     } catch (err) {
         //return res.status(500).send({ err });
         res.status(401).send('Algo deu errado!!! Não foi possível acessar a tela de Login!!!' + err);
+        console.log(err);
     }
 })
 

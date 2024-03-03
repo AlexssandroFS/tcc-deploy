@@ -201,7 +201,7 @@ roteador.get('/new', async(req, res) => {
 if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
     res.render('usuarios/new', { log, estados, tipousuario });
 } else {
-    res.render('usuarios/erroAcessoPerfilUsuarios');
+    res.render('../erroAcessoPerfilUsuarios');
 }
 
     // 1 - Administrador

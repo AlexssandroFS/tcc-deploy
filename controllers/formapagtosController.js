@@ -75,7 +75,11 @@ WHERE attr1 = 42 AND attr2 = 'cake'
 // **********************************
 roteador.get('/new', (req, res) => {
     //  console.log(formapagtos);
-    res.render('formapagtos/new');
+    if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+        res.render('formapagtos/new', { log });
+    } else {
+        res.render('../erroAcessoPerfilUsuarios');
+     }
 })
 
 // **********************************
@@ -110,8 +114,11 @@ roteador.get('/:id/edit', async(req, res) => {
         //console.log(formapagtos);
         const { id } = req.params;
         const formapagtos = await Formapagto.findByPk(id);
-
-        res.render('formapagtos/edit', { formapagtos })
+        if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+            res.render('formapagtos/edit', { log, formapagtos});
+        } else {
+            res.render('../erroAcessoPerfilUsuarios');
+         }
     })
     // *******************************************
     // UPDATE - updates a particular formapagtos

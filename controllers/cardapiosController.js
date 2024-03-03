@@ -124,8 +124,11 @@ roteador.get('/new', async(req, res) => {
                 ['nomecategoria', 'ASC'],
             ],
         });
-
-        res.render('cardapios/new', { dadosCategoria });
+        if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+            res.render('cardapios/new', { log });
+        } else {
+            res.render('../erroAcessoPerfilUsuarios');
+         }
     })
     // **********************************
     // CREATE - creates a new cardapios

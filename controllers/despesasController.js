@@ -36,8 +36,8 @@ roteador.get('/caddespesa', async(req, res) => {
 // **********************************
 roteador.get('/caddespesa/new', async(req, res) => {
 
-    res.render('despesas/caddespesa/new', {});
-})
+        res.render('despesas/caddespesa/new', { log });
+    })
 
 // **********************************
 // CREATE - creates a new produtos
@@ -181,7 +181,11 @@ roteador.get('/entradas/new', async(req, res) => {
                 ['nomedespesa', 'ASC']
             ]
         });
-        res.render('despesas/entradas/new', { despesasentradas, despesa, despesas, listardespnome });
+        if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+            res.render('despesas/entradas/new', {log, despesasentradas, despesa, despesas, listardespnome });
+        } else {
+            res.render('../erroAcessoPerfilUsuarios');
+         }   
     })
     // **********************************
     // CREATE - creates a new produtos
@@ -224,8 +228,11 @@ roteador.get('/entradas/:id', async(req, res) => {
     });
     //const despesa = await Despesa.findAll();
     // const nomedesp = await Despesa.findByPk(despesa.nomedespesa);
-
-    res.render('despesas/entradas/show', { despesasentradas })
+    if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '4') {
+        res.render('despesas/entradas/show', {log, despesasentradas });
+    } else {
+        res.render('../erroAcessoPerfilUsuarios');
+     }  
 })
 
 // *******************************************
@@ -245,8 +252,11 @@ roteador.get('/entradas/:id/edit', async(req, res) => {
         ],
     });
     const nomedesp = await Despesa.findByPk(despesasentradas.despesasid)
-
-    res.render('despesas/entradas/edit', { despesasentradas, despesas, nomedesp })
+    if (l.tipousuarioid == '1' || l.tipousuarioid == '2' ||l.tipousuarioid == '4') {
+        res.render('despesas/entradas/edit', {log, despesasentradas, despesas, nomedesp });
+    } else {
+        res.render('../erroAcessoPerfilUsuarios');
+     }  
 })
 
 // *******************************************
@@ -378,8 +388,11 @@ roteador.get('/saidas/new', async(req, res) => {
                 ],
             });
 
-
-        res.render('despesas/saidas/new', { despesas, despesassaidas, proddesp, listarentradas, formapagtos });
+            if (l.tipousuarioid == '1' || l.tipousuarioid == '2' || l.tipousuarioid == '3'|| l.tipousuarioid == '4') {
+                res.render('despesas/saidas/new', {log, despesas, despesassaidas, proddesp, listarentradas, formapagtos });
+            } else {
+                res.render('../erroAcessoPerfilUsuarios');
+             }   
     })
     // **********************************
     // CREATE - creates a new produtos
