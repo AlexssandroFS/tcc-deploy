@@ -65,7 +65,7 @@ roteador.get('/relatoriocategorias', async(req, res) => {
                 ],
             ],
             /*
-                        group: [
+                        groupBy: [
                             [
                                 'nomeprod',
                             ],
@@ -87,7 +87,7 @@ roteador.get('/relatoriocategorias', async(req, res) => {
                 },
                 { model: Fornecedore }
             ],
-            group: [
+            groupBy: [
                 [
                     'nomeprod', 'categoriasid',
                 ],
