@@ -83,44 +83,47 @@
 </head>
 
 body className='snippet-body'>
-    <%- include('../partials/home'); %>
-        <div class="wrapper container-fluid">
-            <br><br><br>
-            <section class="container-fluid" id="pdf2htmldiv">
+<%- include('../partials/home'); %>
+    <div class="wrapper container-fluid">
+        <br><br><br><br>
+        <section class="container-fluid" id="pdf2htmldiv">
             <div class=" container-fluid">
                 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
                 <script type="text/javascript"
                     src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-               <center>
-                <div class="responsive container col-md-12">
-                    <h4><b>Relatório das Despesas: <b style="color: rgb(4, 0, 255);">: ENTRADAS </b>- <b
-                                style="color: rgb(255, 8, 8);"> SAÍDAS </b>.
-                            <br>Saldo Atual e Pendências:
-                            <b style="color: rgb(4, 0, 255);">
-                                <%=somaGeralDespesasEntradas%>
-                            </b> - <b style="color: rgb(255, 8, 8);">
-                                <%=somaGeralDespesasSaidas%>
-                            </b> = <b style="color: rgb(18, 18, 19);">
-                                <%=saldopendencia%>
-                            </b>
-                    </h4>
-                    <div class="responsive container row-col-md-12">
-                        <div class="responsive container col-md-9">
-                    <footer>Obs: Saldo é referente a valor de Entrada que ainda não foi dada a Saída.</footer></div>
-                </div>
-                 <div class="col-md-1">
 
-                    <a onclick="printDiv('pdf2htmldiv')" type="button">
-                        <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
-                </div>
-            </div>
-
-            </center>
-            
                 <table id="example"
                     class="table border-light table-bordered table-responsive-sm table-hover container-fluid"
-                    style="width:98%; max-height: 70%; overflow-x:auto; "><br>
-                    
+                    style="width:98%; max-height: 70%; overflow-x:auto; ">
+                    <center>
+                        <div class="responsive container col-md-12">
+                            <h4><b>Relatório das Despesas: <b style="color: rgb(4, 0, 255);">: ENTRADAS </b>- <b
+                                        style="color: rgb(255, 8, 8);"> SAÍDAS </b>.
+                                    <br>Saldo Atual e Pendências:
+                                    <b style="color: rgb(4, 0, 255);">
+                                        <%=somaGeralDespesasEntradas%>
+                                    </b> - <b style="color: rgb(255, 8, 8);">
+                                        <%=somaGeralDespesasSaidas%>
+                                    </b> = <b style="color: rgb(18, 18, 19);">
+                                        <%=saldopendencia%>
+                                    </b>
+                            </h4>
+                           </div> 
+                         <div class="responsive container row-col-md-12">
+                             <div class="col-md-2>
+                                    <a onclick="printDiv('pdf2htmldiv')" type="button">
+                                        <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
+                                </div> 
+                                
+                                <div class="responsive container col-md-9">
+                                    <p>Obs: Saldo é referente a valor de Entrada que ainda não foi dada a Saída.
+                                    </p>
+                            
+                            </div></div>
+                        
+                    </center>
+                    <br>
+
                     <div class="w3-container responsive">
                         <thead class="responsive bg-dark container text-center">
                             <tr class="responsive table-active table-dark">
@@ -211,57 +214,56 @@ body className='snippet-body'>
                         </tfoot>
                         <br>
                         </table>
-                        </div>
-                        </div>
+    </div>
+    </div>
 
-                        </div>
-                        <script type='text/javascript'
-                            src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
-                        <script type='text/javascript' src='#'></script>
-                        <script type='text/javascript' src='#'></script>
-                        <script type='text/javascript' src='#'></script>
-                        <script type='text/javascript'>
-                            $(document).ready(function () {
-                                /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
-                                      Passando para o Português
-                                      */
-                                $('#example').DataTable({
-                                    "language": {
-                                        "sLengthMenu": "Mostrar _MENU_ entradas",
-                                        "lengthMenu": "Mostrar _MENU_ registros por página",
-                                        "zeroRecords": "Nada encontrado - desculpe",
-                                        "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
-                                        "infoEmpty": "No records available",
-                                        "infoFiltered": "(filtrado de _MAX_ total registros)",
-                                        "oPaginate": {
-                                            "sFirst": "First",
-                                            "sLast": "Last",
-                                            "sNext": "Próximo",
-                                            "sPrevious": "Anterior"
-                                        },
+    </div>
+    <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript' src='#'></script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                  Passando para o Português
+                  */
+            $('#example').DataTable({
+                "language": {
+                    "sLengthMenu": "Mostrar _MENU_ entradas",
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "Nada encontrado - desculpe",
+                    "info": "Mostrando _PAGE_ página de _PAGES_ página(s)",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtrado de _MAX_ total registros)",
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sLast": "Last",
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior"
+                    },
 
-                                        "sProcessing": "Processando...",
-                                        "sSearch": "Pesquisar:",
-                                        "sSearchPlaceholder": "",
-                                        "sUrl": "",
+                    "sProcessing": "Processando...",
+                    "sSearch": "Pesquisar:",
+                    "sSearchPlaceholder": "",
+                    "sUrl": "",
 
-                                    }
-                                });
-                            });
-                        </script>
-                        <script type='text/javascript'>
-                            var myLink = document.querySelector('a[href="# "]');
-                            myLink.addEventListener('click', function (e) {
-                                e.preventDefault();
-                            });
-                        </script>
+                }
+            });
+        });
+    </script>
+    <script type='text/javascript'>
+        var myLink = document.querySelector('a[href="# "]');
+        myLink.addEventListener('click', function (e) {
+            e.preventDefault();
+        });
+    </script>
 
-                        <script src="/js/alertas.js"></script>
-                        <script src="../../../js/validarDados.js ">
-                        </script>
-                        <br> <br>
+    <script src="/js/alertas.js"></script>
+    <script src="../../../js/validarDados.js ">
+    </script>
+    <br> <br>
 
-</body>
-<br> <br>
+    </body>
+    <br> <br>
 
 </html>
