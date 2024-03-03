@@ -589,7 +589,7 @@ roteador.get('/totaldespesas', async(req, res) => {
 
             ],
             order: ['id'],
-            group: ['despesasidentradas'],
+            groupBy: ['despesasidentradas'],
             distinct: true,
             raw: true,
         });
@@ -638,7 +638,7 @@ roteador.get('/totaldespesas', async(req, res) => {
             ],
 
             order: ['id'],
-            group: ['despesasid'],
+            groupBy: ['despesasid'],
             distinct: true,
             raw: true,
         });
@@ -683,7 +683,7 @@ roteador.get('/totaldespesas', async(req, res) => {
 
 
         //SELECT nomeprod, qtdecompra, (valorunit * qtdecompra) as total FROM produtosentradas as pe, produtos as p WHERE pe.produtosid = p.id and p.nomeprod = 'Bebida Refrigerante Lata Coca Cola';
-        //SELECT DISTINCT pe.id, ps.produtosidentradas, sum(pe.qtdecompra), sum(ps.qtdsaida) FROM produtossaidas as ps, produtosentradas as pe where ps.produtosidentradas = pe.id GROUP by ps.produtosidentradas ORDER BY pe.id;
+        //SELECT DISTINCT pe.id, ps.produtosidentradas, sum(pe.qtdecompra), sum(ps.qtdsaida) FROM produtossaidas as ps, produtosentradas as pe where ps.produtosidentradas = pe.id groupBy by ps.produtosidentradas ORDER BY pe.id;
 
         res.render('despesas/totaldespesas', {
             despesasEntradas,
