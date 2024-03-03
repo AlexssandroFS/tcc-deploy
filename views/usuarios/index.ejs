@@ -53,15 +53,11 @@
                         src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                     <!-- boostrap TABELAS  <link href="../../public/css/DataTables/jquery.dataTables.min.css" rel="stylesheet" />
                     <script src="../../public/css/DataTables/jquery.dataTables.min.js"></script> boostrap TABELAS -->
-<table id="example"
-                                class="w3-container-fluid col-md-12 table  border-light table-bordered table-responsive-sm table-hover"
+<table id="example"class="w3-container-fluid col-md-12 table  border-light table-bordered table-responsive-sm table-hover"
                                 style="width:100%; overflow-x:auto;">                   
 <div class="container-fluid responsive" id="pdf2htmldiv">
-                        <div class="responsive container text-left row col-md-12">
-                            
-                                <center>
-                                    <div class="responsive container text-left row col-md-12">
-                                        <div class="col-md-3">
+                         <center>
+                    <div class="responsive container text-left row col-md-12">
                             <% if(l.Tipousuario.tipousuario=='Administrador' || l.Tipousuario.tipousuario=='Gerente' ||
                                 l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
                                <div class="w3-container-fluid responsive row col-md-2">
@@ -69,12 +65,11 @@
                                     <button type="submit" class="btn btn-primary text-left"
                                         title="Criar Novo Usuário">Novo Usuário</button>
                                 </form>
-
+                                </div>
                                 <% } else { %>
                                     <% } %>
                                         <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
-                        </div>
-
+                               
                         <div class="w3-container-fluid responsive col-md-7">
                             <h4>Atualmente temos:
                                 <b style="color: red;">
@@ -85,9 +80,9 @@
                         <div class="w3-container-fluid responsive col-md-1">
                             <a onclick="printDiv( 'pdf2htmldiv') " type="button ">
                                 <i class="fa fa-print " aria-hidden="true " style="font-size: 35px; "></i>
+                        
                         </div>
-                    </div>
-                            </center>
+                </div>    </center>
 
                         <thead class="w3-container-fluid border border-light responsive bg-dark text-center">
                             <tr class="table-active table-dark">
