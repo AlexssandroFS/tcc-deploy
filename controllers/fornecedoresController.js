@@ -130,7 +130,7 @@ roteador.get('/relatoriofornecedores', async(req, res) => {
                     'fornecedoresid', 'ASC',
                 ],
             ],
-           group :[
+           groupBy :[
                 [
                     'Produto.nomeprod',
                 ],
@@ -167,7 +167,7 @@ roteador.get('/relatoriofornecedores', async(req, res) => {
                     'fornecedoresid', 'ASC',
                 ],
             ],
-            group :[
+            groupBy :[
                 [
                     'Produto.nomeprod',
                 ],
@@ -198,7 +198,7 @@ roteador.get('/relatoriofornecedores', async(req, res) => {
                     'fornecedoresid', 'ASC',
                 ],
             ],
-           group :[
+           groupBy :[
                 [
                     'Produto.nomeprod',
                 ],
