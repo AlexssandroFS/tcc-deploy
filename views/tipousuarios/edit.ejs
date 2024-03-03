@@ -65,8 +65,7 @@
                                         <br> <br>   <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h4 class="text-right">Qual ação deseja realizar?</h4>
                                         </div>
-                                        <% if(l.Tipousuario.tipousuario=='Administrador' ||
-                                            l.Tipousuario.tipousuario=='Gerente' ) {%>
+                                        <%if(l.Tipousuario.tipousuario=="Administrador"){%>
                                             <div class="col-md-1" id="divleft">
                                                 <button type="submit "
                                                     class="btn btn-success btn-sm-3 profile-button text-white "
@@ -78,8 +77,7 @@
                                             <% } else { %>
 
                                                 <% } %>
-                                                    <% if(l.Tipousuario.tipousuario=='Administrador' ||
-                                                        l.Tipousuario.tipousuario=='Gerente' ) {%>
+                                                    <% if(l.Tipousuario.tipousuario=='Administrador') {%>
                                                         <div class="col-md-2" id="divleft">
                                                             <form
                                                                 action="/tipousuarios/<%=tipousuarios.id %>?_method=DELETE"

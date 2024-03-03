@@ -74,16 +74,20 @@
             </div>
             
         </a>
-        <br>
+        
 
       </header>-->
       <!--icons https://www.w3schools.com/icons/fontawesome5_icons_users_people.asp -->
-      <nav class="dashboard-nav-list float-center"><a onclick=" location='/home' " class="dashboard-nav-item active"><i
+     <nav class="dashboard-nav-list float-center">
+      <br>
+       <!-- <a onclick=" location='/home' " class="dashboard-nav-item active"><i
             class="fas fa-home"></i>
           Home </a>
-
+-->
+          <div class='dashboard-nav-dropdown'><a ha onclick=" location='/home'" class="dashboard-nav-item active"><i
+            class="fas fa-home"></i> Home </a>
+          </div><!-- FIM OPÇÃO MENU Forma Pagto -->
         <!-- INICIO OPÇÃO MENU CATEGORIAS -->
-
         <div class='dashboard-nav-dropdown'><a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i
               class="fas fa-clipboard-list"></i> Categorias </a>
           <div class='dashboard-nav-dropdown-menu'>
@@ -110,7 +114,11 @@
               class="fas fa-hamburger"></i> Cardápios </a>
           <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU CARDÁRPIOS -->
             <a onclick=" location='/cardapios'" class="dashboard-nav-dropdown-item">Listar</a>
-            <a onclick=" location='/cardapios/new'" class="dashboard-nav-dropdown-item">Novo</a>
+            <%if(l.Tipousuario.tipousuario=="Administrador" ||l.Tipousuario.tipousuario=="Gerente" ||
+              l.Tipousuario.tipousuario=="Supervisor" || l.tipousuarioid==2){%>
+                <a onclick=" location='/cardapios/new'" class="dashboard-nav-dropdown-item">Novo</a>
+                <% } else { %>
+                  <% } %>
           </div><!--FIM SUB OPÇÃO MENU CARDÁRPIOS -->
         </div><!-- FIM OPÇÃO MENU CARDÁRPIOS -->
 
@@ -126,7 +134,11 @@
                   style='font-size:12px;color:rgb(255, 208, 0)'></i>Nome da Despesa </a>
               <div class='dashboard-nav-dropdown-menu'>
                 <a onclick=" location='/despesas/caddespesa' " class="dashboard-nav-dropdown-item">Listar</a>
+                <%if(l.Tipousuario.tipousuario=="Administrador" ||l.Tipousuario.tipousuario=="Atendente" ||l.Tipousuario.tipousuario=="Gerente" ||
+                l.Tipousuario.tipousuario=="Supervisor" || l.tipousuarioid==2){%>
                 <a onclick=" location='/despesas/caddespesa/new'" class="dashboard-nav-dropdown-item">Nova</a>
+                <% } else { %>
+                  <% } %>
               </div>
             </div>
             <!-- FIM SUB OPÇÃO MENU DESPESAS - CADASTRAR NOME DE DESPESA -->
@@ -137,7 +149,11 @@
                   style='font-size:12px;color:rgb(255, 208, 0)'></i>Entrada de Despesa </a>
               <div class='dashboard-nav-dropdown-menu'>
                 <a onclick=" location='/despesas/entradas' " class="dashboard-nav-dropdown-item">Listar</a>
+                <%if(l.Tipousuario.tipousuario=="Administrador" ||l.Tipousuario.tipousuario=="Gerente" ||
+                l.Tipousuario.tipousuario=="Supervisor" || l.tipousuarioid==2){%>
                 <a onclick=" location='/despesas/entradas/new'" class="dashboard-nav-dropdown-item">Nova</a>
+                <% } else { %>
+                  <% } %>
               </div>
             </div>
             <!-- FIM SUB OPÇÃO MENU DESPESAS - CADASTRAR ENTRADA DE DESPESA -->
@@ -148,7 +164,11 @@
                   style='font-size:12px;color:rgb(255, 208, 0)'></i>Saída de Despesa </a>
               <div class='dashboard-nav-dropdown-menu'>
                 <a onclick=" location='/despesas/saidas' " class="dashboard-nav-dropdown-item">Listar</a>
+                <%if(l.Tipousuario.tipousuario=="Administrador" ||l.Tipousuario.tipousuario=="Gerente" ||
+                l.Tipousuario.tipousuario=="Supervisor" || l.tipousuarioid==2){%>
                 <a onclick=" location='/despesas/saidas/new'" class="dashboard-nav-dropdown-item">Nova</a>
+                <% } else { %>
+                  <% } %>
               </div>
             </div><!-- FIM SUB OPÇÃO MENU DESPESAS - CADASTRAR SAÍDA DE DESPESA -->
           </div><!-- FIM DIV SECUNDARIA MENU OPÇÕES -->
@@ -160,8 +180,12 @@
               class="fas fa-shipping-fast"></i> Fornecedores </a>
           <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU FORNECEDORES -->
             <a onclick=" location='/fornecedores'" class="dashboard-nav-dropdown-item">Listar</a>
+            <%if(l.Tipousuario.tipousuario=="Administrador" ||l.Tipousuario.tipousuario=="Atendente" ||l.Tipousuario.tipousuario=="Gerente" ||
+                l.Tipousuario.tipousuario=="Supervisor" || l.tipousuarioid==2){%>
             <a onclick=" location='/fornecedores/new'" class="dashboard-nav-dropdown-item">Novo</a>
-          </div><!--FIM SUB OPÇÃO MENU FORNECEDORES -->
+                      <% } else { %>
+              <% } %>
+            </div><!--FIM SUB OPÇÃO MENU FORNECEDORES -->
         </div><!-- FIM OPÇÃO MENU FORNECEDORES -->
 
         <!-- INICIO OPÇÃO MENU Forma Pagto -->
@@ -169,7 +193,11 @@
               class="fas fa-credit-card"></i> Formas Pagto </a>
           <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU Forma Pagto -->
             <a onclick=" location='/formapagtos'" class="dashboard-nav-dropdown-item">Listar</a>
+            <%if(l.Tipousuario.tipousuario=="Administrador" ||l.Tipousuario.tipousuario=="Gerente" ||
+              l.Tipousuario.tipousuario=="Supervisor" || l.tipousuarioid==2){%>
             <a onclick=" location='/formapagtos/new'" class="dashboard-nav-dropdown-item">Novo</a>
+            <% } else { %>
+              <% } %>
           </div><!--FIM SUB OPÇÃO MENU Forma Pagto -->
         </div><!-- FIM OPÇÃO MENU Forma Pagto -->
 
@@ -218,7 +246,11 @@
               class="fas fa-user-tie"></i> Tipo Usuario </a>
           <div class='dashboard-nav-dropdown-menu'><!-- INICIO sub OPÇÃO MENU Tipo Usuario -->
             <a onclick=" location='/tipousuarios'" class="dashboard-nav-dropdown-item">Listar</a>
+            <%if(l.Tipousuario.tipousuario=="Administrador") {%>
             <a onclick=" location='/tipousuarios/new'" class="dashboard-nav-dropdown-item">Novo</a>
+            <% } else { %>
+              <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
+               <% } %>
           </div><!--FIM SUB OPÇÃO MENU Tipo Usuario -->
         </div><!-- FIM OPÇÃO MENU Tipo Usuario -->
 

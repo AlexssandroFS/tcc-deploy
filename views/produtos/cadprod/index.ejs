@@ -2,6 +2,7 @@
 <link href="../../../css/tables_view.css" rel="stylesheet">
 <link href="../../../js/jquery.js" rel="stylesheet">
 <link href='../../../css/bootstrap.min.css' rel='stylesheet'>
+
 <style>
     ::-webkit-scrollbar {
         width: 8px;
@@ -48,14 +49,17 @@
 <body className='snippet-body'>
     <%- include('../../partials/home'); %>
         <div class="wrapper w3-container">
+            <br> <br> <br> <br> 
             <section class="container-fluid">
-                <br> <br> <br> <br>
                 <div class=" container-fluid">
                     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
                     <script type="text/javascript"
                         src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
                     <div class="container-fluid responsive" id="pdf2htmldiv">
                         <div class="responsive container text-left row col-md-12">
+                            <table id="example"
+                                class="w3-container-fluid col-md-12 table  border-light table-bordered table-responsive-sm table-hover"
+                                style="width:100%; overflow-x:auto;">
                             <center>
                                 <h4>Atualmente temos:
                                     <b style="color: red;">
@@ -65,33 +69,36 @@
                             </center>
                         </div>
                         <div class="container-fluid responsive row col-md-12" id="pdf2htmldiv">
-                            <table id="example"
-                                class="w3-container-fluid col-md-12 table  border-light table-bordered table-responsive-sm table-hover"
-                                style="width:100%; overflow-x:auto;">
-                                <div class="w3-container responsive container responsive row col-md-12">
+                            <center>
+                                <div class="responsive container text-left row col-md-12">
                                     <div class="col-md-3">
-
+                                <%if(l.Tipousuario.tipousuario=="Administrador" || l.Tipousuario.tipousuario=='Atendente' ||l.Tipousuario.tipousuario=="Gerente" ||
+                                        l.Tipousuario.tipousuario=="Supervisor" || l.tipousuarioid==2){%>
                                         <form method="GET" action="/produtos/cadprod/new">
                                             <button action="submit" class="btn btn-danger text-left"
-                                                title="Cadastrar Novo Produto">Cadastrar Nome do Produto</button>
+                                                title="Cadastrar Novo Produto">Cadastrar Nome de Produto</button>
                                         </form>
+                                        <% } else { %>
+                                            <% } %>
                                     </div>
                                     <div class="col-md-4">
                                         <form method="GET" action="/produtos/entradas">
                                             <button action="submit" class="btn btn-primary text-left"
-                                                title="Gerenciar Entrada Produto">Gerenciar ENTRADA do Produto</button>
+                                                title="Gerenciar Entrada Produto">Gerenciar ENTRADA de Produto</button>
                                         </form>
                                     </div>
                                     <div class="col-md-3">
                                         <form method="GET" action="/produtos/saidas">
                                             <button action="submit" class="btn btn-dark text-white text-left"
-                                                title="Gerenciar SAÍDA Produto">Gerenciar SAÍDA do Produto</button>
+                                                title="Gerenciar SAÍDA Produto">Gerenciar SAÍDA de Produto</button>
                                         </form>
                                     </div>
                                     <div class="col-md-2">
                                         <a onclick="printDiv('pdf2htmldiv')" type="button">
                                             <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
                                     </div>
+                                    <center>
+
                                 </div>
                                 <br>
                                 <div class="w3-container responsive">
@@ -103,13 +110,8 @@
                                             <th scope="col">Nome Produto</th>
                                             <th scope="col">Categoria Produto</th>
                                             <th scope="col">Estque Mínimo Produto</th>
-                                            <% if(l.Tipousuario.tipousuario=='Administrador' ||
-                                                l.Tipousuario.tipousuario=='Gerente' ||
-                                                l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
-                                                <th scope="col">Ações</th>
-                                                <% } else { %>
-
-                                                    <% } %>
+                                             <th scope="col">Ações</th>
+                                                
                                         </tr>
                                     </thead>
                                     <tbody class="responsive text-center">
@@ -134,7 +136,8 @@
                                                         <div class="row w3-container-fluid responsive">
                                                             <div class="col-6">
                                                                 <% if(l.Tipousuario.tipousuario=='Administrador' ||
-                                                                    l.Tipousuario.tipousuario=='Gerente' ||
+                                                                l.Tipousuario.tipousuario=='Atendente' ||
+                                                                l.Tipousuario.tipousuario=='Gerente' ||
                                                                     l.Tipousuario.tipousuario=='Supervisor' ||
                                                                     l.tipousuarioid==2) {%>
                                                                     <a
@@ -195,7 +198,8 @@
                             </table>
                         </div>
                     </div>
-            </section>
+                    <br> <br> </section>
+                </div><br> <br>
         </div>
         <script type='text/javascript'
             src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js'></script>
@@ -203,10 +207,10 @@
         <script type='text/javascript' src='#'></script>
         <script type='text/javascript' src='#'></script>
         <script type='text/javascript'>
-            /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
-                                                                                                                                                                                                                                                                                                            Passando para o Português
-                                                                                                                                                                                                                                                                                                            */
             $(document).ready(function () {
+                /*https://www.mundojs.com.br/2018/09/17/criando-tabelas-com-o-datatables-js/
+                      Passando para o Português
+                      */
                 $('#example').DataTable({
                     "language": {
                         "sLengthMenu": "Mostrar _MENU_ entradas",
@@ -239,5 +243,5 @@
         </script>
 
         <script src="/js/alertas.js"></script>
-        <br> <br>
+
 </body>

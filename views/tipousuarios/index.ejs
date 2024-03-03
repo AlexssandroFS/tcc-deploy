@@ -59,8 +59,7 @@
                                     style="width:100%; overflow-x:auto;">
                                         <div class="responsive container text-left row col-md-12">
                                             <div class="col-md-3">
-                                                <% if(l.Tipousuario.tipousuario=='Administrador' ||
-                                                    l.Tipousuario.tipousuario=='Gerente' ) {%>
+                                                <% if(l.Tipousuario.tipousuario=='Administrador') {%>
                                                     <form method="GET" action="/tipousuarios/new">
                                                         <button action="submit" class="btn btn-danger text-left"
                                                             title="Criar Novo Perfil">Novo Tipo de Usuário</button>
@@ -125,10 +124,7 @@
                                                                                     ></i>
                                                                             </a>
                                                                         </div>
-                                                                        <% if(l.Tipousuario.tipousuario=='Administrador'
-                                                                            || l.Tipousuario.tipousuario=='Gerente' ||
-                                                                            l.Tipousuario.tipousuario=='Supervisor' ||
-                                                                            l.tipousuarioid==2) {%>
+                                                                        <% if(l.Tipousuario.tipousuario=='Administrador') {%>
 
                                                                             <div class="col-md-4">
                                                                                 <a
@@ -142,8 +138,7 @@
                                                                             <% } else { %>
 
                                                                                 <% } %>
-                                                                                    <% if(l.Tipousuario.tipousuario=='Administrador'
-                                                                                        ){%>
+                                                                                    <% if(l.Tipousuario.tipousuario=='Administrador'){%>
                                                                                         <div class="col-md-4">
                                                                                             <form method="POST"
                                                                                                 action="/tipousuarios/<%= c.id %>?_method=DELETE"

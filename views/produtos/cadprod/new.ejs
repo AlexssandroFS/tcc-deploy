@@ -8,8 +8,9 @@
 <body className='snippet-body'>
     <%- include('../../partials/home'); %>
         <div class="wrapper w3-container">
+            
             <section class="container-fluid">
-                <br> <br> <br> <br>
+                
                 <div class=" container-fluid">
                     <div class="container-fluid responsive" id="pdf2htmldiv">
                         <div class="responsive container text-left row col-md-12">
@@ -76,8 +77,8 @@ F
                             </div>
                             <div class="row col-12">
                                 <div class="col-md-2" id="divrigth">
-                                    <% if(l.Tipousuario.tipousuario=='Administrador' ||
-                                        l.Tipousuario.tipousuario=='Gerente' || l.Tipousuario.tipousuario=='Supervisor'
+                                    <% if(l.Tipousuario.tipousuario=='Administrador' || l.Tipousuario.tipousuario=='Atendente' 
+                                       ||  l.Tipousuario.tipousuario=='Gerente' || l.Tipousuario.tipousuario=='Supervisor'
                                         || l.tipousuarioid==2) {%>
                                         <button type="submit" class="btn btn-success btn-sm-3 profile-button text-white"
                                             onsubmit="return save();"><i title="Salvar Alterações deste Produto"
