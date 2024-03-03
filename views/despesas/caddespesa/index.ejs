@@ -45,9 +45,9 @@
 <body className='snippet-body'>
     <%- include('../../partials/home'); %>
         <div class="wrapper w3-container">
-            <section class="container-fluid">
-                <br> <br> <br> <br>
-                <div class=" container-fluid">
+             <br> <br> <br> <br>
+             <section class="container-fluid">
+                 <div class=" container-fluid">
                     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
                     <script type="text/javascript"
                         src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
@@ -67,10 +67,15 @@
                             class="w3-container-fluid col-md-12 table  border-light table-bordered table-responsive-sm table-hover"
                             style="width:100%; overflow-x:auto;">
                                 <div class="col-md-3">
+                                    <%if(l.Tipousuario.tipousuario=="Administrador" ||l.Tipousuario.tipousuario=="Gerente" 
+                                    || l.Tipousuario.tipousuario=="Atendente" || l.Tipousuario.tipousuario=="Supervisor"
+                                     || l.tipousuarioid==2){%>
                                     <form method="GET" action="/despesas/caddespesa/new">
                                         <button action="submit" class="btn btn-danger text-left"
                                             title="Cadastrar Nova Despesa">Cadastrar Nome da Despesa</button>
                                     </form>
+                                    <% } else { %>
+                                        <% } %>
                                 </div>
                                 <div class="col-md-4">
                                     <form method="GET" action="/despesas/entradas">
@@ -110,12 +115,14 @@
                                             <td>
                                                 <%=c.nomedespesa%>
                                             </td>
+                                            
                                             <td>
                                                 <div class="w3-container-fluid responsive float-center">
                                                     <div class="row w3-container-fluid responsive ">
                                                         <div class="col-6">
                                                             <% if(l.Tipousuario.tipousuario=='Administrador' ||
                                                                 l.Tipousuario.tipousuario=='Gerente' ||
+                                                                l.Tipousuario.tipousuario=='Atendente' ||
                                                                 l.Tipousuario.tipousuario=='Supervisor' ||
                                                                 l.tipousuarioid==2) {%>
 
@@ -153,6 +160,7 @@
                             </div>
 
                             </td>
+                            
                             <% }%>
                                 </tr>
                                 <tfoot class="responsive text-center border-light container-fluid "

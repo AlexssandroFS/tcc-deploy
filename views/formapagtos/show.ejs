@@ -57,6 +57,7 @@
                     <h4 class="text-right">Qual ação deseja realizar?</h4>
                 </div>
                 <div class="responsive container  col-md-12">
+                    <%if (l.tipousuarioid==1 | l.tipousuarioid==2|| l.tipousuarioid==4) {%>
                     <div class="col-md-1" id="divleft"><a onclick="location = '/formapagtos/<%= formapagtos.id%>/edit'"
                             type="button" class="btn btn-success btn-sm-3 profile-button text-white"
                             onsubmit="return edit();">Editar<i title="Editar Esta Forma de Pagamento"
@@ -64,7 +65,9 @@
                             </i>
                         </a>
                     </div>
+                    <% } else { %>
 
+                        <% } %>
                     <div class="col-md-1" id="divleft">
 
                         <% if(l.Tipousuario.tipousuario=='Administrador' ) {%>

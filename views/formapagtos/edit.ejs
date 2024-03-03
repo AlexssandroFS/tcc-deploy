@@ -57,8 +57,7 @@
                                 <% } else { %>
                                     <% } %></div>
                                 <div class="col-md-1">
-                                                                     
-                                        <form action="/formapagtos/<%= formapagtos.id %>?_method=DELETE"
+                                     <form action="/formapagtos/<%= formapagtos.id %>?_method=DELETE"
                                             method="POST" id="view" onsubmit="return del();">
                                             <% if(l.Tipousuario.tipousuario=='Administrador' ) {%>
                                             <button action="submit"

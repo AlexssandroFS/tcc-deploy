@@ -59,11 +59,14 @@
                                     style="width:100%; overflow-x:auto;">
                                     <div class="responsive container text-left row col-md-12">
                                         <div class="col-md-3">
+                                            <%if (l.tipousuarioid==1 | l.tipousuarioid==2|| l.tipousuarioid==4) {%>
                                             <form method="GET" action="/formapagtos/new">
                                                 <button action="submit" class="btn btn-danger text-left"
                                                     title="Cadastrar Nova Forma de Pagamento">Cadastrar Nome da Forma de
                                                     Pagamento</button>
                                             </form>
+                                            <% } else { %>
+                                                <% } %>
                                         </div>
                                         <div class="container responsive row col-md-8">
                                             <h4>Atualmente temos:
@@ -109,16 +112,17 @@
                                                                             title="visualisar Este Nome da Forma de Pagto"></i>
                                                                     </a>
                                                                 </div>
+                                                                <%if (l.tipousuarioid==1 | l.tipousuarioid==2|| l.tipousuarioid==4) {%>
 
                                                                 <div class="col-md-4">
-                                                                    <a
-                                                                        onclick="location = '/formapagtos/<%= c.id%>/edit'"><i
+                                                                    <a onclick="location = '/formapagtos/<%= c.id%>/edit'"><i
                                                                             style='font-size:28px;color:rgb(6, 218, 52)'
                                                                             class="far fa-edit fa-xl" aria-hidden="true"
                                                                             title="Editar Este Nome da Forma de Pagto"></i>
                                                                     </a>
                                                                 </div>
-
+                                                                <% } else { %>
+                                                                    <% } %>
                                                                 <div class="col-md-4">
                                                                     <% if(l.Tipousuario.tipousuario=='Administrador' )
                                                                         {%>

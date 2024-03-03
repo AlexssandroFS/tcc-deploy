@@ -79,8 +79,15 @@
                                 </div>
                                 <div class="row col-md-12">
                                     <div class="col-md-1">
-                                    <button type="submit" class="btn btn-success btn-sm-3 profile-button text-white" onsubmit="return save();"><i title="Salvar Alterações desta Cardapio" style="font-size: 20px;">Salvar</i></button></div>
-                                    <div class="col-md-1">
+                                        <%if (l.tipousuarioid==1 || l.tipousuarioid==2 || l.tipousuarioid==4) {%>
+                                        <button type="submit" class="btn btn-success btn-sm-3 profile-button text-white" onsubmit="return save();">
+                                        <i title="Salvar Alterações desta Cardapio" style="font-size: 20px;">Salvar</i>
+                                    </button>
+                                    <% } else{%>
+                                        <% }%>
+                                </div>
+                                       
+                                        <div class="col-md-1">
                                         <% if(l.Tipousuario.tipousuario=='Administrador' ) {%>
                                             <form action="/cardapios/<%= cardapios.id %>?_method=DELETE"
                                                 method="POST" id="view" onsubmit="return del();">

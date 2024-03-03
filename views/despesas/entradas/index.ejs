@@ -46,7 +46,7 @@
 <body className='snippet-body'>
     <%- include('../../partials/home'); %>
         <div class="wrapper container-fluid">
-            <br><br><br>
+            <br><br><br><br>
             <section class="container-fluid col-md-12" id="pdf2htmldiv">
                 <div class="container-fluid">
                     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
@@ -148,10 +148,7 @@
                                                             class="w3-container-fluid responsive float-justify col-md-12">
                                                             <div class="row w3-container-fluid responsive col-md-12">
                                                                 <div class="col-md-4">
-                                                                    <% if(l.Tipousuario.tipousuario=='Administrador' ||
-                                                                        l.Tipousuario.tipousuario=='Gerente' ||
-                                                                        l.Tipousuario.tipousuario=='Supervisor' ||
-                                                                        l.tipousuarioid==2) {%>
+                                                                 
                                                                         <a
                                                                             onclick="location = '/despesas/entradas/<%= c.id%>'"><i
                                                                                 style='font-size:28px;color:rgb(17, 59, 247)'
@@ -159,8 +156,7 @@
                                                                                 aria-hidden="true"
                                                                                 title="Visualisar Dados Despesa"></i>
                                                                         </a>
-                                                                        <% } else { %>
-                                                                            <% } %>
+                                                                      
                                                                 </div>
                                                                 <div class="col-4">
                                                                     <% if(l.Tipousuario.tipousuario=='Administrador' ||

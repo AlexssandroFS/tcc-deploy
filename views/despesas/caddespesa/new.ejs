@@ -8,9 +8,9 @@
 <body className='snippet-body'>
     <%- include('../../partials/home'); %>
         <div class="wrapper container-fluid">
+            <br> <br> <br> <br>
             <section class="container-fluid">
-                <br> <br> <br> <br>
-                <div class="container-fluid">
+               <div class="container-fluid">
                     <div class="responsive container text-left row-col-12">
                         <center>
                             <h4>Você está no cadastro de <b style="color: red;">Novo Nome de Despesa:</b></h4>
@@ -44,7 +44,7 @@
                                     <br>
                                     <div class="row container">
                                         <% if(l.Tipousuario.tipousuario=='Administrador' ||
-                                            l.Tipousuario.tipousuario=='Gerente' ||
+                                        l.Tipousuario.tipousuario=='Atendente' ||  l.Tipousuario.tipousuario=='Gerente' || 
                                             l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
                                             <div class="col-md-2 float-end "><button type="submit"
                                                     class="btn btn-success btn-sm-3 profile-button text-white"

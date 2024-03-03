@@ -43,7 +43,7 @@
 <body className='snippet-body'>
     <%- include('../../partials/home'); %>
         <div class="wrapper container-fluid">
-            <br><br><br>
+            <br><br><br><br>
             <section class="container-fluid" id="pdf2htmldiv">
                 <div class="container-fluid">
                     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
@@ -121,7 +121,6 @@
                                             <th>
                                                 <%=c.id%>
                                             </th>
-
                                             <th>
                                                 <%=c.despesasidentradas%>
                                             </th>
@@ -132,7 +131,6 @@
                                                 <%=vetorNomeDesp[contador]%>
                                                     <% contador++ %>
                                             </td>
-
                                             <td>
                                                 <%=c.descricaosaida%>
                                             </td>
@@ -156,7 +154,8 @@
                                                             <% if(l.Tipousuario.tipousuario=='Administrador' ||
                                                                 l.Tipousuario.tipousuario=='Gerente' ||
                                                                 l.Tipousuario.tipousuario=='Supervisor' ||
-                                                                l.tipousuarioid==2) {%>
+                                                                l.tipousuarioid==2||
+                                                                l.Tipousuario.tipousuario=='Atendente') {%>
                                                                 <a
                                                                     onclick="location = '/despesas/saidas/<%= c.id%>'"><i
                                                                         style='font-size:28px;color:rgb(17, 59, 247)'

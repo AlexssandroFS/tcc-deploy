@@ -91,8 +91,8 @@
                 </div>
             <div class="container responsive row col-md-12">
                    <div class="col-md-1">
-                    <% if(l.Tipousuario.tipousuario == 'Administrador' || l.Tipousuario.tipousuario == 'Atendente' || l.Tipousuario.tipousuario == 'Gerente' || l.Tipousuario.tipousuario == 'Supervisor' || l.tipousuarioid == 2) {%>
-                        <a onclick="location = '/cardapios/<%= cardapios.id%>/edit'" type="button" class="btn btn-success btn-sm-3 profile-button text-white" id="view" onsubmit="return edit();"><i title="Editar Este Cardápio" style="font-size: 20px;">
+                    <%if (l.tipousuarioid==1 || l.tipousuarioid==2 || l.tipousuarioid==4) {%>
+                        <a onclick="location = '/cardapios/<%=cardapios.id%>/edit'" type="button" class="btn btn-success btn-sm-3 profile-button text-white" id="view" onsubmit="return edit();"><i title="Editar Este Cardápio" style="font-size: 20px;">
                            Editar </i>
                                    </a>
                    <% } else{%>
