@@ -75,13 +75,17 @@
     <%- include('../partials/home'); %>
         <div class="wrapper container-fluid">
             <br><br><br><br>
-            <section class="container-fluid" id="pdf2htmldiv">
+            <section class="container-fluid">
                 <div class="container-fluid">
                     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
                     <script type="text/javascript"
                         src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-                    <div class="responsive container row col-md-12">
+                        <table id="example"
+                        class="w3-container-fluid responsive table border-light table-bordered table-responsive-sm table-hover"
+                        style="width:100%; overflow-x:auto;">
+                        <div class="responsive container row col-md-12">
                         <center>
+                            
                             <div class="col-md-12">
                                 <h4 class="col-md-12">Relatório GERAL para Controle de Estoque ATUAL<b
                                         style="color: rgb(111, 15, 194);">: ENTRADAS - SAÍDAS </b>.
@@ -97,9 +101,7 @@
                                         <i class="fa fa-print" aria-hidden="true" style="font-size: 35px;"></i>
                                 </div>
                             </div>
-                            <table id="example"
-                                class="table border-light table-bordered table-responsive-sm table-hover container-fluid"
-                                style="width:100%; overflow-x:auto;"><br>
+                      
                                 <div class="w3-container responsive col-md-12">
                                     <thead class="responsive bg-dark container text-center">
                                         <tr class="responsive table-active table-dark">
