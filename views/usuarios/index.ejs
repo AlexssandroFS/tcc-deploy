@@ -60,7 +60,7 @@
                     <div class="responsive container text-left row col-md-12">
                             <% if(l.Tipousuario.tipousuario=='Administrador' || l.Tipousuario.tipousuario=='Gerente' ||
                                 l.Tipousuario.tipousuario=='Supervisor' || l.tipousuarioid==2) {%>
-                               <div class="w3-container-fluid responsive row col-md-1">
+                               <div class="w3-container-fluid responsive row col-md-2">
                                     <form method="GET" action="/usuarios/new">
                                     <button type="submit" class="btn btn-primary text-left"
                                         title="Criar Novo Usuário">Novo Usuário</button>
@@ -70,14 +70,14 @@
                                     <% } %>
                                         <!-- Aqui fica em branco no lugar do botão que não atenda a condição que seja satisfatória para o Perfil-->
                                
-                        <div class="w3-container-fluid responsive col-md-9">
+                        <div class="w3-container-fluid responsive col-md-7">
                             <h4>Atualmente temos:
                                 <b style="color: red;">
                                     "<%=countUsuario%>" </b> Usuários <b
                                     style="color: rgb(111, 15, 194);">"cadastrados"</b>.
                                 <br>
                         </div>
-                        <div class="w3-container-fluid responsive col-md-1">
+                        <div class="w3-container-fluid responsive col-md-2">
                             <a onclick="printDiv( 'pdf2htmldiv') " type="button ">
                                 <i class="fa fa-print " aria-hidden="true " style="font-size: 35px; "></i>
                         
