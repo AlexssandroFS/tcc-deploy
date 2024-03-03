@@ -123,7 +123,7 @@ roteador.get('/relatorioprodutos', async(req, res) => {
                 ],
             ],
 
-            group: [
+            groupBy: [
                 [
                     'razaosocial',
                 ],
@@ -482,7 +482,7 @@ roteador.get('/entradas/:id', async(req, res) => {
                 [sequelize.fn('sum', sequelize.col('valortotal')), 'Valor_Geral_entradas'],
             ],
             order: ['id'],
-            group: ['produtosid'],
+            groupBy: ['produtosid'],
             distinct: true,
             raw: true,
         });
@@ -518,7 +518,7 @@ roteador.get('/entradas/:id', async(req, res) => {
                 [sequelize.fn('sum', sequelize.col('valortotalsaida')), 'Valor_Geral_entradas'],
             ],
             order: ['id'],
-            group: ['produtosidentradas'],
+            groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -603,7 +603,7 @@ roteador.get('/entradas/:id/edit', async(req, res) => {
 
             ],
             order: ['id'],
-            group: ['produtosidentradas'],
+            groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -653,7 +653,7 @@ roteador.get('/entradas/:id/edit', async(req, res) => {
             ],
 
             order: ['nomeprod'],
-            group: ['produtosid'],
+            groupBy: ['produtosid'],
             distinct: true,
             raw: true,
         });
@@ -998,7 +998,7 @@ roteador.get('/estoque', async(req, res) => {
                 }],
             }],
             order: ['produtosidentradas'],
-            //  group: ['produtosidentradas'],
+            //  groupBy: ['produtosidentradas'],
 
         });
 
@@ -1030,7 +1030,7 @@ roteador.get('/estoque', async(req, res) => {
         /*
                 const somarqtdsaida = await ProdutoSaida.findAll({
                     attributes: ['id', [sequelize.fn('sum', sequelize.col('qtdsaida')), 'valortotal']],
-                    group: ['ProdutoSaida.id'],
+                    groupBy: ['ProdutoSaida.id'],
                     raw: true,
                     order: sequelize.literal('valortotal DESC')
                 });
@@ -1138,7 +1138,7 @@ roteador.get('/estoquetotal', async(req, res) => {
 
             ],
             order: ['id'],
-            group: ['produtosidentradas'],
+            groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -1187,7 +1187,7 @@ roteador.get('/estoquetotal', async(req, res) => {
 
             ],
             order: ['id'],
-            group: ['produtosid'],
+            groupBy: ['produtosid'],
             distinct: true,
             raw: true,
         });
@@ -1231,7 +1231,7 @@ roteador.get('/estoquetotal', async(req, res) => {
 
 
         //SELECT nomeprod, qtdecompra, (valorunit * qtdecompra) as total FROM produtosentradas as pe, produtos as p WHERE pe.produtosid = p.id and p.nomeprod = 'Bebida Refrigerante Lata Coca Cola';
-        //SELECT DISTINCT pe.id, ps.produtosidentradas, sum(pe.qtdecompra), sum(ps.qtdsaida) FROM produtossaidas as ps, produtosentradas as pe where ps.produtosidentradas = pe.id GROUP by ps.produtosidentradas ORDER BY pe.id;
+        //SELECT DISTINCT pe.id, ps.produtosidentradas, sum(pe.qtdecompra), sum(ps.qtdsaida) FROM produtossaidas as ps, produtosentradas as pe where ps.produtosidentradas = pe.id groupBy by ps.produtosidentradas ORDER BY pe.id;
 
         res.render('produtos/estoquetotal', { produtossaidas, produtosentradas, valorAtualQtdeSaidas, valorAtualQtdeEntradas });
         //res.status(201).send(produtos);
@@ -1270,7 +1270,7 @@ roteador.get('/estoqueminimo', async(req, res) => {
 
             ],
             order: ['id'],
-            group: ['produtosidentradas'],
+            groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -1320,7 +1320,7 @@ roteador.get('/estoqueminimo', async(req, res) => {
             ],
 
             order: ['nomeprod'],
-            group: ['produtosid'],
+            groupBy: ['produtosid'],
             distinct: true,
             raw: true,
         });
@@ -1365,7 +1365,7 @@ roteador.get('/estoqueminimo', async(req, res) => {
 
 
         //SELECT nomeprod, qtdecompra, (valorunit * qtdecompra) as total FROM produtosentradas as pe, produtos as p WHERE pe.produtosid = p.id and p.nomeprod = 'Bebida Refrigerante Lata Coca Cola';
-        //SELECT DISTINCT pe.id, ps.produtosidentradas, sum(pe.qtdecompra), sum(ps.qtdsaida) FROM produtossaidas as ps, produtosentradas as pe where ps.produtosidentradas = pe.id GROUP by ps.produtosidentradas ORDER BY pe.id;
+        //SELECT DISTINCT pe.id, ps.produtosidentradas, sum(pe.qtdecompra), sum(ps.qtdsaida) FROM produtossaidas as ps, produtosentradas as pe where ps.produtosidentradas = pe.id groupBy by ps.produtosidentradas ORDER BY pe.id;
 
         res.render('produtos/estoqueminimo', {
             produtosentradas,
