@@ -1150,7 +1150,7 @@ roteador.get('/estoquetotal', async(req, res) => {
 
             ],
             order: ['id'],
-            groupBy: ['produtosidentradas'],
+            group: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -1199,7 +1199,7 @@ roteador.get('/estoquetotal', async(req, res) => {
 
             ],
             order: ['id'],
-            groupBy: ['produtosid'],
+            group: ['produtosid'],
             //order: [[sequelize.col(('id')), 'ASC']],
             distinct: true,
             raw: true,
@@ -1269,7 +1269,7 @@ roteador.get('/estoqueminimo', async(req, res) => {
               ],
               */
             attributes: [
-                'id',[sequelize.col('id'), 'id_saidas'],
+                'id', [sequelize.col('id'), 'id_saidas'],
                 'produtosidentradas', [sequelize.col('produtosidentradas'), 'id_Entradas'],
                 //[sequelize.col('ProdutoEntrada.valorunit'), 'vl_unitario'],
                 //[sequelize.fn('sum', sequelize.col('ProdutoEntrada.qtdecompra')), 'total_entradas'],
@@ -1282,7 +1282,8 @@ roteador.get('/estoqueminimo', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançtos_Id_Saidas'],
 
             ],
-            order: ['id'],
+            //order: ['id'],
+            order: ['produtosidentradas'],
             group: ['produtosidentradas'],
             distinct: true,
             raw: true,
@@ -1320,7 +1321,7 @@ roteador.get('/estoqueminimo', async(req, res) => {
                 'produtosid', [sequelize.col('produtosid'), 'id_produtos'],
                 // [sequelize.col('id'), 'id_entradas'],
                 'Produto.nomeprod', [sequelize.col('Produto.nomeprod'), 'nomeprod'],
-                [sequelize.col('valorunit'), 'vl_unitario'],
+                'valorunit', [sequelize.col('valorunit'), 'vl_unitario'],
                 [sequelize.fn('sum', sequelize.col('qtdecompra')), 'total_entradas'],
                 [sequelize.col('qtdeminima'), 'estoque_minimo'],
                 [sequelize.fn('sum', sequelize.col('valortotal')), 'Valor_Geral_entradas'],
