@@ -615,7 +615,7 @@ roteador.get('/entradas/:id/edit', async(req, res) => {
 
             ],
             order: ['id'],
-            group: ['produtosidentradas'],
+            groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -665,7 +665,7 @@ roteador.get('/entradas/:id/edit', async(req, res) => {
             ],
 
             order: ['nomeprod'],
-            group: ['produtosid'],
+            groupBy: ['produtosid'],
             distinct: true,
             raw: true,
         });
@@ -1150,7 +1150,7 @@ roteador.get('/estoquetotal', async(req, res) => {
 
             ],
             order: ['id'],
-            group: ['produtosidentradas'],
+            groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -1199,7 +1199,7 @@ roteador.get('/estoquetotal', async(req, res) => {
 
             ],
             order: ['id'],
-            group: ['produtosid'],
+            groupBy: ['produtosid'],
             //order: [[sequelize.col(('id')), 'ASC']],
             distinct: true,
             raw: true,
@@ -1283,7 +1283,7 @@ roteador.get('/estoqueminimo', async(req, res) => {
 
             ],
             order: ['id'],
-            group: ['produtosidentradas'],
+            groupBy: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -1333,7 +1333,7 @@ roteador.get('/estoqueminimo', async(req, res) => {
             ],
 
             order: ['nomeprod'],
-            group: ['produtosid'],
+            groupBy: ['produtosid'],
             distinct: true,
             raw: true,
         });
