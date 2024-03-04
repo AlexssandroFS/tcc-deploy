@@ -1,3 +1,15 @@
+/*   https://sebhastian.com/sequelize-group-by/ 
+sobre problema com Render: GROUP BY
+"SequelizeDatabaseError: column "ProdutoSaida.id" must appear in the GROUP BY clause or be used in an aggregate function"
+const users = User.findAll({
+  attributes: [
+    "firstName",
+    [sequelize.fn("COUNT", sequelize.col("isActive")), "count_isActive"],
+  ],
+  group: "firstName",
+});
+*/
+
 /*
 // Our fake database:
 let produtos = [{
@@ -1124,8 +1136,8 @@ roteador.get('/estoquetotal', async(req, res) => {
               ],
               */
             attributes: [
-                [sequelize.col('id'), 'id_saidas'],
-                [sequelize.col('produtosidentradas'), 'id_Entradas'],
+                'id', [sequelize.col('id'), 'id_saidas'],
+                'produtosidentradas', [sequelize.col('produtosidentradas'), 'id_Entradas'],
                 //[sequelize.col('ProdutoEntrada.valorunit'), 'vl_unitario'],
                 //[sequelize.fn('sum', sequelize.col('ProdutoEntrada.qtdecompra')), 'total_entradas'],
                 [sequelize.fn('sum', sequelize.col('qtdsaida')), 'total_saidas'],
@@ -1137,8 +1149,8 @@ roteador.get('/estoquetotal', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançtos_Id_Saidas'],
 
             ],
-            order: ['id'],
             group: ['produtosidentradas'],
+            order: ['id'],
             distinct: true,
             raw: true,
         });
@@ -1172,10 +1184,10 @@ roteador.get('/estoquetotal', async(req, res) => {
                 { model: Produto }
             ],
             attributes: [
-                [sequelize.col('produtosid'), 'id_produtos'],
+                'produtosid', [sequelize.col('produtosid'), 'id_produtos'],
                 // [sequelize.col('id'), 'id_entradas'],
-                [sequelize.col('nomeprod'), 'nomeprod'],
-                [sequelize.col('valorunit'), 'vl_unitario'],
+                'Produto.nomeprod', [sequelize.col('Produto.nomeprod'), 'nomeprod'],
+                'valorunit', [sequelize.col('valorunit'), 'vl_unitario'],
                 [sequelize.fn('sum', sequelize.col('qtdecompra')), 'total_entradas'],
                 // [sequelize.fn(sequelize.col('qtdsaida')), 'total_saidas'],
                 [sequelize.fn('sum', sequelize.col('valortotal')), 'Valor_Geral_entradas'],
@@ -1186,8 +1198,9 @@ roteador.get('/estoquetotal', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
 
             ],
-            order: ['id'],
             group: ['produtosid'],
+            order: ['id'],
+            //order: [[sequelize.col(('id')), 'ASC']],
             distinct: true,
             raw: true,
         });
@@ -1256,8 +1269,8 @@ roteador.get('/estoqueminimo', async(req, res) => {
               ],
               */
             attributes: [
-                [sequelize.col('id'), 'id_saidas'],
-                [sequelize.col('produtosidentradas'), 'id_Entradas'],
+                'id',[sequelize.col('id'), 'id_saidas'],
+                'produtosidentradas',[sequelize.col('produtosidentradas'), 'id_Entradas'],
                 //[sequelize.col('ProdutoEntrada.valorunit'), 'vl_unitario'],
                 //[sequelize.fn('sum', sequelize.col('ProdutoEntrada.qtdecompra')), 'total_entradas'],
                 [sequelize.fn('sum', sequelize.col('qtdsaida')), 'total_saidas'],
@@ -1269,8 +1282,9 @@ roteador.get('/estoqueminimo', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançtos_Id_Saidas'],
 
             ],
-            order: ['id'],
             groupBy: ['produtosidentradas'],
+            order: ['id'],
+            //order: [[sequelize.col(('id')), 'ASC']],
             distinct: true,
             raw: true,
         });
@@ -1304,10 +1318,10 @@ roteador.get('/estoqueminimo', async(req, res) => {
                 { model: Produto }
             ],
             attributes: [
-                [sequelize.col('produtosid'), 'id_produtos'],
+               'produtosid', [sequelize.col('produtosid'), 'id_produtos'],
                 // [sequelize.col('id'), 'id_entradas'],
-                [sequelize.col('nomeprod'), 'nomeprod'],
-                [sequelize.col('valorunit'), 'vl_unitario'],
+                'Produto.nomeprod', [sequelize.col('Produto.nomeprod'), 'nomeprod'],
+                'valorunit', [sequelize.col('valorunit'), 'vl_unitario'],
                 [sequelize.fn('sum', sequelize.col('qtdecompra')), 'total_entradas'],
                 [sequelize.col('qtdeminima'), 'estoque_minimo'],
                 [sequelize.fn('sum', sequelize.col('valortotal')), 'Valor_Geral_entradas'],
@@ -1318,9 +1332,11 @@ roteador.get('/estoqueminimo', async(req, res) => {
                 //[sequelize.fn('COUNT', sequelize.col('produtosidentradas')), 'Qtde_Lançamentos_Id_Entradas_Saidas'],
 
             ],
-
-            order: ['nomeprod'],
-            group: ['produtosid'],
+           // order: [[sequelize.col(('id')), 'ASC']],
+           groupBy: 'produtosid',
+           order: ['nomeprod'],
+            //order: ['nomeprod'],
+          //  group: ['produtosid'],
             distinct: true,
             raw: true,
         });
