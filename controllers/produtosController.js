@@ -1283,7 +1283,7 @@ roteador.get('/estoqueminimo', async(req, res) => {
 
             ],
             order: ['id'],
-            groupBy: ['produtosidentradas'],
+            group: ['produtosidentradas'],
             distinct: true,
             raw: true,
         });
@@ -1333,7 +1333,7 @@ roteador.get('/estoqueminimo', async(req, res) => {
             ],
 
             order: ['nomeprod'],
-            groupBy: ['produtosid'],
+            group: ['produtosid'],
             distinct: true,
             raw: true,
         });
